@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.assist"
+    package="com.btc_e_assist"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -12,13 +12,13 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="com.assist.App"
+        android:name="com.btc_e_assist.App"
         android:allowBackup="true"
         android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
         android:theme="@style/BaseCustomTheme" >
         <activity
-            android:name="com.assist.MainActivity"
+            android:name="com.btc_e_assist.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +27,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.assist.TickerActivity"
+            android:name="com.btc_e_assist.TickerActivity"
             android:label="@string/title_activity_ticker"
-            android:parentActivityName="com.assist.MainActivity" >
+            android:parentActivityName="com.btc_e_assist.MainActivity" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -37,8 +37,8 @@
                 android:value="com.assist.MainActivity" />
         </activity>
         <activity
-            android:name="com.assist.TradeActivity"
-            android:parentActivityName="com.assist.TickerActivity"
+            android:name="com.btc_e_assist.TradeActivity"
+            android:parentActivityName="com.btc_e_assist.TickerActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
@@ -47,9 +47,9 @@
                 android:value="com.assist.TickerActivity" />
         </activity>
         <activity
-            android:name="com.assist.ProfileActivity"
+            android:name="com.btc_e_assist.ProfileActivity"
             android:label="@string/title_activity_addprofile"
-            android:parentActivityName="com.assist.MainActivity"
+            android:parentActivityName="com.btc_e_assist.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
@@ -58,9 +58,9 @@
                 android:value="com.assist.MainActivity" />
         </activity>
         <activity
-            android:name="com.assist.FinancesActivity"
+            android:name="com.btc_e_assist.FinancesActivity"
             android:label="@string/title_activity_finances"
-            android:parentActivityName="com.assist.MainActivity" >
+            android:parentActivityName="com.btc_e_assist.MainActivity" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -68,9 +68,9 @@
                 android:value="com.assist.MainActivity" />
         </activity>
         <activity
-            android:name="com.assist.AssistActivity"
+            android:name="com.btc_e_assist.AssistActivity"
             android:label="@string/title_activity_assist"
-            android:parentActivityName="com.assist.MainActivity"
+            android:parentActivityName="com.btc_e_assist.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
@@ -79,9 +79,9 @@
                 android:value="com.assist.MainActivity" />
         </activity>
         <activity
-            android:name="com.assist.ChatActivity"
+            android:name="com.btc_e_assist.ChatActivity"
             android:label="@string/title_activity_finances"
-            android:parentActivityName="com.assist.MainActivity" >
+            android:parentActivityName="com.btc_e_assist.MainActivity" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
@@ -89,20 +89,20 @@
                 android:value="com.assist.MainActivity" />
         </activity>
         <activity
-            android:name="com.assist.AboutActivity"
+            android:name="com.btc_e_assist.AboutActivity"
             android:label="@string/about_title"
-            android:parentActivityName="com.assist.MainActivity" >
+            android:parentActivityName="com.btc_e_assist.MainActivity" >
 
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.assist.MainActivity" />
         </activity>
-        <activity android:name="com.assist.SettingsActivity" >
+        <activity android:name="com.btc_e_assist.SettingsActivity" >
         </activity>
         <!-- Declaring broadcast receiver for BOOT_COMPLETED event -->
         <receiver
-            android:name="com.assist.AutostartReceiver"
+            android:name="com.btc_e_assist.AutostartReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
@@ -111,11 +111,11 @@
         </receiver>
 
         <service
-            android:name="com.assist.ServiceAssist"
+            android:name="com.btc_e_assist.ServiceAssist"
             android:exported="false" />
 
         <receiver
-            android:name="com.assist.Widget"
+            android:name="com.btc_e_assist.Widget"
             android:label="BTC-e 4x1" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -127,7 +127,7 @@
             </meta-data>
         </receiver>
         <receiver
-            android:name="com.assist.WidgetHalf"
+            android:name="com.btc_e_assist.WidgetHalf"
             android:label="BTC-e 2x1" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -140,14 +140,14 @@
         </receiver>
 
         <activity
-            android:name="com.assist.WidgetConfigActivity"
+            android:name="com.btc_e_assist.WidgetConfigActivity"
             android:label="@string/title_widget_config" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.assist.WidgetHalfConfigActivity"
+            android:name="com.btc_e_assist.WidgetHalfConfigActivity"
             android:label="@string/title_widget_config" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
