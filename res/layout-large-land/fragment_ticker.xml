@@ -1,0 +1,205 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/Gray2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/avg_margin"
+        android:layout_marginRight="@dimen/avg_margin"
+        android:layout_marginTop="@dimen/avg_margin"
+        android:background="@drawable/shadow_background"
+        android:paddingBottom="@dimen/med_margin"
+        android:paddingTop="@dimen/med_margin" >
+
+        <TextView
+            android:id="@+id/tickerTextDiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="÷"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/tickerSpinnerLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/min_margin"
+            android:layout_toLeftOf="@id/tickerTextDiv" />
+
+        <Spinner
+            android:id="@+id/tickerSpinnerRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/min_margin"
+            android:layout_toRightOf="@id/tickerTextDiv" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/avg_margin"
+        android:background="@drawable/shadow_background" >
+
+        <TextView
+            android:id="@+id/tickerLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginTop="33dp"
+            android:text="@string/price"
+            android:textColor="#b2222222" />
+
+        <ImageView
+            android:id="@+id/tickerLastDots"
+            style="@style/DotsStyle"
+            android:layout_alignBottom="@+id/tickerLastName"
+            android:layout_toLeftOf="@+id/tickerLastValue"
+            android:layout_toRightOf="@+id/tickerLastName" />
+
+        <TextView
+            android:id="@+id/tickerLastValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tickerLastDots"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:text="-"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tickerMinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tickerLastName"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:text="Min"
+            android:textColor="#b2222222" />
+
+        <ImageView
+            android:id="@+id/tickerMinDots"
+            style="@style/DotsStyle"
+            android:layout_alignBottom="@+id/tickerMinName"
+            android:layout_toLeftOf="@+id/tickerMinValue"
+            android:layout_toRightOf="@id/tickerMinName" />
+
+        <TextView
+            android:id="@+id/tickerMinValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tickerMinName"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:text="-"
+            android:textColor="@color/Black90" />
+
+        <TextView
+            android:id="@+id/tickerMaxName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tickerMinName"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:text="Max"
+            android:textColor="#b2222222" />
+
+        <ImageView
+            android:id="@+id/tickerMaxDots"
+            style="@style/DotsStyle"
+            android:layout_alignBottom="@+id/tickerMaxName"
+            android:layout_toLeftOf="@+id/tickerMaxValue"
+            android:layout_toRightOf="@id/tickerMaxName" />
+
+        <TextView
+            android:id="@+id/tickerMaxValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tickerMaxName"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:text="-"
+            android:textColor="@color/Black90" />
+
+        <TextView
+            android:id="@+id/tickerVolumeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tickerMaxName"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:text="@string/volume"
+            android:textColor="#b2222222" />
+
+        <ImageView
+            android:id="@+id/tickerVolumeDots"
+            style="@style/DotsStyle"
+            android:layout_alignBottom="@+id/tickerVolumeName"
+            android:layout_toLeftOf="@+id/tickerVolumeValue"
+            android:layout_toRightOf="@id/tickerVolumeName" />
+
+        <TextView
+            android:id="@+id/tickerVolumeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tickerVolumeName"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:text="-"
+            android:textColor="@color/Black90" />
+
+        <LinearLayout
+            android:id="@+id/tickerButtonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tickerVolumeValue"
+            android:layout_marginRight="@dimen/min_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/min_margin" >
+
+            <Button
+                android:id="@+id/tickerBuyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buy_ticker_selector"
+                android:padding="@dimen/high_margin"
+                android:text="@string/buy"
+                android:textColor="@color/Gray"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/tickerSellButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/sell_ticker_selector"
+                android:padding="@dimen/high_margin"
+                android:text="@string/sell"
+                android:textColor="@color/Gray"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.androidplot.xy.XYPlot
+        android:id="@+id/mySimpleXYPlot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/avg_margin"
+        android:layout_marginLeft="@dimen/avg_margin"
+        android:layout_marginRight="@dimen/avg_margin"
+        androidPlot.graphWidget.marginBottom="20dp"
+        androidPlot.graphWidget.marginLeft="@dimen/activity_horizontal_margin"
+        androidPlot.graphWidget.marginTop="@dimen/min_margin" />
+
+</LinearLayout>

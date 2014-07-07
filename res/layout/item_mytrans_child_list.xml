@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/med_margin"
+    android:background="@color/Gray"
+    android:paddingTop="@dimen/med_margin" >
+
+    <TextView
+        android:id="@+id/itemMyTransChildDescValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:textColor="@color/Black90"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/itemMyTransChildTimeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemMyTransChildTimeValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/time"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemMyTransChildTimeDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemMyTransChildTimeValue"
+        android:layout_toLeftOf="@+id/itemMyTransChildTimeValue"
+        android:layout_toRightOf="@+id/itemMyTransChildTimeName" />
+
+    <TextView
+        android:id="@+id/itemMyTransChildTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemMyTransChildDescValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemMyTransChildStatusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemMyTransChildStatusValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/status"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemMyTransChildStatusDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemMyTransChildStatusValue"
+        android:layout_toLeftOf="@+id/itemMyTransChildStatusValue"
+        android:layout_toRightOf="@id/itemMyTransChildStatusName" />
+
+    <TextView
+        android:id="@+id/itemMyTransChildStatusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemMyTransChildTimeValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Green80"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/itemMyTransChildViewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/med_margin"
+        android:layout_below="@id/itemMyTransChildStatusDots"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@color/Gray0"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</RelativeLayout>

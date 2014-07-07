@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetHalfLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/widget_margin" >
+
+    <ImageView
+        android:id="@+id/widgetHalfImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/widget_background" />
+
+    <Button
+        android:id="@+id/widgetHalfButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/widgetHalfTime"
+                style="@style/WidgetTextTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <ProgressBar
+                android:id="@+id/widgetHalfProgressBar"
+                android:layout_width="40dp"
+                android:layout_height="15dp"
+                android:layout_weight="1"
+                android:indeterminateDrawable="@drawable/cust_progress_bar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/widgetHalfLayoutName1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/DarkSlateBlue"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/widgetHalfName1"
+                style="@style/WidgetTextNameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/widgetHalfName2"
+                style="@style/WidgetTextNameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/widgetHalfValue1"
+                style="@style/WidgetTextValueStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/widgetHalfValue2"
+                style="@style/WidgetTextValueStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/widgetHalfLayoutName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/DarkSlateBlue"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/widgetHalfName3"
+                style="@style/WidgetTextNameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/widgetHalfName4"
+                style="@style/WidgetTextNameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/widgetHalfValue3"
+                style="@style/WidgetTextValueStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/widgetHalfValue4"
+                style="@style/WidgetTextValueStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

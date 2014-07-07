@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings">Settings</string>
+    <string name="title_activity_ticker">Ticker</string>
+    <string name="title_activity_addprofile">Profiles</string>
+    <string name="app_name">BTCe Assist</string>
+    <string name="trades_main_button">Trades</string>
+    <string name="trades_main_button_land">&lt;h1>Trades&lt;/h1>Watch and trades</string>
+    <string name="assist_main_button">Assist</string>
+    <string name="assist_main_button_land">&lt;h1>Assist&lt;/h1>Your helper</string>
+    <string name="myinfo_main_button">Finances</string>
+    <string name="myinfo_main_button_land">&lt;h1>Finances&lt;/h1>Balance and history</string>
+    <string name="chat_main_button">Chat</string>
+    <string name="chat_main_button_land">&lt;h1>Chat&lt;/h1>Read Chat and News</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="error_connection">Connection error</string>
+    <string name="addprofile_text">Adding new profile</string>
+    <string name="name_profiles_hint">Profile name</string>
+    <string name="key_profiles_hint">API key</string>
+    <string name="secret_profiles_hint">Secret</string>
+    <string name="pass_profiles_hint">Encryption phrase(optional)</string>
+    <string name="encrypted_description">encrypted</string>
+    <string name="decryption_dialog_title">Decryption</string>
+    <string name="decryption_dialog_message">Enter password to decrypt profile %s, please:</string>
+    <string name="accepted_dialog_message">Password accepted. Profile is enabled</string>
+    <string name="profile_is_enabled">Profile is enabled</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="wrong_api_key_or_secret">Wrong api key or secret</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all">Delete all</string>
+    <string name="rights_message">The Rights for %s key is:</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="trade">Trade</string>
+    <string name="info">Info</string>
+    <string name="orders_count">Orders(%d)</string>
+    <string name="partly_filled_order">Partly filled</string>
+    <string name="active_order">Active</string>
+    <string name="order_not_cancelled">Order %d not cancelled</string>
+    <string name="sell">SELL</string>
+    <string name="buy">BUY</string>
+
+    <string-array name="ticker_tabs_names">
+        <item>Ticker</item>
+        <item>Orders</item>
+        <item>Trades</item>
+    </string-array>
+    <string-array name="profile_tabs_names">
+        <item>Add</item>
+        <item>Select</item>
+    </string-array>
+    <string-array name="finances_tabs_names">
+        <item>Balance</item>
+        <item>Trades</item>
+        <item>Transactions</item>
+    </string-array>
+    <string-array name="assist_tabs_names">
+        <item>Alarm</item>
+        <item>Tasks</item>
+    </string-array>
+    <string-array name="chat_tabs_names">
+        <item>Chat</item>
+        <item>News</item>
+    </string-array>
+    <string-array name="assist_alarm_conditions">
+        <item>Ring if higher</item>
+        <item>Ring if lower</item>
+    </string-array>
+    <string-array name="settings_service_update_entries">
+        <item>Low (3 min)</item>
+        <item>Medium (1 min)</item>
+        <item>High (30 sec)</item>
+        <item>Very high (10 sec)</item>
+    </string-array>
+    <string-array name="settings_service_update_values">
+        <item>180000</item>
+        <item>60000</item>
+        <item>30000</item>
+        <item>10000</item>
+    </string-array>
+
+    <string name="russian">Russian</string>
+    <string name="english">English</string>
+    <string name="chinese">Chinese</string>
+    <string name="title_activity_trade">Trading</string>
+    <string name="title_activity_assist">Assist</string>
+    <string name="title_activity_finances">Finances</string>
+    <string name="all_button">All</string>
+    <string name="clear_button">Clear</string>
+    <string name="just_buy_button">JUST BUY!</string>
+    <string name="buy_button">BUY</string>
+    <string name="just_sell_button">JUST SELL!</string>
+    <string name="sell_button">SELL</string>
+    <string name="price_ticker">Price</string>
+    <string name="amount_ticker">Amount</string>
+    <string name="total_ticker">Total</string>
+    <string name="pair_list_updated">Pairs list was updated</string>
+    <string name="updating">updating&#8230;</string>
+    <string name="updated">updated</string>
+    <string name="graph_connection_error">Graph not loaded</string>
+    <string name="manage_profiles_button">Manage profiles</string>
+    <string name="add_profile_button">Add profile</string>
+    <string name="add_profile_tips">If you want to encrypt your profile on this device , fill in your encryption phrase</string>
+    <string name="assist_alarm_tips">Alarm is made to notify you when the price reached the point you\'ve set</string>
+    <string name="chat_tips">BTC-e chat is available in read only mode</string>
+    <string name="empty_list">No data</string>
+    <string name="price">Price</string>
+    <string name="amount">Amount</string>
+    <string name="total">Total</string>
+    <string name="status">Status</string>
+    <string name="volume">Volume</string>
+    <string name="time">Time</string>
+    <string name="select_all">Select all</string>
+    <string name="completed">Completed</string>
+    <string name="not_completed">Not completed</string>
+    <string name="assist_alarm_text_label">Setting up an alarm</string>
+    <string name="add_alarm_button">SET UP</string>
+    <string name="pair_list_not_available">Actual pairs list is temporarily not available</string>
+    <string name="enter_price">Enter the price, please</string>
+    <string name="alarm_added">Alarm has been set</string>
+    <string name="chat_checked_mark">Checked</string>
+    <string name="news">News</string>
+    <string name="my_funds">My funds: %s</string>
+    <string name="invalid_amount">Invalid amount value</string>
+    <string name="too_low_amount">Too low amount value</string>
+    <string name="invalid_price">Invalid price value</string>
+    <string name="too_low_price">Too low price value</string>
+    <string name="too_high_price">Too high price value</string>
+    <string name="error">Error</string>
+    <string name="trade_result">Result of the transaction:</string>
+    <string name="received">Received:</string>
+    <string name="remains">Remains:</string>
+    <string name="try_to_buy">Buying&#8230;</string>
+    <string name="try_to_sell">Selling&#8230;</string>
+    <string name="alarm_notify_for">Notify for: %s</string>
+    <string name="alarm_notify_text">%1$s price is: %2$s</string>
+    <string name="foreground_content">Assist is watching to Tasks.</string>
+    <string name="settings_dtitle_trades">Trades and Trans. count</string>
+    <string name="settings_dtitle_depth">Depth count</string>
+    <string name="settings_dtitle_news">News count</string>
+    <string name="settings_dtitle_assist_freq">Assist frequency</string>
+    <string name="settings_title_trades">Trades and Transactions</string>
+    <string name="settings_title_depth">Depth</string>
+    <string name="settings_title_news">News</string>
+    <string name="settings_title_assist_freq">Assist</string>
+    <string name="settings_summary_trades">The number of trades and transactions for displaying</string>
+    <string name="settings_summary_depth">The number of active orders for each pair for displaying</string>
+    <string name="settings_summary_news">The number of news for displaying</string>
+    <string name="settings_summary_assist_freq">The frequency of Assist for sending requests</string>
+    <string name="title_widget_config">Widget config</string>
+    <string name="about_title">About</string>
+    <string name="about_site_label">Project site:</string>
+    <string name="about_design_label">Design:</string>
+    <string name="about_develop_label">Developer:</string>
+    <string name="about_donate_label">This an has no adds and paid version - it\'s absolutely free and Open Source.\nYou can help us make it the greatest app on the market by your donations. Please send it to us using BTC-e redeem codes. Thank you and have a nice trade!</string>
+
+</resources>

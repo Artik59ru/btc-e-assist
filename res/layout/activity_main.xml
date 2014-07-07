@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Gray0"
+    android:orientation="vertical"
+    android:padding="@dimen/standard_margin" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/min_margin"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/mainButton1_1"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/trades"
+            android:onClick="onButtonClicker"
+            android:text="@string/trades_main_button" />
+
+        <Button
+            android:id="@+id/mainButton1_2"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/balance"
+            android:onClick="onButtonClicker"
+            android:text="@string/myinfo_main_button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/mainButton2_1"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/assist"
+            android:onClick="onButtonClicker"
+            android:text="@string/assist_main_button" />
+
+        <Button
+            android:id="@+id/mainButton2_2"
+            style="@style/HomeButton"
+            android:drawableTop="@drawable/chat"
+            android:onClick="onButtonClicker"
+            android:text="@string/chat_main_button" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/mainButtonProfiles"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/med_margin"
+        android:background="@drawable/home_selector"
+        android:drawableLeft="@drawable/profile"
+        android:drawablePadding="@dimen/med_margin"
+        android:onClick="onButtonClicker"
+        android:paddingLeft="@dimen/standard_margin"
+        android:paddingRight="@dimen/standard_margin"
+        android:text="@string/manage_profiles_button" />
+
+</LinearLayout>

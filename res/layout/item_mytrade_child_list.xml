@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/med_margin"
+    android:background="@color/Gray"
+    android:paddingTop="@dimen/med_margin" >
+
+    <TextView
+        android:id="@+id/itemMyTradeChildPriceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemMyTradeChildPriceValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/price"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemMyTradeChildAmountDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemMyTradeChildPriceValue"
+        android:layout_toLeftOf="@+id/itemMyTradeChildPriceValue"
+        android:layout_toRightOf="@+id/itemMyTradeChildPriceName" />
+
+    <TextView
+        android:id="@+id/itemMyTradeChildPriceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemMyTradeChildTotalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemMyTradeChildTotalValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/total"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemMyTradeChildTotalDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemMyTradeChildTotalValue"
+        android:layout_toLeftOf="@+id/itemMyTradeChildTotalValue"
+        android:layout_toRightOf="@+id/itemMyTradeChildTotalName" />
+
+    <TextView
+        android:id="@+id/itemMyTradeChildTotalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemMyTradeChildPriceValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemMyTradeChildTimeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemMyTradeChildTimeValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/time"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemMyTradeChildTimeDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemMyTradeChildTimeValue"
+        android:layout_toLeftOf="@+id/itemMyTradeChildTimeValue"
+        android:layout_toRightOf="@+id/itemMyTradeChildTimeName" />
+
+    <TextView
+        android:id="@+id/itemMyTradeChildTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemMyTradeChildTotalValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/itemMyTradeChildViewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/med_margin"
+        android:layout_below="@id/itemMyTradeChildTimeDots"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@color/Gray0"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</RelativeLayout>

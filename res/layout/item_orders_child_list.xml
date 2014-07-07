@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/med_margin"
+    android:background="@color/Gray"
+    android:paddingTop="@dimen/med_margin" >
+
+    <TextView
+        android:id="@+id/itemOrdersChildAmountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemOrdersChildAmountValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/amount"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemOrdersChildAmountDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemOrdersChildAmountValue"
+        android:layout_toLeftOf="@+id/itemOrdersChildAmountValue"
+        android:layout_toRightOf="@+id/itemOrdersChildAmountName" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildAmountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildTotalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemOrdersChildTotalValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/total"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemOrdersChildTotalDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemOrdersChildTotalValue"
+        android:layout_toLeftOf="@+id/itemOrdersChildTotalValue"
+        android:layout_toRightOf="@+id/itemOrdersChildTotalName" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildTotalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemOrdersChildAmountValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildTimeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemOrdersChildTimeValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/time"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemOrdersChildTimeDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemOrdersChildTimeValue"
+        android:layout_toLeftOf="@+id/itemOrdersChildTimeValue"
+        android:layout_toRightOf="@+id/itemOrdersChildTimeName" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemOrdersChildTotalValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Black90"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildStatusName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemOrdersChildStatusValue"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:text="@string/status"
+        android:textColor="#b2222222" />
+
+    <ImageView
+        android:id="@+id/itemOrdersChildStatusDots"
+        style="@style/DotsStyle"
+        android:layout_alignBottom="@+id/itemOrdersChildStatusValue"
+        android:layout_toLeftOf="@+id/itemOrdersChildStatusValue"
+        android:layout_toRightOf="@id/itemOrdersChildStatusName" />
+
+    <TextView
+        android:id="@+id/itemOrdersChildStatusValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/itemOrdersChildTimeValue"
+        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textColor="@color/Green2"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/itemOrdersChildViewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/med_margin"
+        android:layout_below="@id/itemOrdersChildStatusDots"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@color/Gray0"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</RelativeLayout>

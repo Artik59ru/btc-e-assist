@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings">Настройки</string>
+    <string name="title_activity_ticker">Котировки</string>
+    <string name="title_activity_addprofile">Профили</string>
+    <string name="trades_main_button">Торги</string>
+    <string name="trades_main_button_land">&lt;h1>Торги&lt;/h1>Наблюдайте и торгуйте</string>
+    <string name="assist_main_button">Ассистент</string>
+    <string name="assist_main_button_land">&lt;h1>Ассистент&lt;/h1>Уведомит и поможет принять решение</string>
+    <string name="myinfo_main_button">Финансы</string>
+    <string name="myinfo_main_button_land">&lt;h1>Финансы&lt;/h1>Ваш баланс и история</string>
+    <string name="chat_main_button">Чат</string>
+    <string name="chat_main_button_land">&lt;h1>Чат&lt;/h1>Читать чат и новости</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="action_cancel">Закрыть</string>
+    <string name="error_connection">Ошибка соединения</string>
+    <string name="addprofile_text">Добавление профиля</string>
+    <string name="name_profiles_hint">Имя профиля</string>
+    <string name="pass_profiles_hint">Пароль шифрования(опционально)</string>
+    <string name="encrypted_description">зашифровано</string>
+    <string name="decryption_dialog_title">Расшифровка</string>
+    <string name="decryption_dialog_message">Введите пароль для расшифровки профиля %s, пожалуйста:</string>
+    <string name="accepted_dialog_message">Пароль принят. Профиль включен</string>
+    <string name="profile_is_enabled">Профиль включен</string>
+    <string name="wrong_password">Неправильный пароль</string>
+    <string name="wrong_api_key_or_secret">Неправильный key или secret</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_all">Удалить все</string>
+    <string name="rights_message">Права для ключа %s :</string>
+    <string name="yes">да</string>
+    <string name="no">нет</string>
+    <string name="trade">Торговля</string>
+    <string name="info">Инфо</string>
+    <string name="orders_count">Ордеров(%s)</string>
+    <string name="partly_filled_order">Частично исполнен</string>
+    <string name="active_order">Активен</string>
+    <string name="order_not_cancelled">Ордер %d не закрыт</string>
+    <string name="sell">ПРОДАТЬ</string>
+    <string name="buy">КУПИТЬ</string>
+
+    <string-array name="ticker_tabs_names">
+        <item>Котировки</item>
+        <item>Ордера</item>
+        <item>Сделки</item>
+    </string-array>
+    <string-array name="profile_tabs_names">
+        <item>Добавить</item>
+        <item>Выбрать</item>
+    </string-array>
+    <string-array name="finances_tabs_names">
+        <item>Баланс</item>
+        <item>Сделки</item>
+        <item>Транзакции</item>
+    </string-array>
+    <string-array name="assist_tabs_names">
+        <item>Будильник</item>
+        <item>Задачи</item>
+    </string-array>
+    <string-array name="chat_tabs_names">
+        <item>Чат</item>
+        <item>Новости</item>
+    </string-array>
+    <string-array name="assist_alarm_conditions">
+        <item>Звонок если выше</item>
+        <item>Звонок если ниже</item>
+    </string-array>
+    <string-array name="settings_service_update_entries">
+        <item>Низкая (3 мин)</item>
+        <item>Средняя (1 мин)</item>
+        <item>Высокая (30 сек)</item>
+        <item>Очень высокая (10 сек)</item>
+    </string-array>
+
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+    <string name="chinese">Китайский</string>
+    <string name="title_activity_trade">Торговля</string>
+    <string name="title_activity_assist">Ассистент</string>
+    <string name="title_activity_finances">Финансы</string>
+    <string name="all_button">Все</string>
+    <string name="clear_button">Очистить</string>
+    <string name="just_buy_button">СРОЧНО!</string>
+    <string name="buy_button">КУПИТЬ</string>
+    <string name="just_sell_button">СРОЧНО!</string>
+    <string name="sell_button">ПРОДАТЬ</string>
+    <string name="price_ticker">Цена</string>
+    <string name="amount_ticker">Сколько</string>
+    <string name="total_ticker">Итого</string>
+    <string name="pair_list_updated">Список пар обновлен</string>
+    <string name="updating">обновляется&#8230;</string>
+    <string name="updated">обновлено</string>
+    <string name="graph_connection_error">График не загружен</string>
+    <string name="manage_profiles_button">Управление профилями</string>
+    <string name="add_profile_button">Добавить профиль</string>
+    <string name="add_profile_tips">Если вы хотите зашифровать пароль на этом устройстве, введите пароль для шифрования</string>
+    <string name="assist_alarm_tips">Будильник даст вам знать, когда цена достигнет установленной границы</string>
+    <string name="chat_tips">BTC-e чат доступен только в режиме чтения</string>
+    <string name="empty_list">Нет данных</string>
+    <string name="price">Цена</string>
+    <string name="amount">Количество</string>
+    <string name="total">Всего</string>
+    <string name="status">Статус</string>
+    <string name="volume">Объем</string>
+    <string name="time">Время</string>
+    <string name="select_all">Выделить все</string>
+    <string name="completed">Завершено</string>
+    <string name="not_completed">Не завершено</string>
+    <string name="assist_alarm_text_label">Настройка будильника</string>
+    <string name="add_alarm_button">ГОТОВО</string>
+    <string name="pair_list_not_available">Актуальный список пар временно недоступен</string>
+    <string name="enter_price">Введите цену, пожалуйста</string>
+    <string name="alarm_added">Будильник добавлен</string>
+    <string name="chat_checked_mark">Прочитано</string>
+    <string name="news">Новость</string>
+    <string name="my_funds">Мои средства: %s</string>
+    <string name="invalid_amount">Некорректное количество</string>
+    <string name="too_low_amount">Слишком малое количество</string>
+    <string name="invalid_price">Некорректная цена</string>
+    <string name="too_low_price">Слишком низкая цена</string>
+    <string name="too_high_price">Слишком высокая цена</string>
+    <string name="error">Ошибка</string>
+    <string name="trade_result">Результат сделки:</string>
+    <string name="received">Получено:</string>
+    <string name="remains">Остаток:</string>
+    <string name="try_to_buy">Покупка&#8230;</string>
+    <string name="try_to_sell">Продажа&#8230;</string>
+    <string name="alarm_notify_for">Уведомление для: %s</string>
+    <string name="alarm_notify_text">Цена %1$s: %2$s</string>
+    <string name="foreground_content">Ассистент наблюдает за Задачами.</string>
+    <string name="settings_dtitle_trades">Количество сделок</string>
+    <string name="settings_dtitle_depth">Глубина стакана</string>
+    <string name="settings_dtitle_news">Количество новостей</string>
+    <string name="settings_dtitle_assist_freq">Частота Ассистента</string>
+    <string name="settings_title_trades">Сделки и транзакции</string>
+    <string name="settings_title_depth">Стакан</string>
+    <string name="settings_title_news">Новости</string>
+    <string name="settings_title_assist_freq">Ассистент</string>
+    <string name="settings_summary_trades">Количество сделок и транзакций для отображения</string>
+    <string name="settings_summary_depth">Количество отображаемых активных ордеров для каждой пары</string>
+    <string name="settings_summary_news">Количество отображаемых новостей</string>
+    <string name="settings_summary_assist_freq">Частота с которой Ассистент отправляет запросы</string>
+    <string name="title_widget_config">Настройка виджета</string>
+    <string name="about_title">О приложении</string>
+    <string name="about_site_label">Сайт проекта:</string>
+    <string name="about_design_label">Дизайн:</string>
+    <string name="about_develop_label">Разработка:</string>
+    <string name="about_donate_label">Это приложение является свободным программным обеспечением и абсолютно бесплатно.\nРазработка и развитие проекта требуют сил и, к сожалению, мы хотим есть. Свои пожертвования вы можете выслать в виде BTC-e Кода на почту или на кошельки, указанные на сайте проекта. Благодарим за использование и поддержку.</string>
+
+</resources>

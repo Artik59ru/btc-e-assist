@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Gray2" >
+
+    <TextView
+        android:id="@+id/chatTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Gray3"
+        android:drawableLeft="@drawable/tips"
+        android:drawablePadding="@dimen/standard_margin"
+        android:gravity="left|center_vertical"
+        android:padding="@dimen/standard_margin"
+        android:text="@string/chat_tips" />
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/chatTips"
+        android:layout_marginLeft="@dimen/high_margin"
+        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginTop="@dimen/high_margin"
+        android:animationCache="false"
+        android:background="#00000000"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/Gray2"
+        android:dividerHeight="@dimen/high_margin"
+        android:scrollingCache="false"
+        android:smoothScrollbar="true" />
+
+    <TextView
+        android:id="@id/android:empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/empty_list"
+        android:textSize="20sp" />
+
+</RelativeLayout>

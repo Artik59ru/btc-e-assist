@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:defaultValue="200"
+        android:dialogTitle="@string/settings_dtitle_trades"
+        android:inputType="number"
+        android:key="trades_transactions_count"
+        android:summary="@string/settings_summary_trades"
+        android:title="@string/settings_title_trades" />
+    <EditTextPreference
+        android:defaultValue="60"
+        android:dialogTitle="@string/settings_dtitle_depth"
+        android:inputType="number"
+        android:key="depth_count"
+        android:summary="@string/settings_summary_depth"
+        android:title="@string/settings_title_depth" />
+    <EditTextPreference
+        android:defaultValue="10"
+        android:dialogTitle="@string/settings_dtitle_news"
+        android:inputType="number"
+        android:key="news_count"
+        android:summary="@string/settings_summary_news"
+        android:title="@string/settings_title_news" />
+
+    <ListPreference
+        android:defaultValue="60000"
+        android:dialogTitle="@string/settings_dtitle_assist_freq"
+        android:entries="@array/settings_service_update_entries"
+        android:entryValues="@array/settings_service_update_values"
+        android:key="assist_frequency"
+        android:summary="@string/settings_summary_assist_freq"
+        android:title="@string/settings_title_assist_freq" />
+
+</PreferenceScreen>

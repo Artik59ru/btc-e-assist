@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.assist"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name="com.assist.App"
+        android:allowBackup="true"
+        android:icon="@drawable/launcher_icon"
+        android:label="@string/app_name"
+        android:theme="@style/BaseCustomTheme" >
+        <activity
+            android:name="com.assist.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.assist.TickerActivity"
+            android:label="@string/title_activity_ticker"
+            android:parentActivityName="com.assist.MainActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.TradeActivity"
+            android:parentActivityName="com.assist.TickerActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.TickerActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.ProfileActivity"
+            android:label="@string/title_activity_addprofile"
+            android:parentActivityName="com.assist.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.FinancesActivity"
+            android:label="@string/title_activity_finances"
+            android:parentActivityName="com.assist.MainActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.AssistActivity"
+            android:label="@string/title_activity_assist"
+            android:parentActivityName="com.assist.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.ChatActivity"
+            android:label="@string/title_activity_finances"
+            android:parentActivityName="com.assist.MainActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.assist.AboutActivity"
+            android:label="@string/about_title"
+            android:parentActivityName="com.assist.MainActivity" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.assist.MainActivity" />
+        </activity>
+        <activity android:name="com.assist.SettingsActivity" >
+        </activity>
+        <!-- Declaring broadcast receiver for BOOT_COMPLETED event -->
+        <receiver
+            android:name="com.assist.AutostartReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.assist.ServiceAssist"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.assist.Widget"
+            android:label="BTC-e 4x1" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_meta" >
+            </meta-data>
+        </receiver>
+        <receiver
+            android:name="com.assist.WidgetHalf"
+            android:label="BTC-e 2x1" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_half_meta" >
+            </meta-data>
+        </receiver>
+
+        <activity
+            android:name="com.assist.WidgetConfigActivity"
+            android:label="@string/title_widget_config" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.assist.WidgetHalfConfigActivity"
+            android:label="@string/title_widget_config" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,238 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android1:layout_width="match_parent"
+        android1:layout_height="wrap_content"
+        android1:orientation="vertical" >
+
+        <TableLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content" >
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 1:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName1"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 2:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName2"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 3:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName3"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 4:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName4"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 5:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName5"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 6:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName6"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 7:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName7"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 8:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName8"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 9:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName9"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:gravity="center" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cell 10:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android1:id="@+id/widgetConfigName10"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
+
+        <RelativeLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content" >
+
+            <TextView
+                android1:id="@+id/widgetConfigTransparency"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:layout_centerHorizontal="true"
+                android1:text="Transparency"
+                android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <SeekBar
+                android1:id="@+id/widgetConfigSeekBar"
+                android1:layout_width="250dp"
+                android1:layout_height="wrap_content"
+                android1:layout_below="@id/widgetConfigTransparency"
+                android1:layout_centerHorizontal="true"
+                android1:layout_marginLeft="5dp"
+                android1:layout_marginRight="5dp" />
+
+            <TextView
+                android1:id="@+id/widgetConfigMin"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:layout_below="@id/widgetConfigTransparency"
+                android1:layout_marginTop="5dp"
+                android1:layout_toLeftOf="@id/widgetConfigSeekBar"
+                android1:text="Min"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android1:id="@+id/widgetConfigMax"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:layout_below="@id/widgetConfigTransparency"
+                android1:layout_marginTop="5dp"
+                android1:layout_toRightOf="@id/widgetConfigSeekBar"
+                android1:text="Max"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/widgetConfigButton"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:onClick="onClick"
+            android:text="OK" />
+    </LinearLayout>
+
+</ScrollView>

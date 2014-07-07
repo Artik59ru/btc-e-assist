@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Gray" >
+
+    <TextView
+        android:id="@+id/itemTradesGroupAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
+        android:drawablePadding="@dimen/high_margin"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/itemTradesGroupNamesLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/itemTradesGroupName1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/Black70"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/itemTradesGroupName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/Black70"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/addprofileLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/addprofileTextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:gravity="center"
+        android:text="@string/addprofile_text"
+        android:textColor="@color/Blue"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/addprofileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addprofileTextLabel"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_toLeftOf="@+id/addProfileQuestion1"
+        android:ems="10"
+        android:hint="@string/name_profiles_hint"
+        android:inputType="textNoSuggestions"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/addprofileKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addprofileName"
+        android:layout_alignRight="@+id/addprofileName"
+        android:layout_below="@id/addprofileName"
+        android:layout_marginTop="@dimen/med_margin"
+        android:ems="10"
+        android:hint="@string/key_profiles_hint"
+        android:inputType="textNoSuggestions"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/addprofileSecret"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addprofileKey"
+        android:layout_alignRight="@+id/addprofileKey"
+        android:layout_below="@id/addprofileKey"
+        android:layout_marginTop="@dimen/med_margin"
+        android:ems="10"
+        android:hint="@string/secret_profiles_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textNoSuggestions"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/addprofilePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/addprofileSecret"
+        android:layout_below="@id/addprofileSecret"
+        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/med_margin"
+        android:ems="10"
+        android:hint="@string/pass_profiles_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/addprofileTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Gray2"
+        android:drawableLeft="@drawable/tips"
+        android:drawablePadding="@dimen/standard_margin"
+        android:gravity="left|center_vertical"
+        android:padding="@dimen/standard_margin"
+        android:text="@string/add_profile_tips"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/addProfileQuestion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addprofileSecret"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/high_margin"
+        android:src="@drawable/question" />
+
+    <ImageView
+        android:id="@+id/addProfileQuestion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/addprofilePassword"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/high_margin"
+        android:src="@drawable/question" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/addprofileTips"
+        android:layout_below="@id/addprofilePassword" >
+
+        <Button
+            android:id="@+id/addProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/profile_selector"
+            android:padding="@dimen/med_margin"
+            android:text="@string/add_profile_button"
+            android:textColor="@color/Gray"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

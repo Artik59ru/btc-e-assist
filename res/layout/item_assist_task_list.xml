@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/high_margin" >
+
+    <TextView
+        android:id="@+id/itemAssistTaskOption4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/itemAssistTaskOption5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itemAssistTaskOption4"
+        android:layout_marginTop="@dimen/med_margin"
+        android:singleLine="true"
+        android:textSize="17sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/itemAssistTaskValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/itemAssistTaskOption5"
+        android:layout_marginLeft="@dimen/high_margin"
+        android:layout_toRightOf="@id/itemAssistTaskOption5"
+        android:singleLine="true"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/itemAssistTaskCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
