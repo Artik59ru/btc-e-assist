@@ -5,9 +5,6 @@ BTC-e Assist
 ![](https://raw.githubusercontent.com/alexandersjn/btc-e-assist/master/web_hi_res_512.png)
 
 
-##BTC-e Assist original rep
-
-
 This is an open-source app for BTC-e.com that allows you trade and stay tuned in any time and any place with Internet connection.
 
 
