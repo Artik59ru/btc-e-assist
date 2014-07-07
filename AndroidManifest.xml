@@ -34,7 +34,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.TradeActivity"
@@ -44,7 +44,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.TickerActivity" />
+                android:value=".TickerActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.ProfileActivity"
@@ -55,7 +55,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.FinancesActivity"
@@ -65,7 +65,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.AssistActivity"
@@ -76,7 +76,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.ChatActivity"
@@ -86,7 +86,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.btc_e_assist.AboutActivity"
@@ -96,7 +96,7 @@
             <!-- Parent activity meta-data to support API level 7+ -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.assist.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity android:name="com.btc_e_assist.SettingsActivity" >
         </activity>

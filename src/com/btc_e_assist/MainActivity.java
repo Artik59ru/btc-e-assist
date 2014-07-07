@@ -48,12 +48,12 @@ public class MainActivity extends ActionBarActivity {
 			string = getString(R.string.chat_main_button_land);
 			button2_2.setText(Html.fromHtml(string));
 		}
-
+		PreferenceManager.setDefaultValues(MainActivity.this,
+				R.xml.preferences, false);
+		
 		Thread initThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				PreferenceManager.setDefaultValues(MainActivity.this,
-						R.xml.preferences, false);
 				pControl.updatePairsList();
 				pControl.setAllPreferences();
 				tradeControl.tradeApi.info.runMethod();
