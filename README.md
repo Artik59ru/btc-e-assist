@@ -24,7 +24,35 @@ Caution: We strongly recommend to use unical API-key for each device.
 You can create one on the https://btc-e.com/profile#api_keys page
 
 
+We have used:
+
+
+###Jackson library
+
+
+http://wiki.fasterxml.com/Home
+
+
+###Apache Commons Codec (TM)
+
+
+http://commons.apache.org/proper/commons-codec/
+
+
+###Jsoup
+
+
+http://jsoup.org/
+
+
+###Android Plot
+
+
+http://androidplot.com/
+
+
 E-mail for feedback: alexandersjn@gmail.com
+
 
 ###Donation:
 
