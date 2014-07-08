@@ -279,7 +279,7 @@ public class TradeActivity extends ActionBarActivity {
 					tradeControl.tradeApi.info.setCurrentPair(currentPair);
 					double fee = tradeControl.tradeApi.info.getCurrentFee();
 					buffer.append(String.valueOf(TradeApi.formatDouble(total
-							* fee, 8)));
+							* (fee/10), 8)));
 				} else {
 					buffer.append('~');
 					buffer.append(String.valueOf(TradeApi.formatDouble(total

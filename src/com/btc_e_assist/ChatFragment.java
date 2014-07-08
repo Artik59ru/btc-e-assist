@@ -30,6 +30,7 @@ public class ChatFragment extends ListFragment {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
+		HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
 		new SecondThread().execute();
 	}
 
@@ -45,7 +46,6 @@ public class ChatFragment extends ListFragment {
 		redNicks.add("penek");
 		adapter = new CustomAdapter(mContext, HtmlCutter.chatData, redNicks);
 		setListAdapter(adapter);
-		HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
 		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		return rootView;
 	}
