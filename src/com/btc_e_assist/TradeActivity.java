@@ -7,12 +7,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -20,10 +22,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
 import com.TradeApi.Trade;
 import com.TradeApi.TradeApi;
-import com.btc_e_assist.R;
 
 public class TradeActivity extends ActionBarActivity {
 	public static final String INTENT_VALUE_PAIR = "name";
@@ -47,6 +50,7 @@ public class TradeActivity extends ActionBarActivity {
 	private EditText priceEdit;
 	private TextView totalView;
 	private TextView feeView;
+	private ViewGroup editsGroup;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class TradeActivity extends ActionBarActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(currentPair);
-		final ViewGroup editsGroup = (ViewGroup) findViewById(R.id.tradeTopLayout);
+		editsGroup = (ViewGroup) findViewById(R.id.tradeTopLayout);
 		myFundsView = (TextView) findViewById(R.id.tradeMyFundsName);
 		myFundsView.setOnClickListener(new OnClickListener() {
 			@Override
@@ -112,6 +116,7 @@ public class TradeActivity extends ActionBarActivity {
 		feeView = (TextView) findViewById(R.id.tradeFeeValue);
 		amountEdit = (EditText) findViewById(R.id.tradeAmountEdit);
 		priceEdit = (EditText) findViewById(R.id.tradePriceEdit);
+		priceEdit.setOnEditorActionListener(new EditTextAction());
 		amountEdit.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void afterTextChanged(Editable s) {
@@ -158,15 +163,7 @@ public class TradeActivity extends ActionBarActivity {
 		leftButtonView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				if (isBuy) {
-					Toast.makeText(TradeActivity.this, R.string.try_to_buy,
-							Toast.LENGTH_SHORT).show();
-				} else {
-					Toast.makeText(TradeActivity.this, R.string.try_to_sell,
-							Toast.LENGTH_SHORT).show();
-				}
-				new SimpleTradeThread().execute();
-				CommonHelper.clearAllEdits(editsGroup);
+				leftButtonAction();
 			}
 		});
 		Button rightButtonView = (Button) findViewById(R.id.tradeRightButton);
@@ -244,6 +241,18 @@ public class TradeActivity extends ActionBarActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	void leftButtonAction() {
+		if (isBuy) {
+			Toast.makeText(TradeActivity.this, R.string.try_to_buy,
+					Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(TradeActivity.this, R.string.try_to_sell,
+					Toast.LENGTH_SHORT).show();
+		}
+		new SimpleTradeThread().execute();
+		CommonHelper.clearAllEdits(editsGroup);
+	}
+
 	/**
 	 * 
 	 * @param type
@@ -279,7 +288,7 @@ public class TradeActivity extends ActionBarActivity {
 					tradeControl.tradeApi.info.setCurrentPair(currentPair);
 					double fee = tradeControl.tradeApi.info.getCurrentFee();
 					buffer.append(String.valueOf(TradeApi.formatDouble(total
-							* (fee/10), 8)));
+							* (fee / 100), 8)));
 				} else {
 					buffer.append('~');
 					buffer.append(String.valueOf(TradeApi.formatDouble(total
@@ -480,6 +489,10 @@ public class TradeActivity extends ActionBarActivity {
 								.tryMaximumSell(currentPair);
 					}
 				} catch (Exception ex) {
+					if (ex.getMessage().equals(
+							tradeControl.tradeApi.EXCEPTION_TOO_LOW_AMOUNT)) {
+						return "too_low";
+					}
 					return null;
 				}
 			}
@@ -490,6 +503,11 @@ public class TradeActivity extends ActionBarActivity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			if (result != null) {
+				if (result.equals("too_low")) {
+					Toast.makeText(TradeActivity.this, R.string.too_low_amount,
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
 				myBalance = result;
 				updateMyFunds();
 				CommonHelper.makeToastUpdated(TradeActivity.this, currentPair);
@@ -498,5 +516,17 @@ public class TradeActivity extends ActionBarActivity {
 						currentPair);
 			}
 		}
+	}
+
+	private class EditTextAction implements OnEditorActionListener {
+
+		@Override
+		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+			if (actionId == EditorInfo.IME_ACTION_DONE) {
+				leftButtonAction();
+			}
+			return false;
+		}
+
 	}
 }

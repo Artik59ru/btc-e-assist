@@ -165,7 +165,7 @@
             android:layout_marginRight="@dimen/min_margin"
             android:layout_marginTop="@dimen/high_margin"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/min_margin" >
+            android:paddingBottom="1dp" >
 
             <Button
                 android:id="@+id/tickerBuyButton"
