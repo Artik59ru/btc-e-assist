@@ -20,23 +20,15 @@ You can create one on the https://btc-e.com/profile#api_keys page
 
 We have used:
 
-###Jackson library
-
+####Assist TradeApi
+https://github.com/alexandersjn/btc_e_assist_api
+####Jackson library
 http://wiki.fasterxml.com/Home
-
-
-###Apache Commons Codec (TM)
-
+####Apache Commons Codec (TM)
 http://commons.apache.org/proper/commons-codec/
-
-
-###Jsoup
-
+####Jsoup
 http://jsoup.org/
-
-
-###Android Plot
-
+####Android Plot
 http://androidplot.com/
 
 
