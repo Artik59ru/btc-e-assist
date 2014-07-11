@@ -187,7 +187,6 @@ public class TradeActivity extends ActionBarActivity {
 							Toast.LENGTH_SHORT).show();
 				}
 				new ExtendedTradeThread().execute();
-				CommonHelper.clearAllEdits(editsGroup);
 			}
 		});
 
@@ -250,7 +249,6 @@ public class TradeActivity extends ActionBarActivity {
 					Toast.LENGTH_SHORT).show();
 		}
 		new SimpleTradeThread().execute();
-		CommonHelper.clearAllEdits(editsGroup);
 	}
 
 	/**
@@ -276,19 +274,20 @@ public class TradeActivity extends ActionBarActivity {
 				StringBuilder buffer = new StringBuilder(
 						String.valueOf(TradeApi.formatDouble(total, 8)));
 				buffer.append(" ");
-				if (isBuy) {
-					buffer.append(currentRightName);
-				} else {
-					buffer.append(currentLeftName);
-				}
+				buffer.append(currentRightName);
 				totalView.setText(buffer);
 				buffer.delete(0, buffer.length());
 
 				if (tradeControl.tradeApi.info.isSuccess()) {
 					tradeControl.tradeApi.info.setCurrentPair(currentPair);
 					double fee = tradeControl.tradeApi.info.getCurrentFee();
-					buffer.append(String.valueOf(TradeApi.formatDouble(total
-							* (fee / 100), 8)));
+					if (isBuy) {
+						buffer.append(TradeApi.formatDouble(amount
+								* (fee / 100), 8));
+					} else {
+						buffer.append(TradeApi.formatDouble(
+								total * (fee / 100), 8));
+					}
 				} else {
 					buffer.append('~');
 					buffer.append(String.valueOf(TradeApi.formatDouble(total
@@ -296,9 +295,9 @@ public class TradeActivity extends ActionBarActivity {
 				}
 				buffer.append(" ");
 				if (isBuy) {
-					buffer.append(currentRightName);
-				} else {
 					buffer.append(currentLeftName);
+				} else {
+					buffer.append(currentRightName);
 				}
 				feeView.setText(buffer);
 			} catch (Exception e) {
@@ -451,10 +450,15 @@ public class TradeActivity extends ActionBarActivity {
 				str.append(result.getRemains());
 				str.append(" ");
 				str.append(currentLeftName);
-				myBalance = result.getBalance(currentRightName);
+				if (isBuy) {
+					myBalance = result.getBalance(currentRightName);
+				} else {
+					myBalance = result.getBalance(currentLeftName);
+				}
 				updateMyFunds();
 				Toast.makeText(TradeActivity.this, str, Toast.LENGTH_LONG)
 						.show();
+				CommonHelper.clearAllEdits(editsGroup);
 			} else {
 				if (result.getErrorMessage().length() == 0) {
 					CommonHelper.makeToastErrorConnection(TradeActivity.this,
@@ -511,6 +515,7 @@ public class TradeActivity extends ActionBarActivity {
 				myBalance = result;
 				updateMyFunds();
 				CommonHelper.makeToastUpdated(TradeActivity.this, currentPair);
+				CommonHelper.clearAllEdits(editsGroup);
 			} else {
 				CommonHelper.makeToastErrorConnection(TradeActivity.this,
 						currentPair);

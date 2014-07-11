@@ -16,7 +16,6 @@ import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.btc_e_assist.R;
 
 public class OrdersFragment extends Fragment {
 	private Context mContext;
@@ -167,7 +166,12 @@ public class OrdersFragment extends Fragment {
 					}
 				}
 			}
-			return tradeControl.getOrdersData(dataBox);
+			boolean result = tradeControl.getOrdersData(dataBox);
+			if (!result || dataBox.data1.size() == 0
+					|| dataBox.data2.size() == 0) {
+				result = tradeControl.getOrdersData(dataBox);
+			}
+			return result;
 		}
 
 		@Override

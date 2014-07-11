@@ -13,7 +13,6 @@ import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.TradeApi.TradeApi;
-import com.btc_e_assist.R;
 
 public class TradeControl {
 	private static final int PRICE_LIMIT_FOR_DECIMAL_PLACES = 1;
