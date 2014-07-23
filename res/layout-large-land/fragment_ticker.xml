@@ -10,9 +10,7 @@
         android:layout_marginLeft="@dimen/avg_margin"
         android:layout_marginRight="@dimen/avg_margin"
         android:layout_marginTop="@dimen/avg_margin"
-        android:background="@drawable/shadow_background"
-        android:paddingBottom="@dimen/med_margin"
-        android:paddingTop="@dimen/med_margin" >
+        android:background="@drawable/shadow_background" >
 
         <TextView
             android:id="@+id/tickerTextDiv"
@@ -53,7 +51,7 @@
             android:layout_marginLeft="@dimen/standard_margin"
             android:layout_marginTop="33dp"
             android:text="@string/price"
-            android:textColor="#b2222222" />
+            android:textColor="@color/Black70" />
 
         <ImageView
             android:id="@+id/tickerLastDots"
@@ -69,6 +67,7 @@
             android:layout_alignBottom="@+id/tickerLastDots"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/standard_margin"
+            android:maxLength="32"
             android:text="-"
             android:textSize="45sp"
             android:textStyle="bold" />
@@ -82,7 +81,7 @@
             android:layout_marginLeft="@dimen/standard_margin"
             android:layout_marginTop="@dimen/high_margin"
             android:text="Min"
-            android:textColor="#b2222222" />
+            android:textColor="@color/Black70" />
 
         <ImageView
             android:id="@+id/tickerMinDots"
@@ -98,6 +97,7 @@
             android:layout_alignBottom="@+id/tickerMinName"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/standard_margin"
+            android:maxLength="100"
             android:text="-"
             android:textColor="@color/Black90" />
 
@@ -110,7 +110,7 @@
             android:layout_marginLeft="@dimen/standard_margin"
             android:layout_marginTop="@dimen/high_margin"
             android:text="Max"
-            android:textColor="#b2222222" />
+            android:textColor="@color/Black70" />
 
         <ImageView
             android:id="@+id/tickerMaxDots"
@@ -126,6 +126,7 @@
             android:layout_alignBottom="@+id/tickerMaxName"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/standard_margin"
+            android:maxLength="100"
             android:text="-"
             android:textColor="@color/Black90" />
 
@@ -138,7 +139,7 @@
             android:layout_marginLeft="@dimen/standard_margin"
             android:layout_marginTop="@dimen/high_margin"
             android:text="@string/volume"
-            android:textColor="#b2222222" />
+            android:textColor="@color/Black70" />
 
         <ImageView
             android:id="@+id/tickerVolumeDots"
@@ -154,6 +155,7 @@
             android:layout_alignBottom="@+id/tickerVolumeName"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/standard_margin"
+            android:maxLength="100"
             android:text="-"
             android:textColor="@color/Black90" />
 
@@ -199,7 +201,7 @@
         android:layout_marginLeft="@dimen/avg_margin"
         android:layout_marginRight="@dimen/avg_margin"
         androidPlot.graphWidget.marginBottom="20dp"
-        androidPlot.graphWidget.marginLeft="@dimen/activity_horizontal_margin"
-        androidPlot.graphWidget.marginTop="@dimen/min_margin" />
+        androidPlot.graphWidget.marginLeft="@dimen/avg_margin"
+        androidPlot.graphWidget.marginTop="@dimen/standard_margin" />
 
 </LinearLayout>

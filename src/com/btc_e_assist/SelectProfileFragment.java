@@ -19,13 +19,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.btc_e_assist.R;
 
 public class SelectProfileFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -44,7 +44,7 @@ public class SelectProfileFragment extends ListFragment implements
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		mContext = activity;
-		tradeControl = TradeControl.getInstance(mContext);
+		tradeControl = TradeControl.getInstance();
 		pControl = PrefControl.getInstance();
 		dbControl = DBControl.getInstance();
 	}
@@ -108,6 +108,7 @@ public class SelectProfileFragment extends ListFragment implements
 		final EditText passEditText = new EditText(mContext);
 		passEditText.setInputType(InputType.TYPE_CLASS_TEXT
 				| InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		passEditText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
 		passDialog.setView(passEditText);
 		passDialog.setPositiveButton("OK",
 				new DialogInterface.OnClickListener() {

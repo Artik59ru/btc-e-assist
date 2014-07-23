@@ -32,7 +32,7 @@ public class TradeActivity extends ActionBarActivity {
 	public static final String INTENT_VALUE_PAIR = "name";
 	public static final String INTENT_VALUE_TYPE = "type";
 
-	private static final double STANDARD_FEE = 0.02;
+	private static final double STANDARD_FEE = 0.002;
 	private static final long DEPTH_REUSE_LIMIT_MILLIS = 10000;
 	private String currentPair = "";
 	private String currentLeftName = "";
@@ -68,7 +68,7 @@ public class TradeActivity extends ActionBarActivity {
 			isBuy = false;
 		}
 		setContentView(R.layout.activity_trade);
-		tradeControl = TradeControl.getInstance(this);
+		tradeControl = TradeControl.getInstance();
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(currentPair);
@@ -179,14 +179,19 @@ public class TradeActivity extends ActionBarActivity {
 		rightButtonView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				if (isBuy) {
-					Toast.makeText(TradeActivity.this, R.string.try_to_buy,
-							Toast.LENGTH_SHORT).show();
+				if (!tradeControl.tradeApi.isKeysInstalled()) {
+					CommonHelper.makeToastNoKeys(TradeActivity.this);
 				} else {
-					Toast.makeText(TradeActivity.this, R.string.try_to_sell,
-							Toast.LENGTH_SHORT).show();
+					if (isBuy) {
+						Toast.makeText(TradeActivity.this, R.string.try_to_buy,
+								Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(TradeActivity.this,
+								R.string.try_to_sell, Toast.LENGTH_SHORT)
+								.show();
+					}
+					new ExtendedTradeThread().execute();
 				}
-				new ExtendedTradeThread().execute();
 			}
 		});
 
@@ -241,14 +246,18 @@ public class TradeActivity extends ActionBarActivity {
 	}
 
 	void leftButtonAction() {
-		if (isBuy) {
-			Toast.makeText(TradeActivity.this, R.string.try_to_buy,
-					Toast.LENGTH_SHORT).show();
+		if (!tradeControl.tradeApi.isKeysInstalled()) {
+			CommonHelper.makeToastNoKeys(this);
 		} else {
-			Toast.makeText(TradeActivity.this, R.string.try_to_sell,
-					Toast.LENGTH_SHORT).show();
+			if (isBuy) {
+				Toast.makeText(TradeActivity.this, R.string.try_to_buy,
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(TradeActivity.this, R.string.try_to_sell,
+						Toast.LENGTH_SHORT).show();
+			}
+			new SimpleTradeThread().execute();
 		}
-		new SimpleTradeThread().execute();
 	}
 
 	/**

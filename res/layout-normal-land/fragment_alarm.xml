@@ -56,6 +56,12 @@
         android:gravity="bottom"
         android:orientation="horizontal" >
 
+        <Spinner
+            android:id="@+id/assistAlarmSpinnerCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <EditText
             android:id="@+id/assistAlarmEditPrice"
             android:layout_width="match_parent"
@@ -63,20 +69,15 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/price"
+            android:imeOptions="flagNoExtractUi"
             android:inputType="numberDecimal" >
         </EditText>
-
-        <Spinner
-            android:id="@+id/assistAlarmSpinnerCondition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/assistAlarmTips"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:background="@color/Gray2"
         android:drawableLeft="@drawable/tips"
@@ -100,7 +101,7 @@
             android:background="@drawable/alarm_selector"
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
     </RelativeLayout>
 
 </RelativeLayout>

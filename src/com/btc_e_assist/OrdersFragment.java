@@ -1,6 +1,7 @@
 package com.btc_e_assist;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -13,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,17 +23,17 @@ public class OrdersFragment extends Fragment {
 	private static CustomExpandAdapter adapter;
 	private static ExpandableListView ordersList;
 	private static volatile DataBox dataBox = new DataBox();
-	private RelativeLayout layout;
 	private TextView noData;
 	private String currentFragmentName = "";
+	private SecondThread secondThread;
 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
-		tradeControl = TradeControl.getInstance(mContext);
-		new SecondThread().execute();
+		tradeControl = TradeControl.getInstance();
+		update();
 	}
 
 	@Override
@@ -42,8 +42,6 @@ public class OrdersFragment extends Fragment {
 		setHasOptionsMenu(true);
 		View rootView = inflater.inflate(R.layout.fragment_expandable_list,
 				container, false);
-		layout = (RelativeLayout) rootView
-				.findViewById(R.id.standardExpandableFragment);
 		noData = (TextView) rootView
 				.findViewById(R.id.standardFragmentExpNoData);
 		String[] groupFrom = { "rate", "name0", "name1" };
@@ -67,12 +65,21 @@ public class OrdersFragment extends Fragment {
 				.findViewById(R.id.standardFragmentExpList);
 		ordersList.setAdapter(adapter);
 		checkNoData();
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		return rootView;
 	}
 
 	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		if (dataBox.data1.size() == 0) {
+			menu.setGroupVisible(R.id.action_group_orders_delete, false);
+		} else {
+			menu.setGroupVisible(R.id.action_group_orders_delete, true);
+		}
+	}
+
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.orders_actions, menu);
 	}
 
@@ -80,8 +87,7 @@ public class OrdersFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
-			new SecondThread().execute();
+			update();
 			return true;
 		case R.id.action_cancel:
 			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
@@ -96,15 +102,13 @@ public class OrdersFragment extends Fragment {
 	}
 
 	void checkNoData() {
-		if (layout != null && noData != null) {
+		if (noData != null) {
 			if (dataBox.data1.size() == 0) {
 				noData.setVisibility(View.VISIBLE);
-				layout.setBackgroundColor(getResources().getColor(R.color.Gray));
 			} else {
 				noData.setVisibility(View.GONE);
-				layout.setBackgroundColor(getResources().getColor(
-						android.R.color.white));
 			}
+			getActivity().supportInvalidateOptionsMenu();
 		}
 	}
 
@@ -118,6 +122,19 @@ public class OrdersFragment extends Fragment {
 			}
 		}
 		adapter.notifyDataSetChanged();
+	}
+
+	private void update() {
+		if (!tradeControl.tradeApi.isKeysInstalled()) {
+			CommonHelper.makeToastNoKeys(mContext);
+		} else {
+			if (secondThread != null) {
+				secondThread.cancel(false);
+			}
+			secondThread = new SecondThread();
+			secondThread.execute();
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
+		}
 	}
 
 	private class SecondThread extends AsyncTask<Void, Void, Boolean> {

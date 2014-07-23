@@ -1,11 +1,11 @@
 package com.btc_e_assist;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-
-import com.TradeApi.TradeApi;
 
 public class PrefControl {
 	private static volatile PrefControl mPrefControl;
@@ -15,6 +15,7 @@ public class PrefControl {
 	public static final Long EMPTY_LONG = Long.MIN_VALUE;
 	public static final String PAIRS_STRING_UPDATED_SECONDS = "PAIRS_LIST_UPDATED";
 	public static final String WIDGET_PAIRS_SETTINGS_NAME = "WIDGET_PAIRS_SETTINGS:";
+	public static final String WIDGET_CONTENT_NAME = "WIDGET_CONTENT:";
 	public static final String WIDGET_TRANSPARENCY_SETTINGS_NAME = "WIDGET_TRANSPARENCY_SETTINGS:";
 	public static final String PROFILE_CURRENT_ID = "CURRENT_PROFILE_DB_ID";
 	private SharedPreferences preferences;
@@ -47,21 +48,22 @@ public class PrefControl {
 
 	public synchronized boolean updatePairsList() {
 		try {
-			TradeApi trade = new TradeApi();
+			TradeControl tradeControl = TradeControl.getInstance();
 			Editor editPref = preferences.edit();
 			StringBuilder pairs = new StringBuilder();
-			if (!trade.info.runMethod()) {
-				if (!trade.info.runMethod()) {
+			if (!tradeControl.tradeApi.info.runMethod()) {
+				if (!tradeControl.tradeApi.info.runMethod()) {
 					return false;
 				}
 			}
-			for (String s : trade.info.getPairsList()) {
+			for (String s : tradeControl.tradeApi.info.getPairsList()) {
 				pairs.append(s);
 				pairs.append(';');
 			}
 			editPref.putString(PAIRS_STRING, pairs.toString());
 			editPref.putString(PAIRS_STRING_UPDATED_SECONDS,
-					trade.info.getServerTime());
+					String.valueOf(tradeControl.tradeApi.info
+							.getLocalTimestamp() / 1000));
 			editPref.commit();
 			return true;
 		} catch (Exception e) {
@@ -86,13 +88,13 @@ public class PrefControl {
 		return null;
 	}
 
-	public int getPairsListUpdatedSeconds() {
+	public long getPairsListUpdatedSeconds() {
 		String time = preferences
 				.getString(PAIRS_STRING_UPDATED_SECONDS, EMPTY);
 		if (time.equals(EMPTY)) {
 			return 0;
 		} else {
-			return Integer.parseInt(time);
+			return Long.parseLong(time);
 		}
 	}
 
@@ -116,12 +118,44 @@ public class PrefControl {
 	}
 
 	/**
+	 * Save content of widget to preferences
+	 * 
+	 * @param list
+	 *            widget data
+	 * @param widgetId
+	 *            widget id
+	 */
+	public synchronized void setWidgetContent(ArrayList<String> list,
+			int widgetId) {
+		Editor editPref = preferences.edit();
+		StringBuilder data = new StringBuilder();
+		for (String s : list) {
+			data.append(s);
+			data.append(';');
+		}
+		editPref.putString(WIDGET_CONTENT_NAME + widgetId, data.toString());
+		editPref.commit();
+	}
+
+	/**
 	 * Return values, separated by ';'
 	 */
 	public String[] getWidgetPairsSettings(int widgetId) {
 		return preferences.getString(
 				WIDGET_PAIRS_SETTINGS_NAME + String.valueOf(widgetId), EMPTY)
 				.split(";");
+	}
+
+	public ArrayList<String> getWidgetContent(int widgetId) {
+		ArrayList<String> resultList = new ArrayList<String>();
+		String stringFromPref = preferences.getString(WIDGET_CONTENT_NAME
+				+ String.valueOf(widgetId), EMPTY);
+		if (!stringFromPref.equals(EMPTY)) {
+			for (String s : stringFromPref.split(";")) {
+				resultList.add(s);
+			}
+		}
+		return resultList;
 	}
 
 	public int getWidgetTransparencySettings(int widgetId) {

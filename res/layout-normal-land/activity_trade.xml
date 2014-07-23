@@ -8,7 +8,6 @@
         android:id="@+id/tradeTopLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/standard_margin"
         android:layout_marginLeft="@dimen/high_margin"
         android:layout_marginRight="@dimen/high_margin"
         android:layout_marginTop="7dp"
@@ -19,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/high_margin"
+            android:layout_marginTop="@dimen/med_margin"
             android:maxLines="1"
-            android:textSize="17sp"
+            android:textSize="12sp"
             android:textStyle="italic" />
 
         <ImageView
@@ -42,11 +41,12 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/high_margin"
             android:ems="10"
             android:gravity="center_horizontal"
             android:hint="@string/amount"
+            android:imeOptions="flagNoExtractUi"
             android:inputType="numberDecimal"
+            android:textSize="14sp"
             android:textStyle="bold" >
         </EditText>
 
@@ -58,12 +58,12 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/med_margin"
             android:ems="10"
             android:gravity="center_horizontal"
             android:hint="@string/price"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionDone|flagNoExtractUi"
             android:inputType="numberDecimal"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -74,7 +74,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/high_margin"
             android:text="@string/total"
-            android:textColor="@color/Black70" />
+            android:textColor="@color/Black70"
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/tradeTotalDots"
@@ -90,10 +91,10 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/tradePriceEdit"
             android:layout_marginRight="@dimen/high_margin"
-            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/med_margin"
             android:maxLength="20"
             android:textColor="@color/Black90"
-            android:textSize="17sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tradeFeeName"
@@ -103,7 +104,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/high_margin"
             android:text="Fee"
-            android:textColor="@color/Black70" />
+            android:textColor="@color/Black70"
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/tradeFeeDots"
@@ -119,10 +121,10 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/tradeTotalValue"
             android:layout_marginRight="@dimen/high_margin"
-            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/med_margin"
             android:maxLength="20"
             android:textColor="@color/Black90"
-            android:textSize="17sp" />
+            android:textSize="12sp" />
 
         <LinearLayout
             android:id="@+id/tradeButtonsLayout"
@@ -130,26 +132,28 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tradeFeeValue"
             android:layout_marginRight="@dimen/med_margin"
-            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/min_margin"
             android:orientation="horizontal"
             android:paddingBottom="1dp" >
 
             <Button
                 android:id="@+id/tradeLeftButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
-                android:padding="@dimen/standard_margin"
+                android:padding="@dimen/med_margin"
                 android:textColor="@color/Gray"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/tradeRightButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/just_selector"
-                android:padding="@dimen/standard_margin"
+                android:padding="@dimen/med_margin"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
@@ -162,7 +166,7 @@
         android:layout_below="@id/tradeTopLayout"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="@string/price"
-        android:textColor="#b2222222"
+        android:textColor="@color/Black70"
         android:textSize="12sp" />
 
     <TextView
@@ -172,7 +176,7 @@
         android:layout_below="@id/tradeTopLayout"
         android:layout_centerHorizontal="true"
         android:text="@string/amount"
-        android:textColor="#b2222222"
+        android:textColor="@color/Black70"
         android:textSize="12sp" />
 
     <TextView
@@ -183,7 +187,7 @@
         android:layout_below="@id/tradeTopLayout"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:text="@string/total"
-        android:textColor="#b2222222"
+        android:textColor="@color/Black70"
         android:textSize="12sp" />
 
     <ListView

@@ -10,15 +10,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
-import com.btc_e_assist.R;
 
 public class TickerActivity extends ActionBarActivity {
 	private ActionBar actionBar;
-	FragmentManager fragmentManager;
+	private FragmentManager fragmentManager;
+	private static int previousPosition = -1;
+	private static final String BUNDLE_POSITION_NAME = "position";
+	private Bundle mSavedState;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedState) {
+		super.onCreate(savedState);
+		mSavedState = savedState;
 		setContentView(R.layout.activity_standard_fragment);
 		fragmentManager = getSupportFragmentManager();
 		actionBar = getSupportActionBar();
@@ -28,12 +31,25 @@ public class TickerActivity extends ActionBarActivity {
 		SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this,
 				R.array.ticker_tabs_names, R.layout.item_actionbar_spinner);
 		ActionBar.OnNavigationListener mOnNavigationListener = new OnNavigationListener() {
-
 			String[] tabNames = getResources().getStringArray(
 					R.array.ticker_tabs_names);
 
 			@Override
 			public boolean onNavigationItemSelected(int position, long rowId) {
+				if (mSavedState != null) {
+					int savedPosition = mSavedState.getInt(
+							BUNDLE_POSITION_NAME, Integer.MIN_VALUE);
+					if (savedPosition != Integer.MIN_VALUE) {
+						mSavedState.putInt(BUNDLE_POSITION_NAME,
+								Integer.MIN_VALUE);
+						actionBar.setSelectedNavigationItem(savedPosition);
+						return false;
+					} else {
+						if (previousPosition == position) {
+							return false;
+						}
+					}
+				}
 				FragmentTransaction ft = fragmentManager.beginTransaction();
 				switch (position) {
 				case 0:
@@ -50,11 +66,19 @@ public class TickerActivity extends ActionBarActivity {
 					break;
 				}
 				ft.commit();
+				previousPosition = position;
 				return true;
 			}
 		};
 		actionBar.setListNavigationCallbacks(mSpinnerAdapter,
 				mOnNavigationListener);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle bundle) {
+		super.onSaveInstanceState(bundle);
+		bundle.putInt(BUNDLE_POSITION_NAME,
+				actionBar.getSelectedNavigationIndex());
 	}
 
 	@Override

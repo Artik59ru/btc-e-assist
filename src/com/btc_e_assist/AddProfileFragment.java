@@ -42,7 +42,7 @@ public class AddProfileFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		mContext = activity;
-		tradeControl = TradeControl.getInstance(mContext);
+		tradeControl = TradeControl.getInstance();
 		dbControl = DBControl.getInstance();
 	}
 
@@ -149,6 +149,9 @@ public class AddProfileFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
+			if (!isAdded()) {
+				return;
+			}
 			String errorMessage = tradeApiObject.getInfo.getErrorMessage();
 			StringBuilder message = new StringBuilder();
 			if (!result.booleanValue()) {

@@ -2,8 +2,9 @@
     android:configure="com.btc_e_assist.WidgetHalfConfigActivity"
     android:initialLayout="@layout/widget_half"
     android:minHeight="40dp"
+    android:minResizeWidth="40dp"
     android:minWidth="110dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="3600000" >
+    android:updatePeriodMillis="7200000" >
 
 </appwidget-provider>

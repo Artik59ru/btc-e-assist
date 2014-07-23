@@ -9,11 +9,11 @@
         android:id="@+id/assistAlarmTextLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/assist_alarm_text_label"
         android:textColor="@color/Red"
-        android:textSize="30sp" />
+        android:textSize="35sp" />
 
     <ImageView
         android:id="@+id/assistAlarmImage"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmTextLabel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/high_margin"
+        android:layout_marginTop="50dp"
         android:src="@drawable/alarm" />
 
     <RelativeLayout
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmImage"
-        android:layout_marginTop="@dimen/high_margin" >
+        android:layout_marginTop="50dp" >
 
         <TextView
             android:id="@+id/assistAlarmTextDiv"
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmPairsLayout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:gravity="bottom"
         android:orientation="horizontal" >
 
@@ -78,7 +78,6 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/price"
-            android:imeOptions="flagNoExtractUi"
             android:inputType="numberDecimal" >
         </EditText>
     </LinearLayout>
@@ -93,7 +92,8 @@
         android:drawablePadding="@dimen/standard_margin"
         android:gravity="left|center_vertical"
         android:padding="@dimen/standard_margin"
-        android:text="@string/assist_alarm_tips" />
+        android:text="@string/assist_alarm_tips"
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -110,6 +110,7 @@
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
             android:textSize="15sp" />
+
     </RelativeLayout>
 
 </RelativeLayout>

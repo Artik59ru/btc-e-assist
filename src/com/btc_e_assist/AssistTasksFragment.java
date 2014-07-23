@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.btc_e_assist.R;
 
 public class AssistTasksFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -61,7 +60,17 @@ public class AssistTasksFragment extends ListFragment implements
 	}
 
 	@Override
+	public void onPrepareOptionsMenu(Menu menu) {
+		if (adapter != null && adapter.getCount() > 0) {
+			menu.setGroupVisible(R.id.action_group_tasks_delete, true);
+		} else {
+			menu.setGroupVisible(R.id.action_group_tasks_delete, false);
+		}
+	}
+
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.assist_tasks_actions, menu);
 	}
 
@@ -117,6 +126,7 @@ public class AssistTasksFragment extends ListFragment implements
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor crs) {
 		adapter.swapCursor(crs);
+		getActivity().supportInvalidateOptionsMenu();
 	}
 
 	@Override

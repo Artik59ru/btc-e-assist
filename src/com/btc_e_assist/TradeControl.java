@@ -4,102 +4,30 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.database.Cursor;
-import android.text.InputType;
-import android.widget.EditText;
-import android.widget.Toast;
+
 import com.TradeApi.TradeApi;
 
 public class TradeControl {
-	private static final int PRICE_LIMIT_FOR_DECIMAL_PLACES = 1;
-
 	public static int tradesCount = 200;
 	public static String tradeHistoryCount = "200";
 	public static String transHistoryCount = "200";
 	public static int depthCount = 60;
 
 	private static TradeControl mTradeControl;
-	private PrefControl pControl;
 	public TradeApi tradeApi;
 
-	private TradeControl(Context context) {
+	private TradeControl() {
 		tradeApi = new TradeApi();
-		pControl = PrefControl.getInstance();
-		setApiKeys(context);
 		DBControl.getInstance();
 	}
 
-	public synchronized static TradeControl getInstance(Context context) {
+	public synchronized static TradeControl getInstance() {
 		if (mTradeControl == null) {
-			mTradeControl = new TradeControl(context);
+			mTradeControl = new TradeControl();
 		}
 		return mTradeControl;
-	}
-
-	public void setApiKeys(final Context context) {
-		if (pControl == null) {
-			pControl = PrefControl.getInstance();
-		}
-		final long currentId = pControl.getCurrentProfileId();
-		if (currentId != PrefControl.EMPTY_LONG) {
-			DBControl dbControl = DBControl.getInstance();
-			Cursor profilesData = dbControl.getProfilesDataWithId(currentId);
-			if (profilesData == null) {
-				return;
-			}
-			profilesData.moveToNext();
-			final String nameFromCursor = profilesData.getString(profilesData
-					.getColumnIndex(DBControl.PROFILES_NAME_NAME));
-			final String keyFromCursor = profilesData.getString(profilesData
-					.getColumnIndex(DBControl.PROFILES_NAME_KEY));
-			final String secretFromCursor = profilesData.getString(profilesData
-					.getColumnIndex(DBControl.PROFILES_NAME_SECRET));
-			int isEncoded = profilesData.getInt(profilesData
-					.getColumnIndex(DBControl.PROFILES_NAME_IS_ENCODED));
-			if (isEncoded == 0) {
-				try {
-					tradeApi.setKeys(keyFromCursor, secretFromCursor);
-				} catch (Exception e) {
-				}
-			} else {
-				AlertDialog.Builder passDialog = new AlertDialog.Builder(
-						context);
-				passDialog.setTitle(context
-						.getString(R.string.decryption_dialog_title));
-				passDialog.setMessage(String.format(
-						context.getString(R.string.decryption_dialog_message),
-						nameFromCursor));
-				final EditText passEditText = new EditText(context);
-				passEditText.setInputType(InputType.TYPE_CLASS_TEXT
-						| InputType.TYPE_TEXT_VARIATION_PASSWORD);
-				passDialog.setView(passEditText);
-				passDialog.setPositiveButton("OK",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								try {
-									tradeApi.setKeys(keyFromCursor,
-											secretFromCursor, passEditText
-													.getText().toString());
-									pControl.setCurrentProfileId(currentId);
-									Toast.makeText(context,
-											R.string.accepted_dialog_message,
-											Toast.LENGTH_SHORT).show();
-								} catch (Exception e) {
-									Toast.makeText(context,
-											R.string.wrong_password,
-											Toast.LENGTH_SHORT).show();
-									setApiKeys(context);
-								}
-							}
-						});
-				passDialog.show();
-			}
-		}
 	}
 
 	/**
@@ -124,16 +52,10 @@ public class TradeControl {
 				}
 			}
 			inputTickerBox.data1.clear();
-			float last;
 			while (tradeApi.ticker.hasNextPair()) {
 				tradeApi.ticker.switchNextPair();
 				HashMap<String, Object> itemMap = new HashMap<String, Object>();
-
 				itemMap.put("name", tradeApi.ticker.getCurrentPairName());
-				last = Float.parseFloat(tradeApi.ticker.getCurrentLast());
-				if (last > PRICE_LIMIT_FOR_DECIMAL_PLACES) {
-					tradeApi.ticker.setDecimalPlaces(2);
-				}
 				itemMap.put("last", tradeApi.ticker.getCurrentLast());
 				itemMap.put("low", tradeApi.ticker.getCurrentLow());
 				itemMap.put("high", tradeApi.ticker.getCurrentHigh());

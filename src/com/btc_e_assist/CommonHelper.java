@@ -25,20 +25,27 @@ public class CommonHelper {
 
 	public static void makeToastUpdating(Context context, String fragmentName) {
 		Toast.makeText(context,
-				fragmentName + " " + context.getString(R.string.updating),
+				fragmentName + ": " + context.getString(R.string.updating),
 				Toast.LENGTH_SHORT).show();
 	}
 
 	public static void makeToastUpdated(Context context, String fragmentName) {
 		Toast.makeText(context,
-				fragmentName + " " + context.getString(R.string.updated),
+				fragmentName + ": " + context.getString(R.string.updated),
 				Toast.LENGTH_SHORT).show();
 	}
 
 	public static void makeToastErrorConnection(Context context,
 			String fragmentName) {
-		Toast.makeText(context, R.string.error_connection, Toast.LENGTH_SHORT)
-				.show();
+		Toast.makeText(
+				context,
+				fragmentName + ": "
+						+ context.getString(R.string.error_connection),
+				Toast.LENGTH_SHORT).show();
+	}
+
+	public static void makeToastNoKeys(Context context) {
+		Toast.makeText(context, R.string.no_keys, Toast.LENGTH_SHORT).show();
 	}
 
 	public static void fillLeftList(String[] pairsList, List<String> namesList,

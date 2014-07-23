@@ -65,6 +65,12 @@
         android:gravity="bottom"
         android:orientation="horizontal" >
 
+        <Spinner
+            android:id="@+id/assistAlarmSpinnerCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <EditText
             android:id="@+id/assistAlarmEditPrice"
             android:layout_width="match_parent"
@@ -74,12 +80,6 @@
             android:hint="@string/price"
             android:inputType="numberDecimal" >
         </EditText>
-
-        <Spinner
-            android:id="@+id/assistAlarmSpinnerCondition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <TextView
@@ -109,7 +109,8 @@
             android:background="@drawable/alarm_selector"
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
+
     </RelativeLayout>
 
 </RelativeLayout>

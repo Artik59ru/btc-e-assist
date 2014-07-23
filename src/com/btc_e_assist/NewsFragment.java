@@ -1,6 +1,7 @@
 package com.btc_e_assist;
 
 import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import com.btc_e_assist.R;
 
 public class NewsFragment extends ListFragment {
 	private Context mContext;
@@ -28,8 +28,8 @@ public class NewsFragment extends ListFragment {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
-		new NewsHeadlinesThread().execute();
 		HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
+		new NewsHeadlinesThread().execute();
 		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 	}
 
@@ -59,10 +59,12 @@ public class NewsFragment extends ListFragment {
 			new NewsHeadlinesThread().execute();
 			return true;
 		case R.id.action_set_russian:
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_RU);
 			new NewsHeadlinesThread().execute();
 			return true;
 		case R.id.action_set_english:
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_EN);
 			new NewsHeadlinesThread().execute();
 			return true;

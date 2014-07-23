@@ -6,10 +6,12 @@ import java.text.Format;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,19 +27,31 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.TradeApi.TradeApi;
 import com.androidplot.Plot;
+import com.androidplot.ui.AnchorPosition;
 import com.androidplot.ui.SizeLayoutType;
 import com.androidplot.ui.SizeMetrics;
+import com.androidplot.ui.XLayoutStyle;
+import com.androidplot.ui.YLayoutStyle;
+import com.androidplot.ui.widget.TextLabelWidget;
+import com.androidplot.util.PixelUtils;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.XYStepMode;
-import com.btc_e_assist.R;
 
 public class TickerFragment extends Fragment {
 	public static final String INTENT_VALUE = "pair";
 	private static final long MIN_ALLOWED_LAST_UPDATE_AGE = 200;
 
+	private static final DecimalFormat LOW_FORMAT = new DecimalFormat(
+			"#.######");
+	private static final DecimalFormat MED_FORMAT = new DecimalFormat("#.###");
+	private static final DecimalFormat HIGH_FORMAT = new DecimalFormat("#");
+
+	private Resources resources;
 	private Context mContext;
 	private PrefControl pControl;
 	private TradeControl tradeControl;
@@ -54,9 +68,7 @@ public class TickerFragment extends Fragment {
 	private TextView maxView;
 	private TextView volView;
 	private XYPlot plot;
-	private static DecimalFormat lowFormat = new DecimalFormat("#.#######");
-	private static DecimalFormat medFormat = new DecimalFormat("#.#");
-	private static DecimalFormat highFormat = new DecimalFormat("#");
+	private TextLabelWidget titleWidget;
 
 	private String[] mainPairList;
 	private static volatile DataBox tickerBox = new DataBox();
@@ -78,7 +90,8 @@ public class TickerFragment extends Fragment {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
-		tradeControl = TradeControl.getInstance(mContext);
+		resources = getResources();
+		tradeControl = TradeControl.getInstance();
 		pControl = PrefControl.getInstance();
 		mainPairList = pControl.getPairsList();
 		String pairFromIntent = activity.getIntent().getStringExtra(
@@ -208,27 +221,37 @@ public class TickerFragment extends Fragment {
 						new SizeMetrics(0, SizeLayoutType.FILL, 0,
 								SizeLayoutType.FILL));
 		plot.getGraphWidget().getBackgroundPaint()
-				.setColor(getResources().getColor(R.color.Gray));
+				.setColor(resources.getColor(R.color.Gray));
 		plot.getGraphWidget().getGridBackgroundPaint()
-				.setColor(getResources().getColor(R.color.Gray));
+				.setColor(resources.getColor(R.color.Gray));
 		plot.getGraphWidget().getDomainLabelPaint()
-				.setColor(getResources().getColor(R.color.GraphText));
+				.setColor(resources.getColor(R.color.GraphText));
 		plot.getGraphWidget().getRangeLabelPaint()
-				.setColor(getResources().getColor(R.color.GraphText));
+				.setColor(resources.getColor(R.color.GraphText));
 
 		plot.getGraphWidget().getDomainOriginLinePaint()
-				.setColor(getResources().getColor(R.color.GraphText));
+				.setColor(resources.getColor(R.color.GraphText));
 		plot.getGraphWidget().getRangeOriginLinePaint()
-				.setColor(getResources().getColor(R.color.GraphText));
+				.setColor(resources.getColor(R.color.GraphText));
 		plot.getGraphWidget().setDomainLabelVerticalOffset(1);
+		plot.getGraphWidget().setDomainLabelHorizontalOffset(4);
+		plot.getGraphWidget().setRangeLabelVerticalOffset(-2);
 
 		plot.setBorderStyle(Plot.BorderStyle.NONE, null, null);
-
 		plot.setPlotMargins(0, 0, 0, 0);
 		plot.setPlotPadding(0, 0, 0, 0);
 
 		plot.getLayoutManager().remove(plot.getLegendWidget());
-		plot.getLayoutManager().remove(plot.getTitleWidget());
+		titleWidget = new TextLabelWidget(plot.getLayoutManager(),
+				new SizeMetrics(PixelUtils.dpToPix(100),
+						SizeLayoutType.ABSOLUTE, PixelUtils.dpToPix(200),
+						SizeLayoutType.ABSOLUTE));
+		titleWidget.getLabelPaint().setTextSize(25);
+		titleWidget.position(0, XLayoutStyle.RELATIVE_TO_CENTER, 5,
+				YLayoutStyle.ABSOLUTE_FROM_TOP, AnchorPosition.TOP_MIDDLE);
+		titleWidget.pack();
+		plot.setTitleWidget(titleWidget);
+
 		plot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, 1);
 		plot.setDomainValueFormat(new Format() {
 			@Override
@@ -341,11 +364,11 @@ public class TickerFragment extends Fragment {
 				String last = (String) map.get("last");
 				double lastDouble = Double.parseDouble(last);
 				if (lastDouble < 1) {
-					plot.setRangeValueFormat(lowFormat);
+					plot.setRangeValueFormat(LOW_FORMAT);
 				} else if (lastDouble < 10) {
-					plot.setRangeValueFormat(medFormat);
+					plot.setRangeValueFormat(MED_FORMAT);
 				} else {
-					plot.setRangeValueFormat(highFormat);
+					plot.setRangeValueFormat(HIGH_FORMAT);
 				}
 				lastView.setText(last);
 				if (!isNormalLand) {
@@ -375,6 +398,21 @@ public class TickerFragment extends Fragment {
 				return;
 			}
 			if (result.booleanValue() && HtmlCutter.chartPriceData.size() > 0) {
+				StringBuilder resultText = new StringBuilder();
+				double firstPrice = HtmlCutter.chartPriceData.get(0);
+				double lastPrice = HtmlCutter.chartPriceData
+						.get(HtmlCutter.chartPriceData.size() - 1);
+				double percent = (lastPrice / firstPrice - 1) * 100;
+				if (percent >= 0) {
+					titleWidget.getLabelPaint().setColor(
+							resources.getColor(R.color.Green2));
+				} else {
+					titleWidget.getLabelPaint().setColor(
+							resources.getColor(R.color.Red2));
+				}
+				resultText.append(TradeApi.formatDouble(percent, 2));
+				resultText.append('%');
+				titleWidget.setText(resultText.toString());
 				plot.redraw();
 			} else {
 				Toast.makeText(mContext, R.string.graph_connection_error,

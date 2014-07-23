@@ -1,9 +1,0 @@
-<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="com.btc_e_assist.WidgetConfigActivity"
-    android:initialLayout="@layout/widget"
-    android:minHeight="40dp"
-    android:minWidth="280dp"
-    android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="3600000" >
-
-</appwidget-provider>

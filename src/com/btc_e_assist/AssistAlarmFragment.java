@@ -2,6 +2,7 @@ package com.btc_e_assist;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +22,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.btc_e_assist.R;
 
 public class AssistAlarmFragment extends Fragment {
 	public static final String CONDITION_HIGHER = "HIGHER";
@@ -45,11 +45,14 @@ public class AssistAlarmFragment extends Fragment {
 	private ArrayAdapter<String> adapterLeft;
 	private ArrayAdapter<String> adapterRight;
 
+	private static int spinnerLeftSavedPosition = 0;
+	private static int spinnerRightSavedPosition = 0;
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		mContext = activity;
-		tradeControl = TradeControl.getInstance(mContext);
+		tradeControl = TradeControl.getInstance();
 		pControl = PrefControl.getInstance();
 		dbControl = DBControl.getInstance();
 		new SecondThread().execute();
@@ -122,6 +125,12 @@ public class AssistAlarmFragment extends Fragment {
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View view,
 					int position, long rowId) {
+				if (spinnerRightSavedPosition != 0) {
+					int temp = spinnerRightSavedPosition;
+					spinnerRightSavedPosition = 0;
+					spinnerRight.setSelection(temp);
+					return;
+				}
 				updatePriceEdit();
 			}
 
@@ -178,6 +187,25 @@ public class AssistAlarmFragment extends Fragment {
 			}
 		});
 		return rootView;
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (spinnerLeft != null && spinnerRight != null) {
+			spinnerLeftSavedPosition = spinnerLeft.getSelectedItemPosition();
+			spinnerRightSavedPosition = spinnerRight.getSelectedItemPosition();
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (spinnerLeft != null && spinnerRight != null) {
+			if (spinnerLeftSavedPosition != 0) {
+				spinnerLeft.setSelection(spinnerLeftSavedPosition);
+			}
+		}
 	}
 
 	void updatePriceEdit() {

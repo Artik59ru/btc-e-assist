@@ -15,7 +15,7 @@
     <string name="chat_main_button_land">&lt;h1>Chat&lt;/h1>Read Chat and News</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_cancel">Cancel</string>
-    <string name="error_connection">Connection error</string>
+    <string name="error_connection">connection error</string>
     <string name="addprofile_text">Adding new profile</string>
     <string name="name_profiles_hint">Profile name</string>
     <string name="key_profiles_hint">API key</string>
@@ -136,7 +136,7 @@
     <string name="try_to_sell">Selling&#8230;</string>
     <string name="alarm_notify_for">Notify for: %s</string>
     <string name="alarm_notify_text">%1$s price is: %2$s</string>
-    <string name="foreground_content">Assist is watching to Tasks.</string>
+    <string name="foreground_content">Assist is watching tasks.</string>
     <string name="settings_dtitle_trades">Trades and Trans. count</string>
     <string name="settings_dtitle_depth">Depth count</string>
     <string name="settings_dtitle_news">News count</string>
@@ -154,6 +154,7 @@
     <string name="about_site_label">Project site:</string>
     <string name="about_design_label">Design:</string>
     <string name="about_develop_label">Developer:</string>
-    <string name="about_donate_label">This an has no adds and paid version - it\'s absolutely free and Open Source.\nYou can help us make it the greatest app on the market by your donations. Please send it to us using BTC-e redeem codes. Thank you and have a nice trade!</string>
+    <string name="about_donate_label">This app has no advertising and paid version - it\'s absolutely free and Open Source.\nYou can help us make it the greatest app on the market by your donations. Please send it to us using BTC-e redeem codes. Thank you and have a nice trade!</string>
+    <string name="no_keys">API-key and API-secret is not installed</string>
 
 </resources>

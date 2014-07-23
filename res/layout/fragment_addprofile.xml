@@ -7,7 +7,7 @@
         android:id="@+id/addprofileTextLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/high_margin"
         android:gravity="center"
         android:text="@string/addprofile_text"
         android:textColor="@color/Blue"
@@ -124,7 +124,7 @@
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:background="@drawable/profile_selector"
-            android:padding="@dimen/avg_margin"
+            android:padding="@dimen/standard_margin"
             android:text="@string/add_profile_button"
             android:textColor="@color/Gray" />
 

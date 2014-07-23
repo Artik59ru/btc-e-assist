@@ -14,7 +14,7 @@
     <string name="chat_main_button_land">&lt;h1>Чат&lt;/h1>Читать чат и новости</string>
     <string name="action_refresh">Обновить</string>
     <string name="action_cancel">Закрыть</string>
-    <string name="error_connection">Ошибка соединения</string>
+    <string name="error_connection">ошибка соединения</string>
     <string name="addprofile_text">Добавление профиля</string>
     <string name="name_profiles_hint">Имя профиля</string>
     <string name="pass_profiles_hint">Пароль шифрования(опционально)</string>
@@ -93,7 +93,7 @@
     <string name="graph_connection_error">График не загружен</string>
     <string name="manage_profiles_button">Управление профилями</string>
     <string name="add_profile_button">Добавить профиль</string>
-    <string name="add_profile_tips">Если вы хотите зашифровать пароль на этом устройстве, введите пароль для шифрования</string>
+    <string name="add_profile_tips">Если вы хотите зашифровать профиль на этом устройстве, введите пароль для шифрования</string>
     <string name="assist_alarm_tips">Будильник даст вам знать, когда цена достигнет установленной границы</string>
     <string name="chat_tips">BTC-e чат доступен только в режиме чтения</string>
     <string name="empty_list">Нет данных</string>
@@ -127,7 +127,7 @@
     <string name="try_to_sell">Продажа&#8230;</string>
     <string name="alarm_notify_for">Уведомление для: %s</string>
     <string name="alarm_notify_text">Цена %1$s: %2$s</string>
-    <string name="foreground_content">Ассистент наблюдает за Задачами.</string>
+    <string name="foreground_content">Ассистент следит за задачами.</string>
     <string name="settings_dtitle_trades">Количество сделок</string>
     <string name="settings_dtitle_depth">Глубина стакана</string>
     <string name="settings_dtitle_news">Количество новостей</string>
@@ -146,5 +146,6 @@
     <string name="about_design_label">Дизайн:</string>
     <string name="about_develop_label">Разработка:</string>
     <string name="about_donate_label">Это приложение является свободным программным обеспечением и абсолютно бесплатно.\nРазработка и развитие проекта требуют сил и, к сожалению, мы хотим есть. Свои пожертвования вы можете выслать в виде BTC-e Кода на почту или на кошельки, указанные на сайте проекта. Благодарим за использование и поддержку.</string>
+    <string name="no_keys">API-key и API-secret не установлены</string>
 
 </resources>

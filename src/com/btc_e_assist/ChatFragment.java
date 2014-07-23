@@ -63,14 +63,17 @@ public class ChatFragment extends ListFragment {
 			new SecondThread().execute();
 			return true;
 		case R.id.action_set_russian:
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_RU);
 			new SecondThread().execute();
 			return true;
 		case R.id.action_set_english:
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_EN);
 			new SecondThread().execute();
 			return true;
 		case R.id.action_set_chinese:
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_CN);
 			new SecondThread().execute();
 			return true;

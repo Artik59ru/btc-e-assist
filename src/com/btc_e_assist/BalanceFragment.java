@@ -19,15 +19,16 @@ public class BalanceFragment extends ListFragment {
 	private TradeControl tradeControl;
 	private NotClickableAdapter adapter;
 	private String currentFragmentName = "";
-	private DataBox dataBox = new DataBox();
+	private static volatile DataBox dataBox = new DataBox();
+	private SecondThread secondThread;
 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
-		tradeControl = TradeControl.getInstance(mContext);
-		new SecondThread().execute();
+		tradeControl = TradeControl.getInstance();
+		update();
 	}
 
 	@Override
@@ -40,7 +41,6 @@ public class BalanceFragment extends ListFragment {
 		adapter = new NotClickableAdapter(mContext, dataBox.data1,
 				R.layout.item_balance_fragment, from, to);
 		setListAdapter(adapter);
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		return rootView;
 	}
 
@@ -48,11 +48,23 @@ public class BalanceFragment extends ListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
-			new SecondThread().execute();
+			update();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void update() {
+		if (!tradeControl.tradeApi.isKeysInstalled()) {
+			CommonHelper.makeToastNoKeys(mContext);
+		} else {
+			if (secondThread != null) {
+				secondThread.cancel(false);
+			}
+			secondThread = new SecondThread();
+			secondThread.execute();
+			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		}
 	}
 

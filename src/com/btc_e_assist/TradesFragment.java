@@ -10,17 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.btc_e_assist.R;
 
 public class TradesFragment extends Fragment {
 	private Context mContext;
 	private TradeControl tradeControl;
 	private static CustomExpandAdapter adapter;
 	private ExpandableListView tradesList;
-	private volatile DataBox dataBox = new DataBox();
-	private RelativeLayout layout;
+	private static volatile DataBox dataBox = new DataBox();
 	private TextView noData;
 	private String currentFragmentName = "";
 
@@ -29,7 +26,7 @@ public class TradesFragment extends Fragment {
 		super.onAttach(activity);
 		mContext = activity;
 		currentFragmentName = getTag();
-		tradeControl = TradeControl.getInstance(mContext);
+		tradeControl = TradeControl.getInstance();
 		new SecondThread().execute();
 	}
 
@@ -40,8 +37,6 @@ public class TradesFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_expandable_list,
 				container, false);
 		mContext = inflater.getContext();
-		layout = (RelativeLayout) rootView
-				.findViewById(R.id.standardExpandableFragment);
 		noData = (TextView) rootView
 				.findViewById(R.id.standardFragmentExpNoData);
 		String[] groupFrom = { "amount", "name0", "name1" };
@@ -80,14 +75,11 @@ public class TradesFragment extends Fragment {
 	}
 
 	void checkNoData() {
-		if (layout != null && noData != null) {
+		if (noData != null) {
 			if (dataBox.data1.size() == 0) {
 				noData.setVisibility(View.VISIBLE);
-				layout.setBackgroundColor(getResources().getColor(R.color.Gray));
 			} else {
 				noData.setVisibility(View.GONE);
-				layout.setBackgroundColor(getResources().getColor(
-						android.R.color.white));
 			}
 		}
 	}
