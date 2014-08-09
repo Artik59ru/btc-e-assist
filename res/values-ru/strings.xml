@@ -4,6 +4,7 @@
     <string name="settings">Настройки</string>
     <string name="title_activity_ticker">Котировки</string>
     <string name="title_activity_addprofile">Профили</string>
+    <string name="title_activity_news_content">Новости</string>
     <string name="trades_main_button">Торги</string>
     <string name="trades_main_button_land">&lt;h1>Торги&lt;/h1>Наблюдайте и торгуйте</string>
     <string name="assist_main_button">Ассистент</string>
@@ -95,6 +96,7 @@
     <string name="add_profile_button">Добавить профиль</string>
     <string name="add_profile_tips">Если вы хотите зашифровать профиль на этом устройстве, введите пароль для шифрования</string>
     <string name="assist_alarm_tips">Будильник даст вам знать, когда цена достигнет установленной границы</string>
+    <string name="assist_trade_tips">Автоматичесикй режим позволит упростить некоторые торговые операции</string>
     <string name="chat_tips">BTC-e чат доступен только в режиме чтения</string>
     <string name="empty_list">Нет данных</string>
     <string name="price">Цена</string>
@@ -107,6 +109,7 @@
     <string name="completed">Завершено</string>
     <string name="not_completed">Не завершено</string>
     <string name="assist_alarm_text_label">Настройка будильника</string>
+    <string name="assist_trade_text_label">Авто торговля</string>
     <string name="add_alarm_button">ГОТОВО</string>
     <string name="pair_list_not_available">Актуальный список пар временно недоступен</string>
     <string name="enter_price">Введите цену, пожалуйста</string>
@@ -147,5 +150,7 @@
     <string name="about_develop_label">Разработка:</string>
     <string name="about_donate_label">Это приложение является свободным программным обеспечением и абсолютно бесплатно.\nРазработка и развитие проекта требуют сил и, к сожалению, мы хотим есть. Свои пожертвования вы можете выслать в виде BTC-e Кода на почту или на кошельки, указанные на сайте проекта. Благодарим за использование и поддержку.</string>
     <string name="no_keys">API-key и API-secret не установлены</string>
+    <string name="next_news_button">След. новость</string>
+    <string name="prev_news_button">Пред. новость</string>
 
 </resources>

@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="@dimen/min_margin" >
+    android:paddingBottom="@dimen/min_margin"
+    android:paddingTop="@dimen/min_margin" >
 
     <TextView
         android:id="@+id/itemDepthPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/high_margin"
+        android:layout_marginLeft="@dimen/normal_horizontal_depth_margin"
         android:layout_weight="1"
         android:gravity="left"
         android:singleLine="true"
@@ -30,7 +31,7 @@
         android:id="@+id/itemDepthTotal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginRight="@dimen/normal_horizontal_depth_margin"
         android:layout_weight="1"
         android:gravity="right"
         android:singleLine="true"

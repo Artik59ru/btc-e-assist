@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_background" >
+
+    <TextView
+        android:id="@+id/assistTradeTextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/avg_margin"
+        android:gravity="center"
+        android:text="@string/assist_trade_text_label"
+        android:textColor="@color/Green2"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/assistTradeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/assistTradeTextLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/avg_margin"
+        android:src="@drawable/prices" />
+
+    <TextView
+        android:id="@+id/assistTradeTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Gray2"
+        android:drawableLeft="@drawable/tips"
+        android:drawablePadding="@dimen/standard_margin"
+        android:gravity="left|center_vertical"
+        android:padding="@dimen/standard_margin"
+        android:text="@string/assist_trade_tips"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/assistTradeTips"
+        android:layout_below="@id/assistTradeImage" >
+
+        <Button
+            android:id="@+id/assistTradeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/assist_trade_selector"
+            android:text="@string/add_trade_button"
+            android:textColor="@color/Gray"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,6 +105,7 @@ public class TickerFragment extends Fragment {
 			spinnerRightSavedPosition = positions[1];
 
 		}
+		CommonHelper.showPasswordDialog(mContext);
 	}
 
 	@Override
@@ -221,9 +223,9 @@ public class TickerFragment extends Fragment {
 						new SizeMetrics(0, SizeLayoutType.FILL, 0,
 								SizeLayoutType.FILL));
 		plot.getGraphWidget().getBackgroundPaint()
-				.setColor(resources.getColor(R.color.Gray));
+				.setColor(resources.getColor(R.color.Gray2));
 		plot.getGraphWidget().getGridBackgroundPaint()
-				.setColor(resources.getColor(R.color.Gray));
+				.setColor(resources.getColor(R.color.Gray2));
 		plot.getGraphWidget().getDomainLabelPaint()
 				.setColor(resources.getColor(R.color.GraphText));
 		plot.getGraphWidget().getRangeLabelPaint()
@@ -246,8 +248,10 @@ public class TickerFragment extends Fragment {
 				new SizeMetrics(PixelUtils.dpToPix(100),
 						SizeLayoutType.ABSOLUTE, PixelUtils.dpToPix(200),
 						SizeLayoutType.ABSOLUTE));
-		titleWidget.getLabelPaint().setTextSize(25);
-		titleWidget.position(0, XLayoutStyle.RELATIVE_TO_CENTER, 5,
+		titleWidget.getLabelPaint().setTextSize(30);
+		titleWidget.getLabelPaint().setTypeface(
+				Typeface.create("", Typeface.BOLD));
+		titleWidget.position(0, XLayoutStyle.RELATIVE_TO_CENTER, 10,
 				YLayoutStyle.ABSOLUTE_FROM_TOP, AnchorPosition.TOP_MIDDLE);
 		titleWidget.pack();
 		plot.setTitleWidget(titleWidget);
@@ -349,7 +353,7 @@ public class TickerFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... arg0) {
-			return tradeControl.getTickerData(arg0, tickerBox);
+			return tradeControl.loadTickerData(arg0);
 
 		}
 
@@ -359,13 +363,13 @@ public class TickerFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue() && tickerBox.data1.size() > 0) {
+			if (result.booleanValue() && tradeControl.setTickerData(tickerBox)) {
 				HashMap<String, Object> map = tickerBox.data1.get(0);
 				String last = (String) map.get("last");
 				double lastDouble = Double.parseDouble(last);
 				if (lastDouble < 1) {
 					plot.setRangeValueFormat(LOW_FORMAT);
-				} else if (lastDouble < 10) {
+				} else if (lastDouble < 100) {
 					plot.setRangeValueFormat(MED_FORMAT);
 				} else {
 					plot.setRangeValueFormat(HIGH_FORMAT);
@@ -388,7 +392,7 @@ public class TickerFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(String... arg0) {
-			return HtmlCutter.runGettingChartData(arg0[0]);
+			return HtmlCutter.loadChartData(arg0[0]);
 		}
 
 		@Override
@@ -397,7 +401,7 @@ public class TickerFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue() && HtmlCutter.chartPriceData.size() > 0) {
+			if (result.booleanValue() && HtmlCutter.setChartData()) {
 				StringBuilder resultText = new StringBuilder();
 				double firstPrice = HtmlCutter.chartPriceData.get(0);
 				double lastPrice = HtmlCutter.chartPriceData

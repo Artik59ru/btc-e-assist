@@ -11,15 +11,15 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
- * aliasColumnName - column name for row, where content alias
+ * aliasColumnName - column name for row, where contents alias
  */
 class CheckBoxCursorAdapter extends ResourceCursorAdapter {
-	public ArrayList<Integer> checkData;
+	public ArrayList<Long> checkData;
 	String[] mFrom;
 	int[] mTo;
+	String mAliasColumnName;
 	String[] mAliases;
 	String[] mAliasesValues;
-	String mAliasColumnName;
 	String aliasIndexContent;
 	int mCheckBoxId;
 
@@ -33,16 +33,16 @@ class CheckBoxCursorAdapter extends ResourceCursorAdapter {
 		mAliases = aliases;
 		mAliasesValues = aliasesValues;
 		mCheckBoxId = checkBoxId;
-		checkData = new ArrayList<Integer>();
+		checkData = new ArrayList<Long>();
 	}
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		if (cursor != null) {
-			final int mPosition = cursor.getPosition();
 			int count = mTo.length;
 			int currentIndex;
 			int aliasIndex = cursor.getColumnIndex(mAliasColumnName);
+			int idIndex = cursor.getColumnIndex(DBControl.ACTIONS_NAME_ID);
 			aliasIndexContent = cursor.getString(aliasIndex);
 			for (int i = 0; i < count; i++) {
 				currentIndex = cursor.getColumnIndex(mFrom[i]);
@@ -63,7 +63,8 @@ class CheckBoxCursorAdapter extends ResourceCursorAdapter {
 			}
 			final CheckBox checkBox = (CheckBox) view.findViewById(mCheckBoxId);
 			if (checkBox != null) {
-				boolean isContains = checkData.contains(mPosition);
+				final long idIndexContent = cursor.getLong(idIndex);
+				boolean isContains = checkData.contains(idIndexContent);
 				if (isContains) {
 					checkBox.setChecked(true);
 				} else {
@@ -72,10 +73,10 @@ class CheckBoxCursorAdapter extends ResourceCursorAdapter {
 				checkBox.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
-						if (checkData.contains(mPosition)) {
-							checkData.remove((Object) mPosition);
+						if (checkData.contains(idIndexContent)) {
+							checkData.remove((Object) idIndexContent);
 						} else {
-							checkData.add(mPosition);
+							checkData.add(idIndexContent);
 						}
 					}
 				});

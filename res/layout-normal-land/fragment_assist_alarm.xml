@@ -9,26 +9,19 @@
         android:id="@+id/assistAlarmTextLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/standard_margin"
         android:gravity="center"
         android:text="@string/assist_alarm_text_label"
         android:textColor="@color/Red"
-        android:textSize="27sp" />
-
-    <ImageView
-        android:id="@+id/assistAlarmImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/assistAlarmTextLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/high_margin"
-        android:src="@drawable/alarm" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/assistAlarmPairsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/assistAlarmImage"
+        android:layout_below="@id/assistAlarmTextLabel"
+        android:layout_marginLeft="@dimen/normal_horizontal_assist_margin"
+        android:layout_marginRight="@dimen/normal_horizontal_assist_margin"
         android:layout_marginTop="@dimen/high_margin" >
 
         <TextView
@@ -38,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="÷"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -61,7 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmPairsLayout"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/normal_horizontal_assist_margin"
+        android:layout_marginRight="@dimen/normal_horizontal_assist_margin"
+        android:layout_marginTop="@dimen/standard_margin"
         android:gravity="bottom"
         android:orientation="horizontal" >
 
@@ -78,6 +73,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/price"
+            android:imeOptions="flagNoExtractUi"
             android:inputType="numberDecimal" >
         </EditText>
     </LinearLayout>
@@ -85,7 +81,7 @@
     <TextView
         android:id="@+id/assistAlarmTips"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:background="@color/Gray2"
         android:drawableLeft="@drawable/tips"
@@ -93,7 +89,7 @@
         android:gravity="left|center_vertical"
         android:padding="@dimen/standard_margin"
         android:text="@string/assist_alarm_tips"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -106,11 +102,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/alarm_selector"
+            android:background="@drawable/assist_alarm_selector"
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
-            android:textSize="15sp" />
-
+            android:textSize="13sp" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -4,12 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="@color/GraphText" />
+    <ImageView
+        style="@style/ChatCheckedLineStyle"
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,14 +15,10 @@
         android:layout_marginRight="@dimen/med_margin"
         android:gravity="center"
         android:text="@string/chat_checked_mark"
-        android:textColor="@color/ChatText"
-        android:textStyle="italic" />
+        android:textColor="@color/ChatText" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="@color/GraphText" />
+    <ImageView
+        style="@style/ChatCheckedLineStyle"
+        android:layout_weight="1" />
 
 </LinearLayout>

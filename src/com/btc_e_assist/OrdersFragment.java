@@ -34,6 +34,7 @@ public class OrdersFragment extends Fragment {
 		currentFragmentName = getTag();
 		tradeControl = TradeControl.getInstance();
 		update();
+		CommonHelper.showPasswordDialog(mContext);
 	}
 
 	@Override
@@ -141,7 +142,7 @@ public class OrdersFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			return tradeControl.getOrdersData(dataBox);
+			return tradeControl.loadOrdersData();
 		}
 
 		@Override
@@ -150,7 +151,7 @@ public class OrdersFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && tradeControl.setOrdersData(dataBox)) {
 				if (adapter != null) {
 					checkNoData();
 					adapter.notifyDataSetChanged();
@@ -183,10 +184,10 @@ public class OrdersFragment extends Fragment {
 					}
 				}
 			}
-			boolean result = tradeControl.getOrdersData(dataBox);
+			boolean result = tradeControl.loadOrdersData();
 			if (!result || dataBox.data1.size() == 0
 					|| dataBox.data2.size() == 0) {
-				result = tradeControl.getOrdersData(dataBox);
+				result = tradeControl.loadOrdersData();
 			}
 			return result;
 		}
@@ -204,7 +205,7 @@ public class OrdersFragment extends Fragment {
 						String.format(getString(R.string.order_not_cancelled),
 								order + 1), Toast.LENGTH_SHORT).show();
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && tradeControl.setOrdersData(dataBox)) {
 				if (adapter != null) {
 					adapter.notifyDataSetChanged();
 					checkNoData();

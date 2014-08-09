@@ -15,6 +15,7 @@ import android.support.v4.widget.ResourceCursorAdapter;
 import android.text.InputType;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class SelectProfileFragment extends ListFragment implements
@@ -39,6 +41,9 @@ public class SelectProfileFragment extends ListFragment implements
 	private TradeControl tradeControl;
 	private PrefControl pControl;
 	private CustomAdapter cursorAdapter;
+
+	private AlertDialog dialog;
+	private EditText passEditText;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -105,31 +110,46 @@ public class SelectProfileFragment extends ListFragment implements
 		passDialog.setTitle(getString(R.string.decryption_dialog_title));
 		passDialog.setMessage(String.format(
 				getString(R.string.decryption_dialog_message), nameFromCursor));
-		final EditText passEditText = new EditText(mContext);
+		passEditText = new EditText(mContext);
 		passEditText.setInputType(InputType.TYPE_CLASS_TEXT
 				| InputType.TYPE_TEXT_VARIATION_PASSWORD);
-		passEditText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+		passEditText.setImeOptions(EditorInfo.IME_ACTION_DONE
+				| EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+		passEditText.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+					dialog.cancel();
+					positiveDialogClick(id);
+				}
+				return false;
+			}
+		});
 		passDialog.setView(passEditText);
 		passDialog.setPositiveButton("OK",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						try {
-							tradeControl.tradeApi.setKeys(keyFromCursor,
-									secretFromCursor, passEditText.getText()
-											.toString());
-							pControl.setCurrentProfileId(id);
-							getActivity().getSupportLoaderManager()
-									.getLoader(LOADER_ID).forceLoad();
-							Toast.makeText(mContext,
-									R.string.accepted_dialog_message,
-									Toast.LENGTH_SHORT).show();
-						} catch (Exception e) {
-							Toast.makeText(mContext, R.string.wrong_password,
-									Toast.LENGTH_SHORT).show();
-						}
+						positiveDialogClick(id);
 					}
 				});
-		passDialog.show();
+		dialog = passDialog.create();
+		dialog.show();
+	}
+
+	private void positiveDialogClick(long id) {
+		try {
+			tradeControl.tradeApi.setKeys(keyFromCursor, secretFromCursor,
+					passEditText.getText().toString());
+			pControl.setCurrentProfileId(id);
+			getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
+					.forceLoad();
+			Toast.makeText(mContext, R.string.accepted_dialog_message,
+					Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			Toast.makeText(mContext, R.string.wrong_password,
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View view,

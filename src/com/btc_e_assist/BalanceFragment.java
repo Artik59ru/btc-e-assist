@@ -1,9 +1,11 @@
 package com.btc_e_assist;
 
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -11,13 +13,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SimpleAdapter;
-import com.btc_e_assist.R;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class BalanceFragment extends ListFragment {
 	private Context mContext;
 	private TradeControl tradeControl;
-	private NotClickableAdapter adapter;
+	private CustomAdapter adapter;
 	private String currentFragmentName = "";
 	private static volatile DataBox dataBox = new DataBox();
 	private SecondThread secondThread;
@@ -38,7 +40,7 @@ public class BalanceFragment extends ListFragment {
 		View rootView = inflater.inflate(R.layout.balance_list_layout, null);
 		String[] from = { "name", "value" };
 		int[] to = { R.id.itemBalanceName, R.id.itemBalanceValue };
-		adapter = new NotClickableAdapter(mContext, dataBox.data1,
+		adapter = new CustomAdapter(mContext, dataBox.data1,
 				R.layout.item_balance_fragment, from, to);
 		setListAdapter(adapter);
 		return rootView;
@@ -72,7 +74,7 @@ public class BalanceFragment extends ListFragment {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			return tradeControl.getBalanceData(dataBox);
+			return tradeControl.loadBalanceData();
 		}
 
 		@Override
@@ -81,7 +83,7 @@ public class BalanceFragment extends ListFragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && tradeControl.setBalanceData(dataBox)) {
 				if (adapter != null) {
 					adapter.notifyDataSetChanged();
 					CommonHelper
@@ -94,13 +96,69 @@ public class BalanceFragment extends ListFragment {
 		}
 	}
 
-	private class NotClickableAdapter extends SimpleAdapter {
-		public NotClickableAdapter(Context context,
-				List<? extends Map<String, ?>> data, int resource,
-				String[] from, int[] to) {
-			super(context, data, resource, from, to);
+	private class CustomAdapter extends BaseAdapter {
+		private LayoutInflater mInflater;
+		private ArrayList<HashMap<String, Object>> mData;
+		private int mLayoutId;
+		private String[] mFrom;
+		private int[] mTo;
+		private int firstColor;
+		private int secondColor;
+
+		CustomAdapter(Context context, ArrayList<HashMap<String, Object>> data,
+				int id, String[] from, int[] to) {
+			mInflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mData = data;
+			mLayoutId = id;
+			mFrom = from;
+			mTo = to;
+			Resources res = context.getResources();
+			firstColor = res.getColor(R.color.Black70);
+			secondColor = res.getColor(R.color.Red2);
 		}
 
+		@Override
+		public int getCount() {
+			return mData.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mData.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = convertView;
+			HashMap<String, Object> map = mData.get(position);
+			if (view == null) {
+				view = mInflater.inflate(mLayoutId, parent, false);
+			}
+			for (int i = 0; i < mTo.length; i++) {
+				TextView textView = (TextView) view.findViewById(mTo[i]);
+				String textData = (String) map.get(mFrom[i]);
+				try {
+					Double value = Double.parseDouble(textData);
+					if (value == 0) {
+						textView.setTextColor(firstColor);
+					} else {
+						textView.setTextColor(secondColor);
+					}
+				} catch (Exception e) {
+					textView.setTextColor(firstColor);
+				}
+				textView.setText(textData);
+			}
+			return view;
+		}
+
+		@Override
 		public boolean isEnabled(int position) {
 			return false;
 		}

@@ -215,7 +215,7 @@ public class PrefControl {
 		HtmlCutter.setNewsCount(Integer.parseInt(sharedPreferences.getString(
 				"news_count", "10")));
 
-		ServiceAssist.sleepValue = Long.parseLong(sharedPreferences.getString(
-				"trades_transactions_count", "60000"));
+		ServiceCycle.setFrequency(Long.parseLong(sharedPreferences.getString(
+				"assist_frequency", "60000")));
 	}
 }

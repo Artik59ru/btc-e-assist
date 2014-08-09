@@ -4,7 +4,8 @@
     <string name="settings">Settings</string>
     <string name="title_activity_ticker">Ticker</string>
     <string name="title_activity_addprofile">Profiles</string>
-    <string name="app_name">BTCe Assist</string>
+    <string name="title_activity_news_content">News</string>
+    <string name="app_name">BTC-e Assist</string>
     <string name="trades_main_button">Trades</string>
     <string name="trades_main_button_land">&lt;h1>Trades&lt;/h1>Watch and trades</string>
     <string name="assist_main_button">Assist</string>
@@ -104,6 +105,7 @@
     <string name="add_profile_button">Add profile</string>
     <string name="add_profile_tips">If you want to encrypt your profile on this device , fill in your encryption phrase</string>
     <string name="assist_alarm_tips">Alarm is made to notify you when the price reached the point you\'ve set</string>
+    <string name="assist_trade_tips">Automatic mode is made to simplify some trade actions</string>
     <string name="chat_tips">BTC-e chat is available in read only mode</string>
     <string name="empty_list">No data</string>
     <string name="price">Price</string>
@@ -116,7 +118,9 @@
     <string name="completed">Completed</string>
     <string name="not_completed">Not completed</string>
     <string name="assist_alarm_text_label">Setting up an alarm</string>
+    <string name="assist_trade_text_label">Auto trade</string>
     <string name="add_alarm_button">SET UP</string>
+    <string name="add_trade_button">GO</string>
     <string name="pair_list_not_available">Actual pairs list is temporarily not available</string>
     <string name="enter_price">Enter the price, please</string>
     <string name="alarm_added">Alarm has been set</string>
@@ -156,5 +160,7 @@
     <string name="about_develop_label">Developer:</string>
     <string name="about_donate_label">This app has no advertising and paid version - it\'s absolutely free and Open Source.\nYou can help us make it the greatest app on the market by your donations. Please send it to us using BTC-e redeem codes. Thank you and have a nice trade!</string>
     <string name="no_keys">API-key and API-secret is not installed</string>
+    <string name="next_news_button">Next news</string>
+    <string name="prev_news_button">Prev news</string>
 
 </resources>

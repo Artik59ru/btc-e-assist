@@ -280,6 +280,7 @@ public class TradeActivity extends ActionBarActivity {
 					price = Double.parseDouble(content);
 				}
 				double total = price * amount;
+
 				StringBuilder buffer = new StringBuilder(
 						String.valueOf(TradeApi.formatDouble(total, 8)));
 				buffer.append(" ");
@@ -299,8 +300,13 @@ public class TradeActivity extends ActionBarActivity {
 					}
 				} else {
 					buffer.append('~');
-					buffer.append(String.valueOf(TradeApi.formatDouble(total
-							* STANDARD_FEE, 8)));
+					if (isBuy) {
+						buffer.append(TradeApi.formatDouble(amount
+								* STANDARD_FEE, 8));
+					} else {
+						buffer.append(TradeApi.formatDouble(total
+								* STANDARD_FEE, 8));
+					}
 				}
 				buffer.append(" ");
 				if (isBuy) {
@@ -347,28 +353,30 @@ public class TradeActivity extends ActionBarActivity {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			if (isBuy) {
-				return tradeControl.getDepthData(currentPair, isBuy,
-						depthBuyBox);
-			} else {
-				return tradeControl.getDepthData(currentPair, isBuy,
-						depthSellBox);
-			}
+			return tradeControl.loadDepthData(currentPair);
 		}
 
 		@Override
 		protected void onPostExecute(Boolean result) {
 			super.onPostExecute(result);
 			if (result.booleanValue()) {
-				if (adapter != null) {
-					adapter.notifyDataSetChanged();
-					CommonHelper.makeToastUpdated(TradeActivity.this,
-							currentPair);
+				boolean isSet = false;
+				if (isBuy) {
+					isSet = tradeControl.setDepthData(isBuy, depthBuyBox);
+				} else {
+					isSet = tradeControl.setDepthData(isBuy, depthSellBox);
 				}
-			} else {
-				CommonHelper.makeToastErrorConnection(TradeActivity.this,
-						currentPair);
+				if (isSet) {
+					if (adapter != null) {
+						adapter.notifyDataSetChanged();
+						CommonHelper.makeToastUpdated(TradeActivity.this,
+								currentPair);
+					}
+					return;
+				}
 			}
+			CommonHelper.makeToastErrorConnection(TradeActivity.this,
+					currentPair);
 		}
 	}
 

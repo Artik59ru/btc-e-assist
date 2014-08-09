@@ -34,10 +34,9 @@ public class TradeControl {
 	 * Return false if has ANY troubles
 	 * 
 	 * @param pairsList
-	 * @param inputTickerBox
 	 * @return
 	 */
-	public boolean getTickerData(String[] pairsList, DataBox inputTickerBox) {
+	public boolean loadTickerData(String[] pairsList) {
 		try {
 			if (pairsList.length == 0) {
 				return false;
@@ -51,6 +50,14 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setTickerData(DataBox inputTickerBox) {
+		try {
 			inputTickerBox.data1.clear();
 			while (tradeApi.ticker.hasNextPair()) {
 				tradeApi.ticker.switchNextPair();
@@ -89,15 +96,23 @@ public class TradeControl {
 	 * 
 	 * @param inputBox
 	 */
-	public boolean getBalanceData(DataBox inputBox) {
-		long timestamp;
-		DateFormat formatter;
+	public boolean loadBalanceData() {
 		try {
 			if (!tradeApi.getInfo.runMethod()) {
 				if (!tradeApi.getInfo.runMethod()) {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setBalanceData(DataBox inputBox) {
+		try {
+			long timestamp;
+			DateFormat formatter;
 			inputBox.data1.clear();
 			ArrayList<String> names = tradeApi.getInfo.getCurrencyList();
 			for (String s : names) {
@@ -121,9 +136,7 @@ public class TradeControl {
 	 * @param inputBox
 	 */
 	@SuppressLint("DefaultLocale")
-	public boolean getOrdersData(DataBox inputBox) {
-		long timestamp;
-		DateFormat formatter;
+	public boolean loadOrdersData() {
 		try {
 			if (!tradeApi.activeOrders.runMethod()
 					&& tradeApi.activeOrders.getErrorMessage().length() == 0) {
@@ -132,6 +145,16 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setOrdersData(DataBox inputBox) {
+		long timestamp;
+		DateFormat formatter;
+		try {
 			inputBox.data1.clear();
 			inputBox.data2.clear();
 			while (tradeApi.activeOrders.hasNext()) {
@@ -200,9 +223,7 @@ public class TradeControl {
 	 * 
 	 */
 	@SuppressLint("DefaultLocale")
-	public boolean getTradesData(String pairName, DataBox inputBox) {
-		long timestamp;
-		DateFormat formatter;
+	public boolean loadTradesData(String pairName) {
 		try {
 			tradeApi.trades.resetParams();
 			tradeApi.trades.addPair(pairName);
@@ -212,9 +233,19 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setTradesData(DataBox inputBox) {
+		long timestamp;
+		DateFormat formatter;
+		try {
 			inputBox.data1.clear();
 			inputBox.data2.clear();
-			tradeApi.trades.setCurrentPair(pairName);
+			tradeApi.trades.switchNextPair();
 			while (tradeApi.trades.hasNextTrade()) {
 				tradeApi.trades.switchNextTrade();
 				HashMap<String, Object> itemGroupMap = new HashMap<String, Object>();
@@ -267,9 +298,7 @@ public class TradeControl {
 	 * 
 	 * @param inputBox
 	 */
-	public boolean getTradeHistoryData(DataBox inputBox) {
-		long timestamp;
-		DateFormat formatter;
+	public boolean loadTradeHistoryData() {
 		try {
 			tradeApi.tradeHistory.setCount(tradeHistoryCount);
 			if (!tradeApi.tradeHistory.runMethod()) {
@@ -277,6 +306,16 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setTradeHistoryData(DataBox inputBox) {
+		long timestamp;
+		DateFormat formatter;
+		try {
 			inputBox.data1.clear();
 			inputBox.data2.clear();
 			while (tradeApi.tradeHistory.hasNext()) {
@@ -332,9 +371,7 @@ public class TradeControl {
 	 * 
 	 * @param inputBox
 	 */
-	public boolean getTransHistoryData(DataBox inputBox) {
-		long timestamp;
-		DateFormat formatter;
+	public boolean loadTransHistoryData() {
 		try {
 			tradeApi.transHistory.setCount(transHistoryCount);
 			if (!tradeApi.transHistory.runMethod()) {
@@ -342,6 +379,16 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setTransHistoryData(DataBox inputBox) {
+		long timestamp;
+		DateFormat formatter;
+		try {
 			inputBox.data1.clear();
 			inputBox.data2.clear();
 			while (tradeApi.transHistory.hasNext()) {
@@ -391,7 +438,7 @@ public class TradeControl {
 	/**
 	 * Return false if has ANY troubles
 	 */
-	public boolean getDepthData(String pairName, boolean type, DataBox inputBox) {
+	public boolean loadDepthData(String pairName) {
 		try {
 			tradeApi.depth.resetParams();
 			tradeApi.depth.addPair(pairName);
@@ -401,8 +448,16 @@ public class TradeControl {
 					return false;
 				}
 			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean setDepthData(boolean type, DataBox inputBox) {
+		try {
 			inputBox.data1.clear();
-			tradeApi.depth.setCurrentPair(pairName);
+			tradeApi.depth.switchNextPair();
 			if (!type) {
 				while (tradeApi.depth.hasNextAsk()) {
 					tradeApi.depth.switchNextAsk();
@@ -418,7 +473,6 @@ public class TradeControl {
 					inputBox.data1.add(itemMap);
 				}
 			} else {
-
 				while (tradeApi.depth.hasNextBid()) {
 					tradeApi.depth.switchNextBid();
 					HashMap<String, Object> itemMap = new HashMap<String, Object>();

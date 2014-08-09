@@ -7,10 +7,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/avg_margin"
-        android:layout_marginRight="@dimen/avg_margin"
-        android:layout_marginTop="@dimen/avg_margin"
-        android:background="@drawable/shadow_background" >
+        android:layout_marginLeft="@dimen/large_horizontal_ticker_margin"
+        android:layout_marginRight="@dimen/large_horizontal_ticker_margin"
+        android:layout_marginTop="@dimen/high_margin"
+        android:background="@color/Gray0"
+        android:paddingLeft="@dimen/large_horizontal_ticker_margin"
+        android:paddingRight="@dimen/large_horizontal_ticker_margin" >
 
         <TextView
             android:id="@+id/tickerTextDiv"
@@ -40,8 +42,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/avg_margin"
-        android:background="@drawable/shadow_background" >
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/large_horizontal_ticker_margin"
+        android:layout_marginRight="@dimen/large_horizontal_ticker_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="@color/Gray0"
+        android:paddingLeft="@dimen/large_horizontal_ticker_margin"
+        android:paddingRight="@dimen/large_horizontal_ticker_margin" >
 
         <TextView
             android:id="@+id/tickerLastName"
@@ -67,7 +74,7 @@
             android:layout_alignBottom="@+id/tickerLastDots"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/standard_margin"
-            android:maxLength="32"
+            android:maxLength="20"
             android:text="-"
             android:textSize="45sp"
             android:textStyle="bold" />
@@ -164,10 +171,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tickerVolumeValue"
-            android:layout_marginRight="@dimen/min_margin"
             android:layout_marginTop="@dimen/high_margin"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp" >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/tickerBuyButton"
@@ -197,9 +202,9 @@
         android:id="@+id/mySimpleXYPlot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/avg_margin"
-        android:layout_marginLeft="@dimen/avg_margin"
-        android:layout_marginRight="@dimen/avg_margin"
+        android:layout_marginBottom="@dimen/high_margin"
+        android:layout_marginLeft="@dimen/large_horizontal_ticker_margin"
+        android:layout_marginRight="@dimen/large_horizontal_ticker_margin"
         androidPlot.graphWidget.marginBottom="20dp"
         androidPlot.graphWidget.marginLeft="@dimen/avg_margin"
         androidPlot.graphWidget.marginTop="@dimen/standard_margin" />

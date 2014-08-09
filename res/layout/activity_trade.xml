@@ -129,10 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tradeFeeValue"
-            android:layout_marginRight="@dimen/med_margin"
             android:layout_marginTop="@dimen/standard_margin"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp" >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/tradeLeftButton"

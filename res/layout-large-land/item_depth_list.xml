@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/standard_margin"
+    android:paddingTop="@dimen/standard_margin" >
+
+    <TextView
+        android:id="@+id/itemDepthPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_horizontal_depth_margin"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:singleLine="true"
+        android:textColor="@color/Black70"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/itemDepthAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/Black70"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/itemDepthTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/large_horizontal_depth_margin"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:singleLine="true"
+        android:textColor="@color/Black70"
+        android:textSize="15sp" />
+
+</LinearLayout>

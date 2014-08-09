@@ -29,6 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmImage"
+        android:layout_marginLeft="@dimen/large_horizontal_assist_margin"
+        android:layout_marginRight="@dimen/large_horizontal_assist_margin"
         android:layout_marginTop="@dimen/high_margin" >
 
         <TextView
@@ -61,6 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/assistAlarmPairsLayout"
+        android:layout_marginLeft="@dimen/large_horizontal_assist_margin"
+        android:layout_marginRight="@dimen/large_horizontal_assist_margin"
         android:layout_marginTop="20dp"
         android:gravity="bottom"
         android:orientation="horizontal" >
@@ -106,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/alarm_selector"
+            android:background="@drawable/assist_alarm_selector"
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
             android:textSize="15sp" />

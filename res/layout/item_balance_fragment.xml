@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/avg_margin"
+    android:paddingTop="@dimen/avg_margin" >
 
     <TextView
         android:id="@+id/itemBalanceName"
@@ -10,8 +12,7 @@
         android:layout_alignBottom="@+id/itemBalanceValue"
         android:layout_alignParentLeft="true"
         android:paddingLeft="@dimen/high_margin"
-         android:textColor="@color/Black70"
-        android:textSize="23sp" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/itemBalanceDots"
@@ -25,9 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:maxLength="20"
         android:paddingRight="@dimen/high_margin"
         android:singleLine="true"
-        android:textColor="@color/Red2"
-        android:textSize="23sp" />
+        android:textSize="20sp" />
 
 </RelativeLayout>

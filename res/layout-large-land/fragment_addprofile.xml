@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addprofileImage"
-        android:layout_marginLeft="@dimen/standard_margin"
+        android:layout_marginLeft="@dimen/large_horizontal_profiles_margin"
         android:layout_marginRight="@dimen/high_margin"
         android:layout_marginTop="@dimen/high_margin"
         android:layout_toLeftOf="@+id/addProfileQuestion1"
@@ -70,9 +70,9 @@
         android:id="@+id/addprofilePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addprofileSecret"
         android:layout_alignRight="@+id/addprofileSecret"
         android:layout_below="@id/addprofileSecret"
-        android:layout_marginLeft="@dimen/standard_margin"
         android:layout_marginTop="@dimen/standard_margin"
         android:ems="10"
         android:hint="@string/pass_profiles_hint"
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/addprofileSecret"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginRight="@dimen/large_horizontal_profiles_margin"
         android:src="@drawable/question" />
 
     <ImageView
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/addprofilePassword"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginRight="@dimen/large_horizontal_profiles_margin"
         android:src="@drawable/question" />
 
     <RelativeLayout
@@ -126,7 +126,6 @@
             android:padding="@dimen/high_margin"
             android:text="@string/add_profile_button"
             android:textColor="@color/Gray" />
-
     </RelativeLayout>
 
 </RelativeLayout>

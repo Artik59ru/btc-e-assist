@@ -20,6 +20,7 @@ public class FinancesActivity extends ActionBarActivity {
 	@Override
 	public void onCreate(Bundle savedState) {
 		super.onCreate(savedState);
+		CommonHelper.showPasswordDialog(this);
 		mSavedState = savedState;
 		setContentView(R.layout.activity_standard_fragment);
 		actionBar = getSupportActionBar();

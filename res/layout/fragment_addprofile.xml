@@ -70,9 +70,9 @@
         android:id="@+id/addprofilePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addprofileSecret"
         android:layout_alignRight="@+id/addprofileSecret"
         android:layout_below="@id/addprofileSecret"
-        android:layout_marginLeft="@dimen/standard_margin"
         android:layout_marginTop="@dimen/standard_margin"
         android:ems="10"
         android:hint="@string/pass_profiles_hint"
@@ -92,7 +92,7 @@
         android:gravity="left|center_vertical"
         android:padding="@dimen/standard_margin"
         android:text="@string/add_profile_tips"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/addProfileQuestion1"
@@ -127,7 +127,6 @@
             android:padding="@dimen/standard_margin"
             android:text="@string/add_profile_button"
             android:textColor="@color/Gray" />
-
     </RelativeLayout>
 
 </RelativeLayout>

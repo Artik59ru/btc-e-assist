@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/alarm_selector"
+            android:background="@drawable/assist_alarm_selector"
             android:text="@string/add_alarm_button"
             android:textColor="@color/Gray"
             android:textSize="15sp" />

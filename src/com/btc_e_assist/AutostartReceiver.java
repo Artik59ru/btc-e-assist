@@ -32,12 +32,7 @@ public class AutostartReceiver extends BroadcastReceiver {
 					list.add(task);
 				} while (cursor.moveToNext());
 				if (list.size() > 0) {
-					ServiceAssist.globalTaskList = list;
-					Intent serviceIntent = new Intent(context,
-							ServiceAssist.class);
-					serviceIntent.putExtra(ServiceAssist.TASK_EXTRA_NAME,
-							ServiceAssist.TASK_ADD_ARRAY);
-					context.startService(serviceIntent);
+					ServiceAssist.setTaskList(list);
 				}
 			}
 		}

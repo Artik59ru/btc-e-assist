@@ -1,9 +1,9 @@
 package com.btc_e_assist;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -76,23 +76,14 @@ public class AssistTasksFragment extends ListFragment implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		ArrayList<Long> checkedRowIds = new ArrayList<Long>();
-		ListView list = getListView();
 		switch (item.getItemId()) {
 		case R.id.action_cancel:
-			ArrayList<Long> idList = new ArrayList<Long>();
-			for (Integer position : adapter.checkData) {
-				checkedRowIds.add(list.getItemIdAtPosition(position));
-			}
-			for (long rowId : checkedRowIds) {
+			ArrayList<Long> idListForRemove = new ArrayList<Long>();
+			for (long rowId : adapter.checkData) {
 				dbControl.deleteAlarm(rowId);
-				idList.add(rowId);
+				idListForRemove.add(rowId);
 			}
-			ServiceAssist.globalDeleteList = idList;
-			Intent serviceIntent = new Intent(mContext, ServiceAssist.class);
-			serviceIntent.putExtra(ServiceAssist.TASK_EXTRA_NAME,
-					ServiceAssist.TASK_FOR_DELETE);
-			mContext.startService(serviceIntent);
+			ServiceAssist.setDeleteList(idListForRemove);
 			adapter.checkData.clear();
 			getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
 					.forceLoad();
@@ -106,16 +97,19 @@ public class AssistTasksFragment extends ListFragment implements
 	}
 
 	private void selectAll() {
-		int count = adapter.getCount();
-		int sizeChecks = adapter.checkData.size();
-		adapter.checkData.clear();
-		if (sizeChecks != count) {
-			for (int i = 0; i < count; i++) {
-				adapter.checkData.add(i);
+		ListView list = getListView();
+		if (list != null) {
+			int count = adapter.getCount();
+			int sizeChecks = adapter.checkData.size();
+			adapter.checkData.clear();
+			if (sizeChecks != count) {
+				for (int i = 0; i < count; i++) {
+					adapter.checkData.add(list.getItemIdAtPosition(i));
+				}
 			}
+			getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
+					.forceLoad();
 		}
-		getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
-				.forceLoad();
 	}
 
 	@Override

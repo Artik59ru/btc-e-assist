@@ -8,10 +8,12 @@
         android:id="@+id/tradeTopLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/high_margin"
-        android:layout_marginRight="@dimen/high_margin"
+        android:layout_marginLeft="@dimen/normal_horizontal_trade_margin"
+        android:layout_marginRight="@dimen/normal_horizontal_trade_margin"
         android:layout_marginTop="7dp"
-        android:background="@drawable/shadow_background" >
+        android:background="@drawable/shadow_background"
+        android:paddingLeft="@dimen/normal_horizontal_trade_margin"
+        android:paddingRight="@dimen/normal_horizontal_trade_margin" >
 
         <TextView
             android:id="@+id/tradeMyFundsName"
@@ -92,7 +94,7 @@
             android:layout_below="@id/tradePriceEdit"
             android:layout_marginRight="@dimen/high_margin"
             android:layout_marginTop="@dimen/med_margin"
-            android:maxLength="20"
+            android:maxLength="40"
             android:textColor="@color/Black90"
             android:textSize="12sp" />
 
@@ -122,7 +124,7 @@
             android:layout_below="@id/tradeTotalValue"
             android:layout_marginRight="@dimen/high_margin"
             android:layout_marginTop="@dimen/med_margin"
-            android:maxLength="20"
+            android:maxLength="40"
             android:textColor="@color/Black90"
             android:textSize="12sp" />
 
@@ -131,10 +133,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tradeFeeValue"
-            android:layout_marginRight="@dimen/med_margin"
             android:layout_marginTop="@dimen/min_margin"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp" >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/tradeLeftButton"
@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tradeTopLayout"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/normal_horizontal_depth_margin"
         android:text="@string/price"
         android:textColor="@color/Black70"
         android:textSize="12sp" />
@@ -185,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/tradeTopLayout"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/normal_horizontal_depth_margin"
         android:text="@string/total"
         android:textColor="@color/Black70"
         android:textSize="12sp" />

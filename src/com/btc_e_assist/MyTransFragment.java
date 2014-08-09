@@ -100,7 +100,7 @@ public class MyTransFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			return tradeControl.getTransHistoryData(dataBox);
+			return tradeControl.loadTransHistoryData();
 		}
 
 		@Override
@@ -109,7 +109,8 @@ public class MyTransFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue()
+					&& tradeControl.setTransHistoryData(dataBox)) {
 				if (adapter != null) {
 					adapter.notifyDataSetChanged();
 					checkNoData();

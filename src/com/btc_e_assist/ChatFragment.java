@@ -3,6 +3,7 @@ package com.btc_e_assist;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -18,12 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.btc_e_assist.R;
 
 public class ChatFragment extends ListFragment {
 	private Context mContext;
 	private CustomAdapter adapter;
 	private String currentFragmentName = "";
+	private SecondThread secondThread;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -31,7 +32,7 @@ public class ChatFragment extends ListFragment {
 		mContext = activity;
 		currentFragmentName = getTag();
 		HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
-		new SecondThread().execute();
+		update();
 	}
 
 	@Override
@@ -46,7 +47,6 @@ public class ChatFragment extends ListFragment {
 		redNicks.add("penek");
 		adapter = new CustomAdapter(mContext, HtmlCutter.chatData, redNicks);
 		setListAdapter(adapter);
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		return rootView;
 	}
 
@@ -59,34 +59,39 @@ public class ChatFragment extends ListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
-			new SecondThread().execute();
+			update();
 			return true;
 		case R.id.action_set_russian:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_RU);
-			new SecondThread().execute();
+			update();
 			return true;
 		case R.id.action_set_english:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_EN);
-			new SecondThread().execute();
+			update();
 			return true;
 		case R.id.action_set_chinese:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 			HtmlCutter.setLanguage(HtmlCutter.LANG_CN);
-			new SecondThread().execute();
+			update();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+	private void update() {
+		if (secondThread != null) {
+			secondThread.cancel(false);
+		}
+		secondThread = new SecondThread();
+		secondThread.execute();
+		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
+	}
+
 	private class SecondThread extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			return HtmlCutter.runGettingChatData();
+			return HtmlCutter.loadChatData();
 		}
 
 		@Override
@@ -95,7 +100,7 @@ public class ChatFragment extends ListFragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && HtmlCutter.setChatData()) {
 				if (adapter != null) {
 					adapter.notifyDataSetChanged();
 					CommonHelper

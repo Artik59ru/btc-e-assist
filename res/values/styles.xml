@@ -24,6 +24,15 @@
         <item name="android:src">@drawable/dots</item>
     </style>
 
+    <style name="ChatCheckedLineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/standard_margin</item>
+        <item name="android:paddingRight">@dimen/standard_margin</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:src">@drawable/chat_mark_line</item>
+    </style>
+
     <style name="WidgetTextValueStyle">
         <item name="android:textColor">@color/DarkSlateBlue</item>
         <item name="android:textStyle">bold</item>

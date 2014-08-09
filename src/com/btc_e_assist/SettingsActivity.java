@@ -31,9 +31,9 @@ public class SettingsActivity extends PreferenceActivity implements
 		} else if (key.equals("news_count")) {
 			HtmlCutter.setNewsCount(Integer.parseInt(sharedPreferences
 					.getString(key, "10")));
-		} else if (key.equals("trades_transactions_count")) {
-			ServiceAssist.sleepValue = Long.parseLong(sharedPreferences
-					.getString(key, "60000"));
+		} else if (key.equals("assist_frequency")) {
+			ServiceCycle.setFrequency(Long.parseLong(sharedPreferences
+					.getString(key, "60000")));
 		}
 	}
 

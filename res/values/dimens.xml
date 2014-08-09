@@ -3,6 +3,18 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">15dp</dimen>
     <dimen name="activity_vertical_margin">15dp</dimen>
+    <dimen name="large_horizontal_ticker_margin">80dp</dimen>
+    <dimen name="normal_horizontal_ticker_margin">30dp</dimen>
+    <dimen name="large_horizontal_trade_margin">80dp</dimen>
+    <dimen name="normal_horizontal_trade_margin">30dp</dimen>
+    <dimen name="large_horizontal_depth_margin">160dp</dimen>
+    <dimen name="normal_horizontal_depth_margin">60dp</dimen>
+    <dimen name="large_horizontal_list_margin">100dp</dimen>
+    <dimen name="normal_horizontal_list_margin">40dp</dimen>
+    <dimen name="large_horizontal_profiles_margin">160dp</dimen>
+    <dimen name="normal_horizontal_profiles_margin">60dp</dimen>
+    <dimen name="large_horizontal_assist_margin">160dp</dimen>
+    <dimen name="normal_horizontal_assist_margin">60dp</dimen>
     <dimen name="high_margin">10dp</dimen>
     <dimen name="avg_margin">7dp</dimen>
     <dimen name="standard_margin">5dp</dimen>

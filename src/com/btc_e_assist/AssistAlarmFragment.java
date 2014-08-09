@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -61,7 +60,7 @@ public class AssistAlarmFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_alarm, null);
+		View rootView = inflater.inflate(R.layout.fragment_assist_alarm, null);
 		TextView textLabel = (TextView) rootView
 				.findViewById(R.id.assistAlarmTextLabel);
 		TextView textTips = (TextView) rootView
@@ -170,12 +169,7 @@ public class AssistAlarmFragment extends Fragment {
 								.getColumnIndex(DBControl.ACTIONS_NAME_ID));
 						SimpleAlarmTask task = new SimpleAlarmTask(pairName
 								.toString(), price, condition, taskId);
-						ServiceAssist.globalTask = task;
-						Intent serviceIntent = new Intent(mContext,
-								ServiceAssist.class);
-						serviceIntent.putExtra(ServiceAssist.TASK_EXTRA_NAME,
-								ServiceAssist.TASK_ADD);
-						mContext.startService(serviceIntent);
+						ServiceAssist.setTask(task);
 						CommonHelper.clearAllEdits(group);
 						Toast.makeText(mContext, R.string.alarm_added,
 								Toast.LENGTH_SHORT).show();
@@ -233,8 +227,7 @@ public class AssistAlarmFragment extends Fragment {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
-			return tradeControl.getTickerData(pControl.getPairsList(),
-					tickerBox);
+			return tradeControl.loadTickerData(pControl.getPairsList());
 		}
 
 		@Override
@@ -243,7 +236,7 @@ public class AssistAlarmFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && tradeControl.setTickerData(tickerBox)) {
 				updatePriceEdit();
 			}
 		}

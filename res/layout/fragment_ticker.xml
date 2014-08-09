@@ -10,7 +10,7 @@
         android:layout_marginLeft="@dimen/avg_margin"
         android:layout_marginRight="@dimen/avg_margin"
         android:layout_marginTop="@dimen/avg_margin"
-        android:background="@drawable/shadow_background" >
+        android:background="@color/Gray0" >
 
         <TextView
             android:id="@+id/tickerTextDiv"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/avg_margin"
-        android:background="@drawable/shadow_background" >
+        android:background="@color/Gray0" >
 
         <TextView
             android:id="@+id/tickerLastName"
@@ -71,8 +71,6 @@
             android:text="-"
             android:textSize="30sp"
             android:textStyle="bold" />
-
-
 
         <TextView
             android:id="@+id/tickerMinName"
@@ -166,10 +164,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tickerVolumeValue"
-            android:layout_marginRight="@dimen/min_margin"
             android:layout_marginTop="@dimen/avg_margin"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/min_margin" >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/tickerBuyButton"

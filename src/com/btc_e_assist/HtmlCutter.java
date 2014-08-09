@@ -68,15 +68,27 @@ public class HtmlCutter {
 	}
 
 	/**
-	 * Run the process of getting chat data and packing to the chatData.
-	 * Sometimes has empty map with "checked" key with value "1" for checked
-	 * messages.
+	 * Load page with chat
 	 * 
 	 * @return false if has ANY trouble
 	 */
-	public static boolean runGettingChatData() {
+	public static boolean loadChatData() {
 		try {
 			getHtmlPage(DEST_URL_MAIN);
+			return true;
+		} catch (Exception e) {
+		}
+		return false;
+	}
+
+	/**
+	 * Run the process of packing html data to the chatData. Sometimes has empty
+	 * map with "checked" key with value "1" for checked messages.
+	 * 
+	 * @return false if has ANY trouble
+	 */
+	public static boolean setChatData() {
+		try {
 			Elements classElements = fullHtml.getElementsByClass("chatmessage");
 			String message = "";
 			int count = 0;
@@ -114,13 +126,26 @@ public class HtmlCutter {
 	}
 
 	/**
-	 * Run the process for getting news data and packing it to the newsData
+	 * Load page with news list
 	 * 
 	 * @return false if has ANY trouble
 	 */
-	public static boolean runGettingNewsList() {
+	public static boolean loadNewsList() {
 		try {
 			getHtmlPage(DEST_URL_NEWS);
+			return true;
+		} catch (Exception e) {
+		}
+		return false;
+	}
+
+	/**
+	 * Run the process of packing html to the newsData
+	 * 
+	 * @return false if has ANY trouble
+	 */
+	public static boolean setNewsList() {
+		try {
 			Elements trElements = fullHtml.getElementsByTag("tr");
 			newsData.clear();
 			int count = 0;
@@ -143,8 +168,7 @@ public class HtmlCutter {
 	}
 
 	/**
-	 * Run the process for getting news content using link received from
-	 * newsData
+	 * Run the process of getting news content using link received from newsData
 	 * 
 	 * @param index
 	 * @return false if has ANY trouble
@@ -154,7 +178,17 @@ public class HtmlCutter {
 			getHtmlPage(newsData.get(index).get("link").toString());
 			Elements pElements = fullHtml.getElementsByClass("block");
 			Elements divElements = pElements.get(1).select("div");
-			news = divElements.get(1).ownText();
+			Element elem = divElements.get(1);
+			String newsDataHtml = elem.html();
+			newsDataHtml = newsDataHtml.replaceAll("<p>", "BRN");
+			newsDataHtml = newsDataHtml.replaceAll("</p>", "BRN");
+			newsDataHtml = newsDataHtml.replaceAll("<br>", "BRN");
+			newsDataHtml = newsDataHtml.replaceAll("<br />", "BRN");
+			newsDataHtml = newsDataHtml.replaceAll("<br/>", "BRN");
+			newsDataHtml = newsDataHtml.replaceAll("</br>", "BRN");
+			fullHtml = Jsoup.parse(newsDataHtml);
+			news = fullHtml.text().replace("BRN", "\n");
+			news = news.replaceFirst(".*\\n", "").replaceFirst(" ", "");
 			if (news != null && news.length() > 0) {
 				return true;
 			}
@@ -164,12 +198,12 @@ public class HtmlCutter {
 	}
 
 	/**
-	 * Run the process for getting chart data and packing it to the chartData
+	 * Load page with pair graph
 	 * 
 	 * @return false if has ANY trouble
 	 */
 	@SuppressLint("DefaultLocale")
-	public static boolean runGettingChartData(String pairName) {
+	public static boolean loadChartData(String pairName) {
 		try {
 			StringBuilder compositTarget = new StringBuilder(DEST_URL_MAIN);
 			compositTarget.append("/exchange/");
@@ -177,8 +211,22 @@ public class HtmlCutter {
 			if (chartPattern == null) {
 				chartPattern = Pattern.compile(REG_EXP_CHART);
 			}
-			String scriptData;
 			getHtmlPage(compositTarget.toString());
+			return true;
+		} catch (Exception e) {
+		}
+		return false;
+	}
+
+	/**
+	 * Run the process of packing html to the chartData
+	 * 
+	 * @return false if has ANY trouble
+	 */
+	@SuppressLint("DefaultLocale")
+	public static boolean setChartData() {
+		try {
+			String scriptData;
 			scriptData = fullHtml.getElementsByTag("script").get(5).html();
 			if (scriptData.length() == 0) {
 				return false;

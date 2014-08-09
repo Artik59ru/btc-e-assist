@@ -84,9 +84,8 @@ public class SimpleAlarmTask implements CheckableTask {
 			NotificationManager mNotificationManager = (NotificationManager) App.context
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 
-			mNotificationManager.notify(ServiceAssist.notificationId,
+			mNotificationManager.notify(ServiceAssist.getNewNotificationId(),
 					mBuilder.build());
-			ServiceAssist.notificationId++;
 			dbControl.deleteAlarm(mTaskId);
 			return true;
 		} catch (Exception e) {

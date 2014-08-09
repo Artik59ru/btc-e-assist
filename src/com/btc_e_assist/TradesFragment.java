@@ -20,6 +20,7 @@ public class TradesFragment extends Fragment {
 	private static volatile DataBox dataBox = new DataBox();
 	private TextView noData;
 	private String currentFragmentName = "";
+	private SecondThread secondThread;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -27,7 +28,7 @@ public class TradesFragment extends Fragment {
 		mContext = activity;
 		currentFragmentName = getTag();
 		tradeControl = TradeControl.getInstance();
-		new SecondThread().execute();
+		update();
 	}
 
 	@Override
@@ -58,7 +59,6 @@ public class TradesFragment extends Fragment {
 				.findViewById(R.id.standardFragmentExpList);
 		tradesList.setAdapter(adapter);
 		checkNoData();
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		return rootView;
 	}
 
@@ -66,8 +66,7 @@ public class TradesFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
-			CommonHelper.makeToastUpdating(mContext, currentFragmentName);
-			new SecondThread().execute();
+			update();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -84,13 +83,22 @@ public class TradesFragment extends Fragment {
 		}
 	}
 
+	private void update() {
+		if (secondThread != null) {
+			secondThread.cancel(false);
+		}
+		secondThread = new SecondThread();
+		secondThread.execute();
+		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
+	}
+
 	private class SecondThread extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
 			String pairName = TickerFragment.getCurrentPairName();
 			if (pairName != null) {
-				return tradeControl.getTradesData(pairName, dataBox);
+				return tradeControl.loadTradesData(pairName);
 			} else {
 				return false;
 			}
@@ -102,7 +110,7 @@ public class TradesFragment extends Fragment {
 			if (!isAdded()) {
 				return;
 			}
-			if (result.booleanValue()) {
+			if (result.booleanValue() && tradeControl.setTradesData(dataBox)) {
 				if (adapter != null) {
 					adapter.notifyDataSetChanged();
 					checkNoData();
