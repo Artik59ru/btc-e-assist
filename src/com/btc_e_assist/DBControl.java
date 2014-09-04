@@ -1,5 +1,7 @@
 package com.btc_e_assist;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -31,6 +33,7 @@ public class DBControl {
 	public static final String ACTIONS_NAME_OPTION_4_TEXT = "option4";
 	public static final String ACTIONS_NAME_OPTION_5_TEXT = "option5";
 	public static final String ACTIONS_TYPE_ALARM = "alarm";
+	public static final String ACTIONS_TYPE_ORDER_ALARM = "order_alarm";
 	private static final String FIND_ID = "_id = ?";
 
 	private static final String CREATE_PROFILES = "CREATE TABLE "
@@ -122,12 +125,24 @@ public class DBControl {
 		mDB.insert(ACTIONS_TABLE_NAME, null, cV);
 	}
 
+	public synchronized void addOrderAlarm(String orderId) {
+		ContentValues cV = new ContentValues();
+		cV.put(ACTIONS_NAME_TYPE, ACTIONS_TYPE_ORDER_ALARM);
+		cV.put(ACTIONS_NAME_OPTION_4_TEXT, orderId);
+		mDB.insert(ACTIONS_TABLE_NAME, null, cV);
+	}
+
 	public synchronized void deleteProfile(long id) {
 		mDB.delete(PROFILES_TABLE_NAME, PROFILES_NAME_ID + " = " + id, null);
 	}
 
 	public synchronized void deleteAlarm(long id) {
 		mDB.delete(ACTIONS_TABLE_NAME, ACTIONS_NAME_ID + " = " + id, null);
+	}
+
+	public synchronized void deleteOrderAlarm(String orderId) {
+		mDB.delete(ACTIONS_TABLE_NAME, ACTIONS_NAME_OPTION_4_TEXT + " = "
+				+ orderId, null);
 	}
 
 	public synchronized Cursor getProfilesDataWithId(long row_id) {
@@ -148,6 +163,21 @@ public class DBControl {
 				ACTIONS_NAME_OPTION_5_TEXT, ACTIONS_NAME_VALUE_FLOAT };
 		return mDB.query(ACTIONS_TABLE_NAME, columns, ACTIONS_NAME_TYPE
 				+ " = '" + ACTIONS_TYPE_ALARM + "'", null, null, null, null);
+	}
+
+	public synchronized void getOrderAlarmData(ArrayList<String> inputList) {
+		Cursor cursor = mDB.query(ACTIONS_TABLE_NAME,
+				new String[] { ACTIONS_NAME_OPTION_4_TEXT }, ACTIONS_NAME_TYPE
+						+ " = '" + ACTIONS_TYPE_ORDER_ALARM + "'", null, null,
+				null, null);
+		if (cursor.moveToFirst()) {
+			inputList.clear();
+			int orderIdIndex = cursor
+					.getColumnIndex(ACTIONS_NAME_OPTION_4_TEXT);
+			do {
+				inputList.add(cursor.getString(orderIdIndex));
+			} while (cursor.moveToNext());
+		}
 	}
 
 	private class DBHelper extends SQLiteOpenHelper {

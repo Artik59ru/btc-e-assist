@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="40dp"
-        android:drawablePadding="@dimen/high_margin"
+        android:layout_marginLeft="33dp"
+        android:drawablePadding="@dimen/standard_margin"
         android:singleLine="true"
-        android:textSize="25sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <CheckBox
@@ -21,15 +21,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/standard_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+        android:layout_marginRight="@dimen/standard_margin" />
+
+    <ImageView
+        android:id="@+id/itemOrdersGroupBell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/high_margin"
+        android:layout_toLeftOf="@+id/itemOrdersGroupNamesLayout" />
 
     <LinearLayout
         android:id="@+id/itemOrdersGroupNamesLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/standard_margin"
+        android:layout_marginRight="@dimen/med_margin"
         android:layout_toLeftOf="@id/itemOrdersGroupCheckBox"
         android:orientation="vertical" >
 
@@ -39,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/Black70"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/itemOrdersGroupName2"
@@ -47,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/Black70"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>

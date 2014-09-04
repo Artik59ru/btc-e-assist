@@ -53,7 +53,7 @@ public class MyTradeFragment extends Fragment {
 				groupTo, dataBox.data2, childFrom, childTo,
 				R.layout.item_mytrade_group_list,
 				R.layout.item_mytrade_child_list, R.id.itemMyTradeGroupAmount,
-				0, R.id.itemMyTradeChildViewDivider, aliases, drawIds);
+				R.id.itemMyTradeChildViewDivider, aliases, drawIds);
 		tradesList = (ExpandableListView) rootView
 				.findViewById(R.id.standardFragmentExpList);
 		tradesList.setAdapter(adapter);

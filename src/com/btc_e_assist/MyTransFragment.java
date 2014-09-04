@@ -54,7 +54,7 @@ public class MyTransFragment extends Fragment {
 				groupTo, dataBox.data2, childFrom, childTo,
 				R.layout.item_mytrans_group_list,
 				R.layout.item_mytrans_child_list, R.id.itemMyTransGroupAmount,
-				0, R.id.itemMyTransChildViewDivider, aliases, drawIds);
+				R.id.itemMyTransChildViewDivider, aliases, drawIds);
 		tradesList = (ExpandableListView) rootView
 				.findViewById(R.id.standardFragmentExpList);
 		tradesList.setAdapter(adapter);

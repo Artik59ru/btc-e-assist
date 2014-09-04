@@ -7,11 +7,8 @@ import java.util.Map;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckBox;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 public class CustomExpandAdapter extends BaseExpandableListAdapter {
@@ -22,7 +19,6 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 	int mGroupLayout;
 	int mChildLayout;
 	int mImageId;
-	int mCheckBoxId;
 	int mDividerId;
 	String[] mGroupFrom;
 	String[] mChildFrom;
@@ -47,8 +43,6 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 	 * @param childLayout
 	 * @param imageId
 	 *            id for insert DrawableLeft
-	 * @param checkBoxId
-	 *            id for CheckBox
 	 * @param aliases
 	 *            Array of aliases
 	 * @param aliasesDrawIds
@@ -59,8 +53,8 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 			int[] groupTo,
 			List<? extends List<? extends Map<String, ?>>> childData,
 			String[] childFrom, int[] childTo, int groupLayout,
-			int childLayout, int imageId, int checkBoxId, int dividerId,
-			String[] aliases, int[] aliasesDrawIds) {
+			int childLayout, int imageId, int dividerId, String[] aliases,
+			int[] aliasesDrawIds) {
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mGroupData = groupData;
@@ -68,7 +62,6 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 		mGroupLayout = groupLayout;
 		mChildLayout = childLayout;
 		mImageId = imageId;
-		mCheckBoxId = checkBoxId;
 		mDividerId = dividerId;
 		mGroupFrom = groupFrom;
 		mChildFrom = childFrom;
@@ -82,8 +75,6 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
-		final int mPosition = groupPosition;
-		final ExpandableListView mParent = (ExpandableListView) parent;
 		View view = convertView;
 		if (view == null) {
 			view = mInflater.inflate(mGroupLayout, parent, false);
@@ -108,36 +99,6 @@ public class CustomExpandAdapter extends BaseExpandableListAdapter {
 				}
 				v.setText((String) map.get(mGroupFrom[i]));
 			}
-		}
-
-		final CheckBox checkBox = (CheckBox) view.findViewById(mCheckBoxId);
-		if (checkBox != null) {
-			boolean isContains = checkData.contains((Object) mPosition);
-			if (isContains) {
-				checkBox.setChecked(true);
-			} else {
-				checkBox.setChecked(false);
-			}
-			checkBox.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					if (checkData.contains(mPosition)) {
-						checkData.remove(mPosition);
-					} else {
-						checkData.add(mPosition);
-					}
-				}
-			});
-			view.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					if (mParent.isGroupExpanded(mPosition)) {
-						mParent.collapseGroup(mPosition);
-					} else {
-						mParent.expandGroup(mPosition);
-					}
-				}
-			});
 		}
 		return view;
 	}
