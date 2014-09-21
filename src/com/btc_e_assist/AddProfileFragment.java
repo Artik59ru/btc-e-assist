@@ -21,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-import com.TradeApi.TradeApi;
-import com.btc_e_assist.R;
+
+import com.assist.TradeApi;
 
 public class AddProfileFragment extends Fragment {
 	private static final String apiKeysUrl = "https://btc-e.com/profile#api_keys";

@@ -8,8 +8,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import com.TradeApi.TradeApi;
-import com.btc_e_assist.R;
+
+import com.assist.TradeApi;
 
 /**
  * Class is "task object", each alarm task from Database must have instance of
@@ -17,7 +17,7 @@ import com.btc_e_assist.R;
  * 
  */
 public class SimpleAlarmTask implements CheckableTask {
-	private TradeApi tradeApi;
+	private TradeApi assistTradeApi;
 	private DBControl dbControl;
 
 	private String mPair;
@@ -27,7 +27,7 @@ public class SimpleAlarmTask implements CheckableTask {
 	private String currentPrice = "";
 
 	SimpleAlarmTask(String pair, double target, String option, long taskId) {
-		tradeApi = new TradeApi();
+		assistTradeApi = TradeControl.getInstance().assistTradeApi;
 		dbControl = DBControl.getInstance();
 		mPair = pair;
 		mTarget = target;
@@ -37,7 +37,7 @@ public class SimpleAlarmTask implements CheckableTask {
 
 	@Override
 	public boolean check() {
-		double difference = tradeApi.priceDifference(mPair, mTarget, 0);
+		double difference = assistTradeApi.priceDifference(mPair, mTarget, 0);
 		if (difference != Double.MIN_VALUE) {
 			if (difference > 0
 					&& mOption.equals(AssistAlarmFragment.CONDITION_LOWER)) {
@@ -62,12 +62,14 @@ public class SimpleAlarmTask implements CheckableTask {
 					App.context)
 					.setSmallIcon(R.drawable.ic_stat_notif)
 					.setContentTitle(
-							String.format(App.context
-									.getString(R.string.alarm_notify_for),
+							String.format(
+									App.context
+											.getString(R.string.simple_alarm_notify_title),
 									mPair))
 					.setContentText(
-							String.format(App.context
-									.getString(R.string.alarm_notify_text),
+							String.format(
+									App.context
+											.getString(R.string.simple_alarm_notify_content),
 									mPair, currentPrice)).setSound(alarmSound);
 			Intent resultIntent = new Intent(App.context, TickerActivity.class);
 			resultIntent.putExtra(TickerFragment.INTENT_VALUE, mPair);

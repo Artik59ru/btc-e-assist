@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
-import com.btc_e_assist.R;
 
 public class ChatActivity extends ActionBarActivity {
 	private ActionBar actionBar;

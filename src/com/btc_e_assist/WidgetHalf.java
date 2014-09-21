@@ -15,7 +15,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.TradeApi.TradeApi;
+import com.assist.TradeApi;
 
 public class WidgetHalf extends AppWidgetProvider {
 	private static TradeApi tradeApi = new TradeApi();

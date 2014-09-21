@@ -158,6 +158,11 @@ public class DBControl {
 				null);
 	}
 
+	public synchronized Cursor getActionsData() {
+		return mDB
+				.query(ACTIONS_TABLE_NAME, null, null, null, null, null, null);
+	}
+
 	public synchronized Cursor getAlarmsData() {
 		String[] columns = { ACTIONS_NAME_ID, ACTIONS_NAME_OPTION_4_TEXT,
 				ACTIONS_NAME_OPTION_5_TEXT, ACTIONS_NAME_VALUE_FLOAT };
@@ -165,11 +170,21 @@ public class DBControl {
 				+ " = '" + ACTIONS_TYPE_ALARM + "'", null, null, null, null);
 	}
 
+	public synchronized long getOrderAlarmDBId(String orderId) {
+		String[] columns = { ACTIONS_NAME_ID };
+		Cursor cursor = mDB.query(ACTIONS_TABLE_NAME, columns,
+				ACTIONS_NAME_TYPE + " = '" + ACTIONS_TYPE_ORDER_ALARM
+						+ "' AND " + ACTIONS_NAME_OPTION_4_TEXT + " = '"
+						+ orderId + "'", null, null, null, null);
+		cursor.moveToFirst();
+		return cursor.getLong(0);
+	}
+
 	public synchronized void getOrderAlarmData(ArrayList<String> inputList) {
-		Cursor cursor = mDB.query(ACTIONS_TABLE_NAME,
-				new String[] { ACTIONS_NAME_OPTION_4_TEXT }, ACTIONS_NAME_TYPE
-						+ " = '" + ACTIONS_TYPE_ORDER_ALARM + "'", null, null,
-				null, null);
+		String[] columns = { ACTIONS_NAME_OPTION_4_TEXT };
+		Cursor cursor = mDB.query(ACTIONS_TABLE_NAME, columns,
+				ACTIONS_NAME_TYPE + " = '" + ACTIONS_TYPE_ORDER_ALARM + "'",
+				null, null, null, null);
 		if (cursor.moveToFirst()) {
 			inputList.clear();
 			int orderIdIndex = cursor

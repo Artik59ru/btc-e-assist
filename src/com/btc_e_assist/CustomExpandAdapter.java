@@ -13,19 +13,19 @@ import android.widget.TextView;
 
 public class CustomExpandAdapter extends BaseExpandableListAdapter {
 	public ArrayList<Integer> checkData;
-	LayoutInflater mInflater;
-	List<? extends Map<String, ?>> mGroupData;
-	List<? extends List<? extends Map<String, ?>>> mChildData;
-	int mGroupLayout;
-	int mChildLayout;
-	int mImageId;
-	int mDividerId;
-	String[] mGroupFrom;
-	String[] mChildFrom;
-	String[] mAliases;
-	int[] mGroupTo;
-	int[] mChildTo;
-	int[] mAliasesDrawIds;
+	protected LayoutInflater mInflater;
+	protected List<? extends Map<String, ?>> mGroupData;
+	protected List<? extends List<? extends Map<String, ?>>> mChildData;
+	protected int mGroupLayout;
+	protected int mChildLayout;
+	protected int mImageId;
+	protected int mDividerId;
+	protected String[] mGroupFrom;
+	protected String[] mChildFrom;
+	protected String[] mAliases;
+	protected int[] mGroupTo;
+	protected int[] mChildTo;
+	protected int[] mAliasesDrawIds;
 
 	/**
 	 * Adapter for populating ExpandableListView, with checkBoxes and

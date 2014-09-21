@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar.OnNavigationListener;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
-import com.btc_e_assist.R;
 
 public class ProfileActivity extends ActionBarActivity {
 	private ActionBar actionBar;

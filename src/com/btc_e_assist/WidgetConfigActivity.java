@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-import com.btc_e_assist.R;
 
 public class WidgetConfigActivity extends Activity {
 	Intent result;

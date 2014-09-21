@@ -29,7 +29,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.TradeApi.TradeApi;
 import com.androidplot.Plot;
 import com.androidplot.ui.AnchorPosition;
 import com.androidplot.ui.SizeLayoutType;
@@ -42,6 +41,7 @@ import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.XYStepMode;
+import com.assist.TradeApi;
 
 public class TickerFragment extends Fragment {
 	public static final String INTENT_VALUE = "pair";

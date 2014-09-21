@@ -44,6 +44,17 @@ public class ServiceCycle extends Thread {
 		}
 	}
 
+	public synchronized void deleteTask(long taskId) {
+		updated = true;
+		interrupt();
+		for (CheckableTask task : taskList) {
+			if (task.getId() == taskId) {
+				taskList.remove(task);
+				return;
+			}
+		}
+	}
+
 	public synchronized void deleteTasks(ArrayList<Long> taskIds) {
 		if (taskIds != null) {
 			updated = true;

@@ -128,8 +128,8 @@
     <string name="remains">Остаток:</string>
     <string name="try_to_buy">Покупка&#8230;</string>
     <string name="try_to_sell">Продажа&#8230;</string>
-    <string name="alarm_notify_for">Уведомление для: %s</string>
-    <string name="alarm_notify_text">Цена %1$s: %2$s</string>
+    <string name="simple_alarm_notify_title">Уведомление для: %s</string>
+    <string name="simple_alarm_notify_content">Цена %1$s: %2$s</string>
     <string name="foreground_content">Ассистент следит за задачами.</string>
     <string name="settings_dtitle_trades">Количество сделок</string>
     <string name="settings_dtitle_depth">Глубина стакана</string>
@@ -152,5 +152,7 @@
     <string name="no_keys">API-key и API-secret не установлены</string>
     <string name="next_news_button">След. новость</string>
     <string name="prev_news_button">Пред. новость</string>
+    <string name="order_alarm_notify_title">Исполнен ордер: %s</string>
+    <string name="order_alarm_notify_content">Баланс: + %s</string>
 
 </resources>

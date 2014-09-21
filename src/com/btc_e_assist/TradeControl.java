@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 
-import com.TradeApi.TradeApi;
+import com.assist.TradeApi;
 
 public class TradeControl {
 	public static int tradesCount = 200;
@@ -17,9 +17,11 @@ public class TradeControl {
 
 	private static TradeControl mTradeControl;
 	public TradeApi tradeApi;
+	public TradeApi assistTradeApi;
 
 	private TradeControl() {
 		tradeApi = new TradeApi();
+		assistTradeApi = new TradeApi();
 		DBControl.getInstance();
 	}
 

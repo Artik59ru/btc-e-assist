@@ -25,8 +25,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.TradeApi.Trade;
-import com.TradeApi.TradeApi;
+import com.assist.Trade;
+import com.assist.TradeApi;
 
 public class TradeActivity extends ActionBarActivity {
 	public static final String INTENT_VALUE_PAIR = "name";

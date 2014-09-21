@@ -12,10 +12,12 @@ public class ServiceAssist extends Service {
 	private static final String TASK_EXTRA_NAME = "tsk";
 	private static final int TASK_ADD = 1;
 	private static final int TASK_ADD_ARRAY = 2;
+	private static final int TASK_ID_FOR_DELETE = -1;
 	private static final int ARRAY_ID_FOR_DELETE = 0;
 	private static volatile CheckableTask mTask;
 	private static volatile ArrayList<CheckableTask> mTaskList;
 	private static volatile ArrayList<Long> mDeleteList;
+	private static volatile long mDeleteId;
 
 	private static ServiceCycle serviceCycle;
 	private static int notificationId = 1;
@@ -44,6 +46,13 @@ public class ServiceAssist extends Service {
 		mTaskList = taskList;
 		Intent intent = new Intent(App.context, ServiceAssist.class);
 		intent.putExtra(TASK_EXTRA_NAME, TASK_ADD_ARRAY);
+		App.context.startService(intent);
+	}
+
+	public static synchronized void setDeleteTask(long deleteId) {
+		mDeleteId = deleteId;
+		Intent intent = new Intent(App.context, ServiceAssist.class);
+		intent.putExtra(TASK_EXTRA_NAME, TASK_ID_FOR_DELETE);
 		App.context.startService(intent);
 	}
 
@@ -82,13 +91,16 @@ public class ServiceAssist extends Service {
 			int command = intent
 					.getIntExtra(TASK_EXTRA_NAME, Integer.MIN_VALUE);
 			switch (command) {
-			case 0:
+			case TASK_ID_FOR_DELETE:
+				serviceCycle.deleteTask(mDeleteId);
+				break;
+			case ARRAY_ID_FOR_DELETE:
 				serviceCycle.deleteTasks(mDeleteList);
 				break;
-			case 1:
+			case TASK_ADD:
 				serviceCycle.addTask(mTask);
 				break;
-			case 2:
+			case TASK_ADD_ARRAY:
 				serviceCycle.addTaskList(mTaskList);
 			}
 		}

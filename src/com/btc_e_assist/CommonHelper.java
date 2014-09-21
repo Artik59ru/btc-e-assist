@@ -44,6 +44,8 @@ public class CommonHelper {
 			if (isEncoded == 0) {
 				try {
 					tControl.tradeApi.setKeys(keyFromCursor, secretFromCursor);
+					tControl.assistTradeApi.setKeys(keyFromCursor,
+							secretFromCursor);
 				} catch (Exception e) {
 					Toast.makeText(context, R.string.wrong_api_key_or_secret,
 							Toast.LENGTH_SHORT).show();
@@ -94,7 +96,9 @@ public class CommonHelper {
 	private static void positiveDialogClick(Context context, String key,
 			String secret, String pass) {
 		try {
-			TradeControl.getInstance().tradeApi.setKeys(key, secret, pass);
+			TradeControl tradeControl = TradeControl.getInstance();
+			tradeControl.tradeApi.setKeys(key, secret, pass);
+			tradeControl.assistTradeApi.setKeys(key, secret, pass);
 			Toast.makeText(context, R.string.accepted_dialog_message,
 					Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
