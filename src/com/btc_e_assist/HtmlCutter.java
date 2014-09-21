@@ -227,7 +227,7 @@ public class HtmlCutter {
 	public static boolean setChartData() {
 		try {
 			String scriptData;
-			scriptData = fullHtml.getElementsByTag("script").get(5).html();
+			scriptData = fullHtml.getElementsByTag("script").get(4).html();
 			if (scriptData.length() == 0) {
 				return false;
 			}

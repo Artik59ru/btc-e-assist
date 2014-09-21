@@ -170,14 +170,23 @@ public class DBControl {
 				+ " = '" + ACTIONS_TYPE_ALARM + "'", null, null, null, null);
 	}
 
+	/**
+	 * Return ID of OrderAlarm by OrderID or Long.MIN_VALUE if can't find
+	 * 
+	 * @param orderId
+	 * @return
+	 */
 	public synchronized long getOrderAlarmDBId(String orderId) {
 		String[] columns = { ACTIONS_NAME_ID };
 		Cursor cursor = mDB.query(ACTIONS_TABLE_NAME, columns,
 				ACTIONS_NAME_TYPE + " = '" + ACTIONS_TYPE_ORDER_ALARM
 						+ "' AND " + ACTIONS_NAME_OPTION_4_TEXT + " = '"
 						+ orderId + "'", null, null, null, null);
-		cursor.moveToFirst();
-		return cursor.getLong(0);
+		if (cursor.moveToFirst()) {
+			return cursor.getLong(0);
+		} else {
+			return Long.MIN_VALUE;
+		}
 	}
 
 	public synchronized void getOrderAlarmData(ArrayList<String> inputList) {

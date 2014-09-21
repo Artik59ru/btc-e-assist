@@ -28,6 +28,7 @@ public class MyTransFragment extends Fragment {
 		mContext = activity;
 		currentFragmentName = getTag();
 		tradeControl = TradeControl.getInstance();
+		CommonHelper.showPasswordDialog(mContext);
 		update();
 	}
 

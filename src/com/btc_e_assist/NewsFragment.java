@@ -72,7 +72,6 @@ public class NewsFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
 		Intent intent = new Intent(mContext, NewsContentActivity.class);
 		intent.putExtra(NEWS_CONTENT_ID_NAME, position);
 		startActivity(intent);

@@ -41,8 +41,8 @@ public class OrdersFragment extends Fragment {
 		currentFragmentName = getTag();
 		tradeControl = TradeControl.getInstance();
 		dbControl = DBControl.getInstance();
-		update();
 		CommonHelper.showPasswordDialog(mContext);
+		update();
 	}
 
 	@Override
@@ -186,8 +186,10 @@ public class OrdersFragment extends Fragment {
 				String orderId = (String) dataBox.data1.get(position).get("id");
 				if (orderId != null) {
 					long taskId = dbControl.getOrderAlarmDBId(orderId);
-					dbControl.deleteOrderAlarm(orderId);
-					ServiceAssist.setDeleteTask(taskId);
+					if (taskId != Long.MIN_VALUE) {
+						dbControl.deleteOrderAlarm(orderId);
+						ServiceAssist.setDeleteTask(taskId);
+					}
 					tradeControl.tradeApi.cancelOrder.setOrder_id(orderId);
 					if (!tradeControl.tradeApi.cancelOrder.runMethod()) {
 						if (!tradeControl.tradeApi.cancelOrder.runMethod()) {

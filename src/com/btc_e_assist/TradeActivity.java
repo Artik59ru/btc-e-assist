@@ -90,19 +90,15 @@ public class TradeActivity extends ActionBarActivity {
 									.get("price");
 							priceEdit.setText(priceStr);
 							priceDouble = Double.parseDouble(priceStr);
-
-							String resultAmount = String.valueOf(TradeApi
-									.formatDouble(
-											myBalanceDouble / priceDouble, 8));
-							amountEdit.setText(resultAmount);
 						} else {
 							priceDouble = Double.valueOf(priceEdit.getText()
 									.toString());
-							String resultAmount = String.valueOf(TradeApi
-									.formatDouble(
-											myBalanceDouble / priceDouble, 8));
-							amountEdit.setText(resultAmount);
 						}
+						double resultAmountDouble = myBalanceDouble
+								/ priceDouble - 0.0000002;
+						String resultAmount = String.valueOf(TradeApi
+								.formatDouble(resultAmountDouble, 8));
+						amountEdit.setText(resultAmount);
 					} else {
 						if (depthSellBox.data1.size() == 0) {
 							return;
@@ -263,7 +259,7 @@ public class TradeActivity extends ActionBarActivity {
 	/**
 	 * 
 	 * @param type
-	 *            If this method amount - true, if price then false.
+	 *            If this method is amount - true, if it's price then false.
 	 * 
 	 */
 	void updateTotalFee(boolean type, String content) {
@@ -418,6 +414,10 @@ public class TradeActivity extends ActionBarActivity {
 				String amount = amountEdit.getText().toString();
 				result = tradeControl.tradeApi.extendedTrade(currentPair,
 						isBuy, rate, amount);
+				if (!result.isSuccess()) {
+					result = tradeControl.tradeApi.extendedTrade(currentPair,
+							isBuy, rate, amount);
+				}
 			} catch (Exception e) {
 				errorMessage = e.getMessage();
 			}
