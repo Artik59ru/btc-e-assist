@@ -334,7 +334,7 @@ public class OrdersFragment extends Fragment {
 					@Override
 					public void onClick(View arg0) {
 						if (checkData.contains(mPosition)) {
-							checkData.remove(mPosition);
+							checkData.remove((Object) mPosition);
 						} else {
 							checkData.add(mPosition);
 						}
