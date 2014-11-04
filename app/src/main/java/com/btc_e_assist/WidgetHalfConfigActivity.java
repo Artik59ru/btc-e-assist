@@ -1,17 +1,17 @@
 package com.btc_e_assist;
 
-import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class WidgetHalfConfigActivity extends Activity {
+public class WidgetHalfConfigActivity extends ActionBarActivity {
 	Intent result;
 	int widgetId;
 	PrefControl pControl;

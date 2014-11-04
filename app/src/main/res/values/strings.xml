@@ -5,7 +5,7 @@
     <string name="title_activity_ticker">Ticker</string>
     <string name="title_activity_addprofile">Profiles</string>
     <string name="title_activity_news_content">News</string>
-    <string name="app_name">BTC-e Assist</string>
+    <string name="app_name" translatable="false">BTC-e Assist</string>
     <string name="trades_main_button">Trades</string>
     <string name="trades_main_button_land">&lt;h1>Trades&lt;/h1>Watch and trades</string>
     <string name="assist_main_button">Assist</string>
@@ -19,8 +19,8 @@
     <string name="error_connection">connection error</string>
     <string name="addprofile_text">Adding new profile</string>
     <string name="name_profiles_hint">Profile name</string>
-    <string name="key_profiles_hint">API key</string>
-    <string name="secret_profiles_hint">Secret</string>
+    <string name="key_profiles_hint" translatable="false">API key</string>
+    <string name="secret_profiles_hint" translatable="false">Secret</string>
     <string name="pass_profiles_hint">Encryption phrase(optional)</string>
     <string name="encrypted_description">encrypted</string>
     <string name="decryption_dialog_title">Decryption</string>
@@ -75,7 +75,7 @@
         <item>High (30 sec)</item>
         <item>Very high (10 sec)</item>
     </string-array>
-    <string-array name="settings_service_update_values">
+    <string-array name="settings_service_update_values" translatable="false">
         <item>180000</item>
         <item>60000</item>
         <item>30000</item>
@@ -120,7 +120,7 @@
     <string name="assist_alarm_text_label">Setting up an alarm</string>
     <string name="assist_trade_text_label">Auto trade</string>
     <string name="add_alarm_button">SET UP</string>
-    <string name="add_trade_button">GO</string>
+    <string name="add_trade_button" translatable="false">GO</string>
     <string name="pair_list_not_available">Actual pairs list is temporarily not available</string>
     <string name="enter_price">Enter the price, please</string>
     <string name="alarm_added">Alarm has been set</string>
