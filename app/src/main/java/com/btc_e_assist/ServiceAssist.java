@@ -26,10 +26,19 @@ public class ServiceAssist extends Service {
         return notificationId++;
     }
 
-    public static synchronized long[] getTaskIds() {
-        return serviceCycle.getTasksIds();
+    public static synchronized ArrayList<Long> getTaskIds() {
+        if (serviceCycle != null) {
+            return serviceCycle.getTasksIds();
+        } else {
+            return new ArrayList<Long>(0);
+        }
     }
 
+    /**
+     * Set task as candidate for adding. Note: if the method called  fast repeatedly(in cycle for example), only last task will be added.
+     *
+     * @param task
+     */
     public static synchronized void setTask(CheckableTask task) {
         mTask = task;
         Intent intent = new Intent(App.context, ServiceAssist.class);
@@ -45,6 +54,11 @@ public class ServiceAssist extends Service {
         App.context.startService(intent);
     }
 
+    /**
+     * Set task as candidate for deleting. Note: if the method called  fast repeatedly (in a cycle for example), only last task will be deleted.
+     *
+     * @param deleteId
+     */
     public static synchronized void setDeleteTask(long deleteId) {
         mDeleteId = deleteId;
         Intent intent = new Intent(App.context, ServiceAssist.class);
@@ -99,6 +113,8 @@ public class ServiceAssist extends Service {
                 case TASK_ADD_ARRAY:
                     serviceCycle.addTaskList(mTaskList);
             }
+        } else {
+            AssistSynchronize.synchronizedWithDB();
         }
         if (!serviceCycle.isAlive()
                 && serviceCycle.getState() != Thread.State.TERMINATED) {

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Gray2" >
+    android:background="@color/Gray2">
 
     <RelativeLayout
         android:id="@+id/tradeTopLayout"
@@ -12,13 +12,24 @@
         android:layout_marginLeft="@dimen/high_margin"
         android:layout_marginRight="@dimen/high_margin"
         android:layout_marginTop="7dp"
-        android:background="@drawable/shadow_background" >
+        android:background="@drawable/shadow_background">
+
+        <ToggleButton
+            android:id="@+id/tradeSwitchButton"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:background="@drawable/trade_switch_selector"
+            android:textOff=""
+            android:textOn="" />
 
         <TextView
             android:id="@+id/tradeMyFundsName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/high_margin"
             android:maxLines="1"
             android:textSize="17sp"
@@ -34,39 +45,102 @@
             android:layerType="software"
             android:src="@drawable/spannable" />
 
-        <EditText
-            android:id="@+id/tradeAmountEdit"
+        <LinearLayout
+            android:id="@+id/tradeAmountGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tradeMyFundsName"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tradeSwitchButton"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/high_margin"
-            android:ellipsize="end"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:hint="@string/amount"
-            android:inputType="numberDecimal"
-            android:textStyle="bold" >
-        </EditText>
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/tradePriceEdit"
+            <ImageButton
+                android:id="@+id/tradeAmountClearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trade_clear_selector"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:id="@+id/tradeAmountEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:ellipsize="end"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/amount"
+                android:inputType="numberDecimal"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:id="@+id/tradeAmountMinusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:background="@drawable/trade_minus_selector"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:id="@+id/tradeAmountPlusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/high_margin"
+                android:background="@drawable/trade_plus_selector"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tradePriceGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tradeAmountEdit"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tradeAmountGroup"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/med_margin"
-            android:ellipsize="end"
-            android:ems="10"
-            android:gravity="center_horizontal"
-            android:hint="@string/price"
-            android:imeOptions="actionDone"
-            android:inputType="numberDecimal"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/tradePriceClearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/trade_clear_selector"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:id="@+id/tradePriceEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:layout_marginTop="@dimen/med_margin"
+                android:ellipsize="end"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="@string/price"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:id="@+id/tradePriceMinusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:background="@drawable/trade_minus_selector"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:id="@+id/tradePricePlusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/high_margin"
+                android:background="@drawable/trade_plus_selector"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tradeTotalName"
@@ -90,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/tradePriceEdit"
+            android:layout_below="@id/tradePriceGroup"
             android:layout_marginRight="@dimen/high_margin"
             android:layout_marginTop="@dimen/standard_margin"
             android:maxLength="20"
@@ -132,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tradeFeeValue"
             android:layout_marginTop="@dimen/standard_margin"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/tradeLeftButton"
@@ -152,6 +226,7 @@
                 android:padding="@dimen/standard_margin"
                 android:textStyle="bold" />
         </LinearLayout>
+
     </RelativeLayout>
 
     <TextView
@@ -196,7 +271,6 @@
         android:background="@color/Gray3"
         android:cacheColorHint="#00000000"
         android:scrollingCache="false"
-        android:smoothScrollbar="true" >
-    </ListView>
+        android:smoothScrollbar="true" />
 
 </RelativeLayout>

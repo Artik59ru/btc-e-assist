@@ -25,7 +25,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1dp">
 
             <TextView
                 android:id="@+id/widgetHalfTime"
@@ -49,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/DarkSlateBlue"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginTop="-1dp">
 
             <TextView
                 android:id="@+id/widgetHalfName1"
@@ -71,7 +73,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginTop="-1dp">
 
             <TextView
                 android:id="@+id/widgetHalfValue1"
@@ -95,7 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/DarkSlateBlue"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginTop="-1dp">
 
             <TextView
                 android:id="@+id/widgetHalfName3"
@@ -117,7 +121,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginTop="-1dp">
 
             <TextView
                 android:id="@+id/widgetHalfValue3"

@@ -1,13 +1,13 @@
 package com.btc_e_assist;
 
+import android.annotation.SuppressLint;
+
+import com.assist.TradeApi;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-import android.annotation.SuppressLint;
-
-import com.assist.TradeApi;
 
 public class TradeControl {
 	public static int tradesCount = 200;
@@ -34,7 +34,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
+	 *
 	 * @param pairsList
 	 * @return
 	 */
@@ -95,8 +95,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
-	 * @param inputBox
+	 *
 	 */
 	public boolean loadBalanceData() {
 		try {
@@ -134,8 +133,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
-	 * @param inputBox
+	 *
 	 */
 	@SuppressLint("DefaultLocale")
 	public boolean loadOrdersData() {
@@ -222,7 +220,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
+	 *
 	 */
 	@SuppressLint("DefaultLocale")
 	public boolean loadTradesData(String pairName) {
@@ -297,8 +295,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
-	 * @param inputBox
+	 *
 	 */
 	public boolean loadTradeHistoryData() {
 		try {
@@ -370,8 +367,7 @@ public class TradeControl {
 
 	/**
 	 * Return false if has ANY troubles
-	 * 
-	 * @param inputBox
+	 *
 	 */
 	public boolean loadTransHistoryData() {
 		try {

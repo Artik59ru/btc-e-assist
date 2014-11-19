@@ -60,7 +60,8 @@
         android:layout_marginTop="@dimen/med_margin"
         android:singleLine="true"
         android:textColor="@color/Black90"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/itemMyTradeChildTimeName"

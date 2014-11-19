@@ -95,6 +95,7 @@ public class SelectProfileFragment extends ListFragment implements
 		} else if (isEncoded == 0) {
 			try {
 				tradeControl.tradeApi.setKeys(keyFromCursor, secretFromCursor);
+				tradeControl.assistTradeApi.setKeys(keyFromCursor, secretFromCursor);
 				pControl.setCurrentProfileId(id);
 				getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
 						.forceLoad();
@@ -141,6 +142,8 @@ public class SelectProfileFragment extends ListFragment implements
 		try {
 			tradeControl.tradeApi.setKeys(keyFromCursor, secretFromCursor,
 					passEditText.getText().toString());
+            tradeControl.assistTradeApi.setKeys(keyFromCursor, secretFromCursor,
+					passEditText.getText().toString());
 			pControl.setCurrentProfileId(id);
 			getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
 					.forceLoad();
@@ -166,6 +169,7 @@ public class SelectProfileFragment extends ListFragment implements
 			if (contMenuAdapter.id == pControl.getCurrentProfileId()) {
 				pControl.deleteCurrentProfileId();
 				tradeControl.tradeApi.resetInstalledKeys();
+				tradeControl.assistTradeApi.resetInstalledKeys();
 			}
 			getActivity().getSupportLoaderManager().getLoader(LOADER_ID)
 					.forceLoad();

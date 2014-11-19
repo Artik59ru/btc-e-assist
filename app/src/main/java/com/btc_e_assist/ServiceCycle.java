@@ -23,13 +23,12 @@ public class ServiceCycle extends Thread {
         }
     }
 
-    public synchronized long[] getTasksIds() {
-        int sizeArray = taskList.size();
-        long[] resultArray = new long[sizeArray];
-        for (int i = 0; i < sizeArray; i++) {
-            resultArray[i] = taskList.get(i).getId();
+    public synchronized ArrayList<Long> getTasksIds() {
+        ArrayList<Long> resultList = new ArrayList<Long>(taskList.size());
+        for (CheckableTask task : taskList) {
+            resultList.add(task.getId());
         }
-        return resultArray;
+        return resultList;
     }
 
     private synchronized int getTaskListSize() {
@@ -99,16 +98,18 @@ public class ServiceCycle extends Thread {
                             currentTask.doIfPositiveActionFail();
                         }
                         if (currentTask.isDeleteIfPositive()) {
-                            taskList.remove(currentTask);
-                            i--;
+                            if (taskList.remove(currentTask)) {
+                                i--;
+                            }
                         }
                     } else {
                         if (!currentTask.doIfNegative()) {
                             currentTask.doIfNegativeActionFail();
                         }
                         if (currentTask.isDeleteIfNegative()) {
-                            taskList.remove(currentTask);
-                            i--;
+                            if (taskList.remove(currentTask)) {
+                                i--;
+                            }
                         }
                     }
                 } catch (Exception e) {
@@ -138,6 +139,5 @@ public class ServiceCycle extends Thread {
         if (mContext != null) {
             mContext.stopService(new Intent(mContext, ServiceAssist.class));
         }
-        return;
     }
 }

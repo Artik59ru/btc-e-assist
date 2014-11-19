@@ -2,15 +2,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/Gray2"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/high_margin"
-        android:background="@color/Gray0" >
+        android:background="@drawable/shadow_background">
 
         <TextView
             android:id="@+id/tickerTextDiv"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@color/Gray0" >
+        android:background="@drawable/shadow_background">
 
         <TextView
             android:id="@+id/tickerLastName"
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tickerVolumeValue"
             android:layout_marginTop="@dimen/high_margin"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/tickerBuyButton"
@@ -200,13 +200,13 @@
 
     <com.androidplot.xy.XYPlot
         android:id="@+id/mySimpleXYPlot"
+        androidPlot.graphWidget.marginBottom="20dp"
+        androidPlot.graphWidget.marginLeft="@dimen/avg_margin"
+        androidPlot.graphWidget.marginTop="@dimen/standard_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/high_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        androidPlot.graphWidget.marginBottom="20dp"
-        androidPlot.graphWidget.marginLeft="@dimen/avg_margin"
-        androidPlot.graphWidget.marginTop="@dimen/standard_margin" />
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
 </LinearLayout>

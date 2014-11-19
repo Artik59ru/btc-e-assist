@@ -34,7 +34,7 @@ public class DBControl {
     public static final String ACTIONS_NAME_OPTION_5_TEXT = "option5";
     public static final String ACTIONS_TYPE_ALARM = "alarm";
     public static final String ACTIONS_TYPE_ORDER_ALARM = "order_alarm";
-    private static final String FIND_ID = "_id = ?";
+    private static final String CONDITION_ID = ACTIONS_NAME_ID + " = ?";
 
     private static final String CREATE_PROFILES = "CREATE TABLE "
             + PROFILES_TABLE_NAME + "(" + PROFILES_NAME_ID
@@ -149,7 +149,7 @@ public class DBControl {
         String[] queryParam = {String.valueOf(row_id)};
         String[] columns = {PROFILES_NAME_NAME, PROFILES_NAME_KEY,
                 PROFILES_NAME_SECRET, PROFILES_NAME_IS_ENCODED};
-        return mDB.query(PROFILES_TABLE_NAME, columns, FIND_ID, queryParam,
+        return mDB.query(PROFILES_TABLE_NAME, columns, CONDITION_ID, queryParam,
                 null, null, null);
     }
 

@@ -6,11 +6,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginLeft="@dimen/normal_horizontal_ticker_margin"
         android:layout_marginRight="@dimen/normal_horizontal_ticker_margin"
         android:layout_marginTop="@dimen/avg_margin"
-        android:background="@color/Gray0"
+        android:background="@drawable/shadow_background"
         android:paddingLeft="@dimen/normal_horizontal_ticker_margin"
         android:paddingRight="@dimen/normal_horizontal_ticker_margin" >
 
@@ -46,7 +46,7 @@
         android:layout_marginLeft="@dimen/normal_horizontal_ticker_margin"
         android:layout_marginRight="@dimen/normal_horizontal_ticker_margin"
         android:layout_marginTop="@dimen/avg_margin"
-        android:background="@color/Gray0"
+        android:background="@drawable/shadow_background"
         android:paddingLeft="@dimen/normal_horizontal_ticker_margin"
         android:paddingRight="@dimen/normal_horizontal_ticker_margin" >
 

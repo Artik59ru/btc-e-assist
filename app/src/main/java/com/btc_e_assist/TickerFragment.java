@@ -1,12 +1,5 @@
 package com.btc_e_assist;
 
-import java.text.DecimalFormat;
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.ParsePosition;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -42,6 +35,13 @@ import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.XYStepMode;
 import com.assist.TradeApi;
+
+import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.ParsePosition;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TickerFragment extends Fragment {
 	public static final String INTENT_VALUE = "pair";
@@ -334,7 +334,7 @@ public class TickerFragment extends Fragment {
 			tickerDataThread.cancel(false);
 		}
 		if (graphThread != null) {
-			graphThread.cancel(false);
+			graphThread.cancel(true);
 		}
 	}
 

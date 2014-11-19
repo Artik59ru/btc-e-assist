@@ -8,7 +8,7 @@
     <application
         android:name="com.btc_e_assist.App"
         android:allowBackup="true"
-        android:icon="@drawable/launcher_icon"
+        android:icon="@drawable/ic_launcher_icon"
         android:label="@string/app_name"
         android:theme="@style/BaseCustomTheme" >
         <activity

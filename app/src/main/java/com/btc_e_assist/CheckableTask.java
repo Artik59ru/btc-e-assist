@@ -4,35 +4,35 @@ public interface CheckableTask {
     /**
      * Check the task
      *
-     * @return true if the result is positive, otherwise false
+     * @return true if the result is positive, false otherwise 
      */
     boolean check();
 
     /**
      * Do this if result of check is positive
      *
-     * @return true if this action has been performed completely, otherwise false
+     * @return true if this action has been performed completely, false otherwise 
      */
     boolean doIfPositive();
 
     /**
      * Do this if result of check is negative
      *
-     * @return true if this action has been performed completely, otherwise false
+     * @return true if this action has been performed completely, false otherwise 
      */
     boolean doIfNegative();
 
     /**
      * Delete this task or not from service task list if result of check is positive
      *
-     * @return true if this task must be deleted, otherwise false
+     * @return true if this task must be deleted, false otherwise 
      */
     boolean isDeleteIfPositive();
 
     /**
      * Delete this task or not from service task list if result of check is negative
      *
-     * @return true if this task must be deleted, otherwise false
+     * @return true if this task must be deleted, false otherwise 
      */
     boolean isDeleteIfNegative();
 

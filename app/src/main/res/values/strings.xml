@@ -126,7 +126,6 @@
     <string name="alarm_added">Alarm has been set</string>
     <string name="chat_checked_mark">Checked</string>
     <string name="news">News</string>
-    <string name="my_funds">My funds: %s</string>
     <string name="invalid_amount">Invalid amount value</string>
     <string name="too_low_amount">Too low amount value</string>
     <string name="invalid_price">Invalid price value</string>
@@ -134,7 +133,6 @@
     <string name="too_high_price">Too high price value</string>
     <string name="error">Error</string>
     <string name="trade_result">Result of the transaction:</string>
-    <string name="received">Received:</string>
     <string name="remains">Remains:</string>
     <string name="try_to_buy">Buying&#8230;</string>
     <string name="try_to_sell">Selling&#8230;</string>
@@ -164,5 +162,8 @@
     <string name="prev_news_button">Prev news</string>
     <string name="order_alarm_notify_title">Order filled: %s</string>
     <string name="order_alarm_notify_content">Balance: + %s</string>
+    <string name="bought">Bought:</string>
+    <string name="sold">Sold:</string>
+    <string name="button_disabled">Button is disabled</string>
 
 </resources>

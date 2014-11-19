@@ -116,7 +116,6 @@
     <string name="alarm_added">Будильник добавлен</string>
     <string name="chat_checked_mark">Прочитано</string>
     <string name="news">Новость</string>
-    <string name="my_funds">Мои средства: %s</string>
     <string name="invalid_amount">Некорректное количество</string>
     <string name="too_low_amount">Слишком малое количество</string>
     <string name="invalid_price">Некорректная цена</string>
@@ -124,7 +123,6 @@
     <string name="too_high_price">Слишком высокая цена</string>
     <string name="error">Ошибка</string>
     <string name="trade_result">Результат сделки:</string>
-    <string name="received">Получено:</string>
     <string name="remains">Остаток:</string>
     <string name="try_to_buy">Покупка&#8230;</string>
     <string name="try_to_sell">Продажа&#8230;</string>
@@ -154,5 +152,8 @@
     <string name="prev_news_button">Пред. новость</string>
     <string name="order_alarm_notify_title">Исполнен ордер: %s</string>
     <string name="order_alarm_notify_content">Баланс: + %s</string>
+    <string name="bought">Куплено:</string>
+    <string name="sold">Продано:</string>
+    <string name="button_disabled">Кнопка выключена</string>
 
 </resources>

@@ -48,7 +48,7 @@
     </style>
 
     <style name="WidgetTextNameStyle">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/Gray0</item>
         <item name="android:textStyle">bold</item>
         <item name="android:maxLines">1</item>
         <item name="android:textSize">12sp</item>
