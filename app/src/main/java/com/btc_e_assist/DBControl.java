@@ -11,8 +11,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class DBControl {
-    public static final String PREFERENCES_EMPTY = "EMPTY";
-
     private static final String BASE_NAME = "btceassistdb";
     private static final int BASE_VERSION = 1;
     private static final String PROFILES_TABLE_NAME = "profiles";

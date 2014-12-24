@@ -1,17 +1,17 @@
 package com.btc_e_assist;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import android.annotation.SuppressLint;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import android.annotation.SuppressLint;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HtmlCutter {
 	public final static String LANG_RU = "ru";
@@ -25,7 +25,7 @@ public class HtmlCutter {
 	public static volatile String news = "";
 	private static volatile int lastMessageHash = 0;
 
-	private final static int TIMEOUT_MILLIS = 10000;
+	private final static int TIMEOUT_MILLIS = 20000;
 	private final static String DEST_URL_MAIN = "https://btc-e.com";
 	private final static String DEST_URL_NEWS = "https://btc-e.com/news";
 	private final static String REG_EXP_COOKIE = "\\w{30,}+";
