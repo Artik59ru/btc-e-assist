@@ -1,10 +1,5 @@
 package com.btc_e_assist;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -17,153 +12,158 @@ import android.widget.RemoteViews;
 
 import com.assist.TradeApi;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+
 public class WidgetHalf extends AppWidgetProvider {
-	private static TradeApi tradeApi = new TradeApi();
+    private static TradeApi tradeApi = new TradeApi();
 
-	private static AppWidgetManager mainWidgetManager;
-	private static int mainWidgetId;
-	private static RemoteViews mainWidgetView;
-	private static PrefControl mainPControl;
-	private static int[] cellsNamesIds = { R.id.widgetHalfName1,
-			R.id.widgetHalfName2, R.id.widgetHalfName3, R.id.widgetHalfName4 };
-	private static int[] cellsValuesIds = { R.id.widgetHalfValue1,
-			R.id.widgetHalfValue2, R.id.widgetHalfValue3, R.id.widgetHalfValue4 };
+    private static AppWidgetManager mainWidgetManager;
+    private static int mainWidgetId;
+    private static RemoteViews mainWidgetView;
+    private static PrefControl mainPControl;
+    private static int[] cellsNamesIds = {R.id.widgetHalfName1,
+            R.id.widgetHalfName2, R.id.widgetHalfName3, R.id.widgetHalfName4};
+    private static int[] cellsValuesIds = {R.id.widgetHalfValue1,
+            R.id.widgetHalfValue2, R.id.widgetHalfValue3, R.id.widgetHalfValue4};
 
-	@Override
-	public void onEnabled(Context context) {
-	}
+    public static void updateWidget() {
+        String[] configPairs = mainPControl
+                .getWidgetPairsSettings(mainWidgetId);
+        int transparencyValue = mainPControl
+                .getWidgetTransparencySettings(mainWidgetId);
+        mainWidgetView.setInt(R.id.widgetHalfImageView, "setAlpha",
+                transparencyValue);
+        mainWidgetView.setInt(R.id.widgetHalfLayoutName1, "setBackgroundColor",
+                Color.argb(transparencyValue, 72, 61, 139));
+        mainWidgetView.setInt(R.id.widgetHalfLayoutName2, "setBackgroundColor",
+                Color.argb(transparencyValue, 72, 61, 139));
+        if (configPairs.length == 0 || configPairs[0].equals(PrefControl.EMPTY)) {
+            return;
+        }
+        mainWidgetView.setViewVisibility(R.id.widgetHalfProgressBar,
+                View.VISIBLE);
+        mainWidgetManager.updateAppWidget(mainWidgetId, mainWidgetView);
+        new SecondThread().execute(configPairs);
+    }
 
-	@Override
-	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
-			int[] appWidgetIds) {
-		mainWidgetManager = appWidgetManager;
+    // return array as {[pair],[value],[pair],[value],...[date]},last element is
+    // date
+    private static ArrayList<String> getPrices(String[] pairsList) {
+        ArrayList<String> resultList = new ArrayList<String>();
+        try {
+            if (tradeApi == null) {
+                tradeApi = new TradeApi();
+            }
 
-		if (mainPControl == null)
-			mainPControl = PrefControl.getInstance();
+            tradeApi.ticker.resetParams();
+            for (String s : pairsList) {
+                tradeApi.ticker.addPair(s);
+            }
 
-		for (int i : appWidgetIds) {
-			mainWidgetId = i;
-			Intent updateIntent = new Intent(context, WidgetHalf.class);
-			updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-					appWidgetIds);
-			PendingIntent pIntent = PendingIntent.getBroadcast(context, i,
-					updateIntent, 0);
-			mainWidgetView = new RemoteViews(context.getPackageName(),
-					R.layout.widget_half);
-			mainWidgetView.setOnClickPendingIntent(R.id.widgetHalfButton,
-					pIntent);
-			updateWidget();
-			appWidgetManager.updateAppWidget(i, mainWidgetView);
-		}
+            if (!tradeApi.ticker.runMethod()) {
+                tradeApi.ticker.runMethod();
+            }
+            if (tradeApi.ticker.isSuccess()) {
+                while (tradeApi.ticker.hasNextPair()) {
+                    tradeApi.ticker.switchNextPair();
+                    resultList.add(tradeApi.ticker.getCurrentPairName());
+                    resultList.add(tradeApi.ticker.getCurrentLast());
+                }
+                long timestamp = Long.parseLong(tradeApi.ticker
+                        .getCurrentUpdated()) * 1000;
+                DateFormat formatter = DateFormat.getTimeInstance();
+                resultList.add(formatter.format(new Date(timestamp)));
+            }
+        } catch (Exception e) {
+        }
+        return resultList;
+    }
 
-	}
+    @Override
+    public void onEnabled(Context context) {
+    }
 
-	public static void updateWidget() {
-		String[] configPairs = mainPControl
-				.getWidgetPairsSettings(mainWidgetId);
-		int transparencyValue = mainPControl
-				.getWidgetTransparencySettings(mainWidgetId);
-		mainWidgetView.setInt(R.id.widgetHalfImageView, "setAlpha",
-				transparencyValue);
-		mainWidgetView.setInt(R.id.widgetHalfLayoutName1, "setBackgroundColor",
-				Color.argb(transparencyValue, 72, 61, 139));
-		mainWidgetView.setInt(R.id.widgetHalfLayoutName2, "setBackgroundColor",
-				Color.argb(transparencyValue, 72, 61, 139));
-		if (configPairs.length == 0 || configPairs[0].equals(PrefControl.EMPTY)) {
-			return;
-		}
-		mainWidgetView.setViewVisibility(R.id.widgetHalfProgressBar,
-				View.VISIBLE);
-		mainWidgetManager.updateAppWidget(mainWidgetId, mainWidgetView);
-		new SecondThread().execute(configPairs);
-	}
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+                         int[] appWidgetIds) {
+        mainWidgetManager = appWidgetManager;
 
-	@Override
-	public void onDeleted(Context context, int[] appWidgetIds) {
-		if (mainPControl != null) {
-			for (int i : appWidgetIds) {
-				mainPControl.deleteWidgetSettings(i);
-			}
-		}
-	}
+        if (mainPControl == null)
+            mainPControl = PrefControl.getInstance();
 
-	@Override
-	public void onDisabled(Context context) {
+        for (int i : appWidgetIds) {
+            mainWidgetId = i;
+            Intent updateIntent = new Intent(context, WidgetHalf.class);
+            updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
+                    appWidgetIds);
+            PendingIntent pIntent = PendingIntent.getBroadcast(context, i,
+                    updateIntent, 0);
+            mainWidgetView = new RemoteViews(context.getPackageName(),
+                    R.layout.widget_half);
+            mainWidgetView.setOnClickPendingIntent(R.id.widgetHalfButton,
+                    pIntent);
+            updateWidget();
+            appWidgetManager.updateAppWidget(i, mainWidgetView);
+        }
 
-	}
+    }
 
-	static class SecondThread extends
-			AsyncTask<String[], Void, ArrayList<String>> {
-		@Override
-		protected ArrayList<String> doInBackground(String[]... arg) {
-			return getPrices(arg[0]);
-		}
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        if (mainPControl != null) {
+            for (int i : appWidgetIds) {
+                mainPControl.deleteWidgetSettings(i);
+            }
+        }
+    }
 
-		@Override
-		protected void onPostExecute(ArrayList<String> dataList) {
-			int i = 0;
-			boolean isPref = false;
-			boolean sw = true;
-			if (dataList.size() == 0) {
-				dataList = mainPControl.getWidgetContent(mainWidgetId);
-				isPref = true;
-			}
-			for (Iterator<String> it = dataList.iterator(); it.hasNext();) {
-				String buffer = it.next();
-				if (!it.hasNext()) {
-					mainWidgetView.setTextViewText(R.id.widgetHalfTime, buffer);
-					break;
-				}
-				if (sw) {
-					mainWidgetView.setTextViewText(cellsNamesIds[i], buffer);
-				} else {
-					mainWidgetView.setTextViewText(cellsValuesIds[i], buffer);
-					if (i < 3) {
-						i++;
-					}
-				}
-				sw = sw ? false : true;
-			}
-			mainWidgetView.setViewVisibility(R.id.widgetHalfProgressBar,
-					View.GONE);
-			mainWidgetManager.updateAppWidget(mainWidgetId, mainWidgetView);
-			if (!isPref) {
-				mainPControl.setWidgetContent(dataList, mainWidgetId);
-			}
-		}
-	}
+    @Override
+    public void onDisabled(Context context) {
 
-	// return array as {[pair],[value],[pair],[value],...[date]},last element is
-	// date
-	private static ArrayList<String> getPrices(String[] pairsList) {
-		ArrayList<String> resultList = new ArrayList<String>();
-		try {
-			if (tradeApi == null) {
-				tradeApi = new TradeApi();
-			}
+    }
 
-			tradeApi.ticker.resetParams();
-			for (String s : pairsList) {
-				tradeApi.ticker.addPair(s);
-			}
+    static class SecondThread extends
+            AsyncTask<String[], Void, ArrayList<String>> {
+        @Override
+        protected ArrayList<String> doInBackground(String[]... arg) {
+            return getPrices(arg[0]);
+        }
 
-			if (!tradeApi.ticker.runMethod()) {
-				tradeApi.ticker.runMethod();
-			}
-			if (tradeApi.ticker.isSuccess()) {
-				while (tradeApi.ticker.hasNextPair()) {
-					tradeApi.ticker.switchNextPair();
-					resultList.add(tradeApi.ticker.getCurrentPairName());
-					resultList.add(tradeApi.ticker.getCurrentLast());
-				}
-				long timestamp = Long.parseLong(tradeApi.ticker
-						.getCurrentUpdated()) * 1000;
-				DateFormat formatter = DateFormat.getTimeInstance();
-				resultList.add(formatter.format(new Date(timestamp)));
-			}
-		} catch (Exception e) {
-		}
-		return resultList;
-	}
+        @Override
+        protected void onPostExecute(ArrayList<String> dataList) {
+            int i = 0;
+            boolean isPref = false;
+            boolean sw = true;
+            if (dataList.size() == 0) {
+                dataList = mainPControl.getWidgetContent(mainWidgetId);
+                isPref = true;
+            }
+            for (Iterator<String> it = dataList.iterator(); it.hasNext(); ) {
+                String buffer = it.next();
+                if (!it.hasNext()) {
+                    mainWidgetView.setTextViewText(R.id.widgetHalfTime, buffer);
+                    break;
+                }
+                if (sw) {
+                    mainWidgetView.setTextViewText(cellsNamesIds[i], buffer);
+                } else {
+                    mainWidgetView.setTextViewText(cellsValuesIds[i], buffer);
+                    if (i < 3) {
+                        i++;
+                    }
+                }
+                sw = sw ? false : true;
+            }
+            mainWidgetView.setViewVisibility(R.id.widgetHalfProgressBar,
+                    View.GONE);
+            mainWidgetManager.updateAppWidget(mainWidgetId, mainWidgetView);
+            if (!isPref) {
+                mainPControl.setWidgetContent(dataList, mainWidgetId);
+            }
+        }
+    }
 }

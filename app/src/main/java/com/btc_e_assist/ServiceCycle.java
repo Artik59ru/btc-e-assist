@@ -6,8 +6,8 @@ import android.content.Intent;
 import java.util.ArrayList;
 
 public class ServiceCycle extends Thread {
-    private static volatile long frequencyValue = 60 * 1000;
     private static final long serverCacheFrequency = 2 * 1000;
+    private static volatile long frequencyValue = 60 * 1000;
     private Context mContext;
     private volatile ArrayList<CheckableTask> taskList;
     private volatile boolean updated = false;

@@ -8,7 +8,6 @@ import android.preference.PreferenceManager;
 import java.util.ArrayList;
 
 public class PrefControl {
-    private static volatile PrefControl mPrefControl;
     public static final String PREFERENCES_FILE_NAME = "btce_assist_preferences";
     public static final String PAIRS_STRING = "PAIRS_LIST";
     public static final String EMPTY = "EMPTY";
@@ -19,6 +18,7 @@ public class PrefControl {
     public static final String WIDGET_TRANSPARENCY_SETTINGS_NAME = "WIDGET_TRANSPARENCY_SETTINGS:";
     public static final String PROFILE_CURRENT_ID = "CURRENT_PROFILE_DB_ID";
     public static final String TRADE_SWITCH_STATE = "TRADE_SWITCH_STATE";
+    private static volatile PrefControl mPrefControl;
     private SharedPreferences preferences;
 
     private PrefControl() {
@@ -170,12 +170,6 @@ public class PrefControl {
         editPref.commit();
     }
 
-    public synchronized void setCurrentProfileId(long id) {
-        Editor editPref = preferences.edit();
-        editPref.putLong(PROFILE_CURRENT_ID, id);
-        editPref.commit();
-    }
-
     public synchronized void deleteCurrentProfileId() {
         Editor editPref = preferences.edit();
         editPref.remove(PROFILE_CURRENT_ID);
@@ -189,6 +183,12 @@ public class PrefControl {
      */
     public long getCurrentProfileId() {
         return preferences.getLong(PROFILE_CURRENT_ID, EMPTY_LONG);
+    }
+
+    public synchronized void setCurrentProfileId(long id) {
+        Editor editPref = preferences.edit();
+        editPref.putLong(PROFILE_CURRENT_ID, id);
+        editPref.commit();
     }
 
     public synchronized void setAllPreferences() {

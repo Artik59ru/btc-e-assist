@@ -25,26 +25,23 @@ public class AssistAlarmFragment extends Fragment {
     public static final String CONDITION_HIGHER = "HIGHER";
     public static final String CONDITION_LOWER = "LOWER";
     public static final String CONDITION_UNDEFINED = "UNDEFINED";
+    private static volatile DataBox tickerBox = new DataBox();
+    private static int spinnerLeftSavedPosition = 0;
+    private static int spinnerRightSavedPosition = 0;
     private Context mContext;
     private PrefControl pControl;
     private TradeControl tradeControl;
     private DBControl dbControl;
-
     private Spinner spinnerLeft;
     private Spinner spinnerRight;
     private Spinner spinnerCondition;
     private EditText priceEdit;
-
     private String[] mainPairList;
     private StringBuilder currentPair = new StringBuilder();
-    private static volatile DataBox tickerBox = new DataBox();
     private ArrayList<String> leftList = new ArrayList<String>();
     private ArrayList<String> rightList = new ArrayList<String>();
     private ArrayAdapter<String> adapterLeft;
     private ArrayAdapter<String> adapterRight;
-
-    private static int spinnerLeftSavedPosition = 0;
-    private static int spinnerRightSavedPosition = 0;
 
     @Override
     public void onAttach(Activity activity) {

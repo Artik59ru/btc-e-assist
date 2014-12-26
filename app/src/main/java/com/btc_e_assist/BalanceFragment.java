@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BalanceFragment extends ListFragment {
+    private static volatile DataBox dataBox = new DataBox();
     private Context mContext;
     private TradeControl tradeControl;
     private CustomAdapter adapter;
     private String currentFragmentName = "";
-    private static volatile DataBox dataBox = new DataBox();
     private SecondThread secondThread;
 
     @Override

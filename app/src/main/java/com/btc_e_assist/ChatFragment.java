@@ -1,9 +1,5 @@
 package com.btc_e_assist;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -20,182 +16,186 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+
 public class ChatFragment extends ListFragment {
-	private Context mContext;
-	private CustomAdapter adapter;
-	private String currentFragmentName = "";
-	private SecondThread secondThread;
+    private Context mContext;
+    private CustomAdapter adapter;
+    private String currentFragmentName = "";
+    private SecondThread secondThread;
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		mContext = activity;
-		currentFragmentName = getTag();
-		HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
-		update();
-	}
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mContext = activity;
+        currentFragmentName = getTag();
+        HtmlCutter.setLanguage(Locale.getDefault().getLanguage());
+        update();
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		setHasOptionsMenu(true);
-		View rootView = inflater.inflate(R.layout.fragment_chat, null);
-		ArrayList<String> redNicks = new ArrayList<String>();
-		redNicks.add("admin");
-		redNicks.add("support");
-		redNicks.add("system");
-		redNicks.add("penek");
-		adapter = new CustomAdapter(mContext, HtmlCutter.chatData, redNicks);
-		setListAdapter(adapter);
-		return rootView;
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        View rootView = inflater.inflate(R.layout.fragment_chat, null);
+        ArrayList<String> redNicks = new ArrayList<String>();
+        redNicks.add("admin");
+        redNicks.add("support");
+        redNicks.add("system");
+        redNicks.add("penek");
+        adapter = new CustomAdapter(mContext, HtmlCutter.chatData, redNicks);
+        setListAdapter(adapter);
+        return rootView;
+    }
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.chat_actions, menu);
-	}
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.chat_actions, menu);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.action_refresh:
-			update();
-			return true;
-		case R.id.action_set_russian:
-			HtmlCutter.setLanguage(HtmlCutter.LANG_RU);
-			update();
-			return true;
-		case R.id.action_set_english:
-			HtmlCutter.setLanguage(HtmlCutter.LANG_EN);
-			update();
-			return true;
-		case R.id.action_set_chinese:
-			HtmlCutter.setLanguage(HtmlCutter.LANG_CN);
-			update();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                update();
+                return true;
+            case R.id.action_set_russian:
+                HtmlCutter.setLanguage(HtmlCutter.LANG_RU);
+                update();
+                return true;
+            case R.id.action_set_english:
+                HtmlCutter.setLanguage(HtmlCutter.LANG_EN);
+                update();
+                return true;
+            case R.id.action_set_chinese:
+                HtmlCutter.setLanguage(HtmlCutter.LANG_CN);
+                update();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-	private void update() {
-		if (secondThread != null) {
-			secondThread.cancel(false);
-		}
-		secondThread = new SecondThread();
-		secondThread.execute();
-		CommonHelper.makeToastUpdating(mContext, currentFragmentName);
-	}
+    private void update() {
+        if (secondThread != null) {
+            secondThread.cancel(false);
+        }
+        secondThread = new SecondThread();
+        secondThread.execute();
+        CommonHelper.makeToastUpdating(mContext, currentFragmentName);
+    }
 
-	private class SecondThread extends AsyncTask<Void, Void, Boolean> {
+    private class SecondThread extends AsyncTask<Void, Void, Boolean> {
 
-		@Override
-		protected Boolean doInBackground(Void... arg0) {
-			return HtmlCutter.loadChatData();
-		}
+        @Override
+        protected Boolean doInBackground(Void... arg0) {
+            return HtmlCutter.loadChatData();
+        }
 
-		@Override
-		protected void onPostExecute(Boolean result) {
-			super.onPostExecute(result);
-			if (!isAdded()) {
-				return;
-			}
-			if (result.booleanValue() && HtmlCutter.setChatData()) {
-				if (adapter != null) {
-					adapter.notifyDataSetChanged();
-					CommonHelper
-							.makeToastUpdated(mContext, currentFragmentName);
-				}
-			} else {
-				CommonHelper.makeToastErrorConnection(mContext,
-						currentFragmentName);
-			}
-		}
-	}
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            if (!isAdded()) {
+                return;
+            }
+            if (result.booleanValue() && HtmlCutter.setChatData()) {
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                    CommonHelper
+                            .makeToastUpdated(mContext, currentFragmentName);
+                }
+            } else {
+                CommonHelper.makeToastErrorConnection(mContext,
+                        currentFragmentName);
+            }
+        }
+    }
 
-	@SuppressLint("DefaultLocale")
-	private class CustomAdapter extends BaseAdapter {
-		private LayoutInflater mInflater;
-		private ArrayList<HashMap<String, Object>> mData;
-		private ArrayList<String> mRedNicks;
-		private String[] mFrom = { "nickname", "message" };
-		private int[] mTo = { R.id.itemChatNickname, R.id.itemChatMessage };
-		private int redColor;
-		private int blackColor;
+    @SuppressLint("DefaultLocale")
+    private class CustomAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+        private ArrayList<HashMap<String, Object>> mData;
+        private ArrayList<String> mRedNicks;
+        private String[] mFrom = {"nickname", "message"};
+        private int[] mTo = {R.id.itemChatNickname, R.id.itemChatMessage};
+        private int redColor;
+        private int blackColor;
 
-		CustomAdapter(Context context, ArrayList<HashMap<String, Object>> data,
-				ArrayList<String> redNicks) {
-			mInflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			mData = data;
-			mRedNicks = redNicks;
-			redColor = getResources().getColor(R.color.Red2);
-			blackColor = getResources().getColor(R.color.ChatText);
-		}
+        CustomAdapter(Context context, ArrayList<HashMap<String, Object>> data,
+                      ArrayList<String> redNicks) {
+            mInflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mData = data;
+            mRedNicks = redNicks;
+            redColor = getResources().getColor(R.color.Red2);
+            blackColor = getResources().getColor(R.color.ChatText);
+        }
 
-		@Override
-		public int getCount() {
-			return mData.size();
-		}
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
 
-		@Override
-		public Object getItem(int position) {
-			return mData.get(position);
-		}
+        @Override
+        public Object getItem(int position) {
+            return mData.get(position);
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View view = convertView;
-			TextView nicknameView = null;
-			TextView messageView = null;
-			HashMap<String, Object> map = mData.get(position);
-			if (map.get("checked") != null) {
-				view = mInflater.inflate(R.layout.item_chat_checked_mark,
-						parent, false);
-				return view;
-			}
-			if (view == null) {
-				view = mInflater
-						.inflate(R.layout.item_chat_list, parent, false);
-				nicknameView = (TextView) view.findViewById(mTo[0]);
-			} else {
-				nicknameView = (TextView) view.findViewById(mTo[0]);
-				if (nicknameView == null) {
-					view = mInflater.inflate(R.layout.item_chat_list, parent,
-							false);
-					nicknameView = (TextView) view.findViewById(mTo[0]);
-				}
-			}
-			messageView = (TextView) view.findViewById(mTo[1]);
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = convertView;
+            TextView nicknameView = null;
+            TextView messageView = null;
+            HashMap<String, Object> map = mData.get(position);
+            if (map.get("checked") != null) {
+                view = mInflater.inflate(R.layout.item_chat_checked_mark,
+                        parent, false);
+                return view;
+            }
+            if (view == null) {
+                view = mInflater
+                        .inflate(R.layout.item_chat_list, parent, false);
+                nicknameView = (TextView) view.findViewById(mTo[0]);
+            } else {
+                nicknameView = (TextView) view.findViewById(mTo[0]);
+                if (nicknameView == null) {
+                    view = mInflater.inflate(R.layout.item_chat_list, parent,
+                            false);
+                    nicknameView = (TextView) view.findViewById(mTo[0]);
+                }
+            }
+            messageView = (TextView) view.findViewById(mTo[1]);
 
-			String nickname = (String) map.get("nickname");
-			if (mRedNicks.contains(nickname.toLowerCase())) {
-				nicknameView.setTextColor(redColor);
-				nicknameView.setCompoundDrawablesWithIntrinsicBounds(
-						R.drawable.chat_admin, 0, 0, 0);
-				messageView.setTextColor(redColor);
-				messageView.setTypeface(Typeface.DEFAULT_BOLD);
+            String nickname = (String) map.get("nickname");
+            if (mRedNicks.contains(nickname.toLowerCase())) {
+                nicknameView.setTextColor(redColor);
+                nicknameView.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.chat_admin, 0, 0, 0);
+                messageView.setTextColor(redColor);
+                messageView.setTypeface(Typeface.DEFAULT_BOLD);
 
-			} else {
-				nicknameView.setTextColor(blackColor);
-				nicknameView.setCompoundDrawablesWithIntrinsicBounds(
-						R.drawable.chat_user, 0, 0, 0);
-				messageView.setTextColor(blackColor);
-				messageView.setTypeface(CommonHelper.fontRobotoLight);
-			}
-			nicknameView.setText((String) map.get(mFrom[0]));
-			messageView.setText((String) map.get(mFrom[1]));
-			return view;
-		}
+            } else {
+                nicknameView.setTextColor(blackColor);
+                nicknameView.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.chat_user, 0, 0, 0);
+                messageView.setTextColor(blackColor);
+                messageView.setTypeface(CommonHelper.fontRobotoLight);
+            }
+            nicknameView.setText((String) map.get(mFrom[0]));
+            messageView.setText((String) map.get(mFrom[1]));
+            return view;
+        }
 
-		@Override
-		public boolean isEnabled(int position) {
-			return false;
-		}
-	}
+        @Override
+        public boolean isEnabled(int position) {
+            return false;
+        }
+    }
 }

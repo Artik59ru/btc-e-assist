@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
+    private static final long PAIRS_LIST_AGE_SECONDS = 300;
     private TradeControl tControl = TradeControl.getInstance();
     private PrefControl pControl = PrefControl.getInstance();
-    private static final long PAIRS_LIST_AGE_SECONDS = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

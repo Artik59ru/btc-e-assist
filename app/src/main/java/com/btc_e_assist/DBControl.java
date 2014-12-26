@@ -11,18 +11,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class DBControl {
-    private static final String BASE_NAME = "btceassistdb";
-    private static final int BASE_VERSION = 1;
-    private static final String PROFILES_TABLE_NAME = "profiles";
-    private static final String ACTIONS_TABLE_NAME = "actions";
-
     public static final String PROFILES_NAME_ID = "_id";
     public static final String PROFILES_NAME_NAME = "name";
     public static final String PROFILES_NAME_KEY = "apikey";
     public static final String PROFILES_NAME_SECRET = "secretkey";
     public static final String PROFILES_NAME_IS_ENCODED = "is_encoded";
-
     public static final String ACTIONS_NAME_ID = "_id";
+    private static final String CONDITION_ID = ACTIONS_NAME_ID + " = ?";
     public static final String ACTIONS_NAME_TYPE = "type";
     public static final String ACTIONS_NAME_VALUE_FLOAT = "value";
     public static final String ACTIONS_NAME_OPTION_1_FLOAT = "option1";
@@ -32,13 +27,15 @@ public class DBControl {
     public static final String ACTIONS_NAME_OPTION_5_TEXT = "option5";
     public static final String ACTIONS_TYPE_ALARM = "alarm";
     public static final String ACTIONS_TYPE_ORDER_ALARM = "order_alarm";
-    private static final String CONDITION_ID = ACTIONS_NAME_ID + " = ?";
-
+    private static final String BASE_NAME = "btceassistdb";
+    private static final int BASE_VERSION = 1;
+    private static final String PROFILES_TABLE_NAME = "profiles";
     private static final String CREATE_PROFILES = "CREATE TABLE "
             + PROFILES_TABLE_NAME + "(" + PROFILES_NAME_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PROFILES_NAME_NAME
             + " TEXT, " + PROFILES_NAME_KEY + " TEXT, " + PROFILES_NAME_SECRET
             + " TEXT," + PROFILES_NAME_IS_ENCODED + " TEXT" + ");";
+    private static final String ACTIONS_TABLE_NAME = "actions";
     private static final String CREATE_ACTIONS = "CREATE TABLE "
             + ACTIONS_TABLE_NAME + "(" + ACTIONS_NAME_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ACTIONS_NAME_TYPE

@@ -88,25 +88,6 @@ public class WidgetConfigActivity extends ActionBarActivity {
         finish();
     }
 
-    private class SecondThread extends AsyncTask<Void, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Void... arg) {
-            return pControl.updatePairsList();
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            if (result) {
-                CommonHelper.makeToastUpdated(WidgetConfigActivity.this,
-                        getTitle().toString());
-                refreshCells();
-            } else {
-                CommonHelper.makeToastErrorConnection(
-                        WidgetConfigActivity.this, getTitle().toString());
-            }
-        }
-    }
-
     void refreshCells() {
         pairs = pControl.getPairsList();
         spinnerAdapter = new ArrayAdapter<String>(this,
@@ -133,5 +114,24 @@ public class WidgetConfigActivity extends ActionBarActivity {
         cell8.setSelection(7);
         cell9.setSelection(8);
         cell10.setSelection(9);
+    }
+
+    private class SecondThread extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... arg) {
+            return pControl.updatePairsList();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                CommonHelper.makeToastUpdated(WidgetConfigActivity.this,
+                        getTitle().toString());
+                refreshCells();
+            } else {
+                CommonHelper.makeToastErrorConnection(
+                        WidgetConfigActivity.this, getTitle().toString());
+            }
+        }
     }
 }

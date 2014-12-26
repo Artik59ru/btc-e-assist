@@ -20,6 +20,10 @@ import android.widget.Toast;
 import java.util.List;
 
 public class CommonHelper {
+    public static final Typeface fontRobotoLight = Typeface.createFromAsset(
+            App.context.getAssets(), "Roboto-Light.ttf");
+    public static final Typeface fontRobotoThin = Typeface.createFromAsset(
+            App.context.getAssets(), "Roboto-Thin.ttf");
     private static AlertDialog dialog;
 
     public static void showPasswordDialog(final Context context) {
@@ -238,9 +242,4 @@ public class CommonHelper {
         int[] result = {0, 0};
         return result;
     }
-
-    public static final Typeface fontRobotoLight = Typeface.createFromAsset(
-            App.context.getAssets(), "Roboto-Light.ttf");
-    public static final Typeface fontRobotoThin = Typeface.createFromAsset(
-            App.context.getAssets(), "Roboto-Thin.ttf");
 }

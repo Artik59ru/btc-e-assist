@@ -23,13 +23,13 @@ import java.util.List;
 import java.util.Map;
 
 public class OrdersFragment extends Fragment {
+    private static CustomAdapter adapter;
+    private static ExpandableListView ordersList;
+    private static volatile DataBox dataBox = new DataBox();
     private Context mContext;
     private TradeControl tradeControl;
     private DBControl dbControl;
-    private static CustomAdapter adapter;
-    private static ExpandableListView ordersList;
     private ArrayList<String> alarmOrdersIds = new ArrayList<String>();
-    private static volatile DataBox dataBox = new DataBox();
     private TextView noData;
     private String currentFragmentName = "";
     private SecondThread secondThread;
