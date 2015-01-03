@@ -8,19 +8,22 @@
     <ImageView
         android:id="@+id/widgetImageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/widget_background" />
+        android:src="@drawable/widget_background"
+        android:layout_alignBottom="@+id/widgetMainLinearLayout" />
 
     <Button
         android:id="@+id/widgetButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/widgetMainLinearLayout"
         android:background="@null" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/widgetMainLinearLayout"
         android:orientation="vertical">
 
         <LinearLayout
