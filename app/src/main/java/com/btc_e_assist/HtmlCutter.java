@@ -2,6 +2,9 @@ package com.btc_e_assist;
 
 import android.annotation.SuppressLint;
 
+import com.assist.ProxyHook;
+
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -37,6 +40,8 @@ public class HtmlCutter {
     private static Pattern cookiePattern;
     private static Pattern chartPattern;
     private static Document fullHtml;
+    private static boolean flagTryProxyHook = false;
+
 
     public static void setLanguage(String lang) {
         currentLanguage = lang;
@@ -47,20 +52,36 @@ public class HtmlCutter {
     }
 
     private static void getHtmlPage(String target) throws IOException {
-        if (cookiePattern == null) {
-            cookiePattern = Pattern.compile(REG_EXP_COOKIE);
-        }
-        fullHtml = Jsoup.connect(target).cookie("a", cookie)
-                .cookie("locale", currentLanguage).timeout(TIMEOUT_MILLIS)
-                .get();
-        if (fullHtml.toString().length() < cookieDetectionLimitLength) {
-            String scriptData = fullHtml.getElementsByTag("script").get(0)
-                    .data();
-            Matcher matcher = cookiePattern.matcher(scriptData);
-            matcher.find();
-            cookie = matcher.group();
-            fullHtml = Jsoup.connect(target).cookie("a", cookie)
-                    .cookie("locale", currentLanguage).get();
+        try {
+            if (cookiePattern == null) {
+                cookiePattern = Pattern.compile(REG_EXP_COOKIE);
+            }
+            Connection connection;
+            if (flagTryProxyHook) {
+                String targetProxy = ProxyHook.getProxyUrl(target);
+                connection = Jsoup.connect(targetProxy);
+            } else {
+                connection = Jsoup.connect(target);
+            }
+            fullHtml = connection.cookie("a", cookie)
+                    .cookie("locale", currentLanguage).timeout(TIMEOUT_MILLIS)
+                    .get();
+            if (fullHtml.toString().length() < cookieDetectionLimitLength) {
+                String scriptData = fullHtml.getElementsByTag("script").get(0)
+                        .data();
+                Matcher matcher = cookiePattern.matcher(scriptData);
+                matcher.find();
+                cookie = matcher.group();
+                fullHtml = Jsoup.connect(target).cookie("a", cookie)
+                        .cookie("locale", currentLanguage).get();
+            }
+        } catch (IOException e) {
+            flagTryProxyHook = !flagTryProxyHook;
+            if (flagTryProxyHook) {
+                getHtmlPage(target);
+            } else {
+                throw e;
+            }
         }
     }
 
@@ -224,7 +245,11 @@ public class HtmlCutter {
     public static boolean setChartData() {
         try {
             String scriptData;
-            scriptData = fullHtml.getElementsByTag("script").get(4).html();
+            if (flagTryProxyHook) {
+                scriptData = fullHtml.getElementsByTag("script").get(6).html();
+            } else {
+                scriptData = fullHtml.getElementsByTag("script").get(4).html();
+            }
             if (scriptData.length() == 0) {
                 return false;
             }
