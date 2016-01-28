@@ -2,6 +2,7 @@ package com.btc_e_assist;
 
 import android.annotation.SuppressLint;
 
+import com.assist.Mirrors;
 import com.assist.ProxyHook;
 
 import org.jsoup.Connection;
@@ -21,8 +22,6 @@ public class HtmlCutter {
     public final static String LANG_EN = "en";
     public final static String LANG_CN = "cn";
     private final static int TIMEOUT_MILLIS = 20000;
-    private final static String DEST_URL_MAIN = "https://btc-e.com";
-    private final static String DEST_URL_NEWS = "https://btc-e.com/news";
     private final static String REG_EXP_COOKIE = "\\w{30,}+";
     private final static String REG_EXP_CHART = "\\[\\[.*\\]\\]";
     public static volatile ArrayList<HashMap<String, Object>> chatData = new ArrayList<HashMap<String, Object>>();
@@ -92,7 +91,7 @@ public class HtmlCutter {
      */
     public static boolean loadChatData() {
         try {
-            getHtmlPage(DEST_URL_MAIN);
+            getHtmlPage(Mirrors.getMirror());
             return true;
         } catch (Exception e) {
         }
@@ -150,7 +149,7 @@ public class HtmlCutter {
      */
     public static boolean loadNewsList() {
         try {
-            getHtmlPage(DEST_URL_NEWS);
+            getHtmlPage(Mirrors.getMirror()+"/news");
             return true;
         } catch (Exception e) {
         }
@@ -223,7 +222,7 @@ public class HtmlCutter {
     @SuppressLint("DefaultLocale")
     public static boolean loadChartData(String pairName) {
         try {
-            StringBuilder compositTarget = new StringBuilder(DEST_URL_MAIN);
+            StringBuilder compositTarget = new StringBuilder(Mirrors.getMirror());
             compositTarget.append("/exchange/");
             compositTarget.append(pairName.replace('-', '_').toLowerCase());
             if (chartPattern == null) {
