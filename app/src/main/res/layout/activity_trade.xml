@@ -209,7 +209,16 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/tradeLeftButton"
+                android:id="@+id/tradeSpecialButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/just_selector"
+                android:padding="@dimen/standard_margin"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/tradeDefaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -217,14 +226,6 @@
                 android:textColor="@color/Gray"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/tradeRightButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/just_selector"
-                android:padding="@dimen/standard_margin"
-                android:textStyle="bold" />
         </LinearLayout>
 
     </RelativeLayout>

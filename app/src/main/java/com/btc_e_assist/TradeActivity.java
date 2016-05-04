@@ -180,7 +180,7 @@ public class TradeActivity extends ActionBarActivity {
 
         });
 
-        Button leftButtonView = (Button) findViewById(R.id.tradeLeftButton);
+        Button leftButtonView = (Button) findViewById(R.id.tradeDefaultButton);
         if (isBuy) {
             leftButtonView.setBackgroundResource(R.drawable.buy_selector);
             leftButtonView.setText(R.string.buy_button);
@@ -198,7 +198,7 @@ public class TradeActivity extends ActionBarActivity {
                 }
             }
         });
-        Button rightButtonView = (Button) findViewById(R.id.tradeRightButton);
+        Button rightButtonView = (Button) findViewById(R.id.tradeSpecialButton);
         if (isBuy) {
             rightButtonView.setText(R.string.just_buy_button);
             rightButtonView.setTextColor(getResources().getColor(
