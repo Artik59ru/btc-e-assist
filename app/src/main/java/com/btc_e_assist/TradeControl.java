@@ -6,6 +6,7 @@ import com.assist.TradeApi;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -221,10 +222,18 @@ public class TradeControl {
      */
     @SuppressLint("DefaultLocale")
     public boolean loadTradesData(String pairName) {
+        return loadTradesData(pairName, tradesCount);
+    }
+
+    /**
+     * Return false if has ANY troubles
+     */
+    @SuppressLint("DefaultLocale")
+    public boolean loadTradesData(String pairName, int count) {
         try {
             tradeApi.trades.resetParams();
             tradeApi.trades.addPair(pairName);
-            tradeApi.trades.setLimit(tradesCount);
+            tradeApi.trades.setLimit(count);
             if (!tradeApi.trades.runMethod()) {
                 if (!tradeApi.trades.runMethod()) {
                     return false;
@@ -284,6 +293,37 @@ public class TradeControl {
             timestamp = tradeApi.trades.getLocalTimestamp();
             formatter = DateFormat.getTimeInstance();
             inputBox.time = formatter.format(new Date(timestamp));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean setTradesData(ArrayList<Double> priceData, ArrayList<String> timeData) {
+        long timestamp;
+        DateFormat formatter;
+        try {
+            priceData.clear();
+            timeData.clear();
+            tradeApi.trades.switchNextPair();
+            int count = 0;
+            while (tradeApi.trades.hasNextTrade()) {
+                tradeApi.trades.switchNextTrade();
+                count++;
+
+                if (count % 100 != 0) {
+                    continue;
+                }
+                String rate = tradeApi.trades.getCurrentPrice();
+                priceData.add(Double.valueOf(rate));
+
+                timestamp = Long.parseLong(tradeApi.trades
+                        .getCurrentTimestamp()) * 1000;
+                formatter = DateFormat.getTimeInstance(DateFormat.SHORT);
+                timeData.add(formatter.format(new Date(timestamp)));
+            }
+            Collections.reverse(priceData);
+            Collections.reverse(timeData);
             return true;
         } catch (Exception e) {
             return false;

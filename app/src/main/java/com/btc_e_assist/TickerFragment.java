@@ -386,7 +386,8 @@ public class TickerFragment extends Fragment {
 
         @Override
         protected Boolean doInBackground(String... arg0) {
-            return HtmlCutter.loadChartData(arg0[0]);
+//            return HtmlCutter.loadChartData(arg0[0]);
+            return tradeControl.loadTradesData(arg0[0], 5000);
         }
 
         @Override
@@ -395,7 +396,8 @@ public class TickerFragment extends Fragment {
             if (!isAdded()) {
                 return;
             }
-            if (result.booleanValue() && HtmlCutter.setChartData()) {
+//            if (result.booleanValue() && HtmlCutter.setChartData()) {
+            if (result.booleanValue() && tradeControl.setTradesData(HtmlCutter.chartPriceData, HtmlCutter.chartTimeData)) {
                 StringBuilder resultText = new StringBuilder();
                 double firstPrice = HtmlCutter.chartPriceData.get(0);
                 double lastPrice = HtmlCutter.chartPriceData
