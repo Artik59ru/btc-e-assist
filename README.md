@@ -20,22 +20,22 @@ You can create one on the https://btc-e.com/profile#api_keys page
 
 We have used:
 
-####Assist TradeApi
+#### Assist TradeApi
 https://github.com/alexandersjn/btc_e_assist_api
-####Jackson library
+#### Jackson library
 http://wiki.fasterxml.com/Home
-####Apache Commons Codec (TM)
+#### Apache Commons Codec (TM)
 http://commons.apache.org/proper/commons-codec/
-####Jsoup
+#### Jsoup
 http://jsoup.org/
-####Android Plot
+#### Android Plot
 http://androidplot.com/
 
 
 E-mail for feedback: alexandersjn@gmail.com
 
 
-###Donation:
+### Donation:
 
 
 BTC 1GQJ5iH84EVcsr5qxLCgoopLb3ttDtrQVa
